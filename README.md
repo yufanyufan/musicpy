@@ -24,13 +24,13 @@ with ScorePartwise() as score:
           TopMargin=80,
           BottomMargin=80,
       )
-    with SystemLayout(  # pytype: disable=wrong-arg-types
+    with SystemLayout(
         SystemDistance=120, TopSystemDistance=70, SystemMargins=_(LeftMargin=1, RightMargin=2)
     ):
-      pass  # SystemLayout is a context manager; SystemMargins is now an argument.
+      pass
     StaffLayout(StaffDistance=80)
     with Appearance():
-      pass  # LineWidth, NoteSize, etc. could be added here
+      pass
     MusicFont(font_family="Maestro", font_size="20.5")
     WordFont(font_family="Times New Roman", font_size="10")
     LyricFont(number="1", font_family="Arial", font_size="9")
@@ -44,8 +44,8 @@ with ScorePartwise() as score:
       Attributes(
           Divisions=1,
       )
-      slur_1_number = "1"  # Explicitly manage slur numbers for pairing
-      with Note(Pitch=_(Step="C", Octave="4"), Duration=4) as note1:
+      slur_1_number = "1"
+      with Note(Pitch=_(Step="C", Octave="4"), Duration=4):
         with Notations():
           Slur(type="start", placement="above", number=slur_1_number)
         Lyric(number=1, Text="Hell", Syllabic="begin")
@@ -56,7 +56,7 @@ with ScorePartwise() as score:
         with Notations():
           Slur(type="stop", number=slur_1_number)
         Lyric(number=1, Text="-lo", Syllabic="end")
-      Note(Rest=(), Duration=2)  # A half rest
+      Note(Rest=(), Duration=2)
       Note(Pitch=_(Step="E", Octave="4"), Duration=2)
 
       with Direction(placement="below"):

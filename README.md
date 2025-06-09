@@ -1,6 +1,6 @@
 # Music Composer
 
-Music Composer is a programming launguage for music. It provides a Pythonic way to generate MusicXML files with declarative syntax. 
+Music Composer is a programming launguage for music. It provides a Pythonic way to generate [MusicXML](https://www.w3.org/2021/06/musicxml40/tutorial/introduction/) files with declarative syntax. 
 
 
 This example creates a simple score with one part (Piano), one measure, and two notes with lyrics. The output will be a MusicXML string.

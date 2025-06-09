@@ -1,6 +1,6 @@
-# music_composer
+# Music Composer
 
-This library provides a Pythonic way to generate MusicXML files with declarative syntax. 
+Music Composer is a programming launguage for music. It provides a Pythonic way to generate MusicXML files with declarative syntax. 
 
 Basic Usage Example:
 

@@ -58,11 +58,9 @@ with ScorePartwise() as score:
         Lyric(number=1, Text="-lo", Syllabic="end")
       Note(Rest=(), Duration=2)
       Note(Pitch=_(Step="E", Octave="4"), Duration=2)
-
       with Direction(placement="below"):
         with DirectionType():
           Pedal(type="start", line="yes")
-
   with Part(id="P2"):
     with Measure(1):
       Attributes(

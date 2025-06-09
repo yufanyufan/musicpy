@@ -19,23 +19,23 @@ from musicxml import _
 with ScorePartwise(version="4.0") as score:
     Work(WorkTitle="My First Song")
     with Defaults():
-        Scaling(Millimeters="7.2", Tenths="40")
-        with PageLayout(PageHeight="1200", PageWidth="900"):
-            PageMargins(type="both", LeftMargin="70", RightMargin="70", TopMargin="70", BottomMargin="70")
-        MusicFont(font_family="Arial", font_size="20.5")
+        Scaling(Millimeters=7.2, Tenths=40)
+        with PageLayout(PageHeight=1200, PageWidth=900):
+            PageMargins(type="both", LeftMargin=70, RightMargin=70, TopMargin=70, BottomMargin=70)
+        MusicFont(font_family="Arial", font_size=20.5)
     with PartList():
         ScorePart(id="P1", PartName="Piano")
     with Part(id="P1"):
-        with Measure(number="1"):
+        with Measure(number=1):
             Attributes(
-                Divisions="1",  # Specifies how many divisions per quarter note, affects Duration
-                Key=_(Fifths="0"),
-                Time=_(Beats="4", BeatType="4"),
-                Clef=_(Sign="G", Line="2")
+                Divisions=1,  # Specifies how many divisions per quarter note, affects Duration
+                Key=_(Fifths=0),
+                Time=_(Beats=4, BeatType=4),
+                Clef=_(Sign="G", Line=2)
             )
             # Duration "4" with Divisions "1" would typically mean 4 quarter-note durations
-            with Note(Pitch=_(Step="C", Octave="4"), Duration="4"):
-                Lyric(number="1", Text="Hel-", Syllabic="begin")
-            with Note(Pitch=_(Step="D", Octave="4"), Duration="4"):
-                Lyric(number="1", Text="lo", Syllabic="end")
+            with Note(Pitch=_(Step="C", Octave=4), Duration=4):
+                Lyric(number=1, Text="Hel-", Syllabic="begin")
+            with Note(Pitch=_(Step="D", Octave="4"), Duration=4):
+                Lyric(number=1, Text="lo", Syllabic="end")
 ```

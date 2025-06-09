@@ -7,10 +7,10 @@ This example creates a simple score with one part (Piano), one measure, and two 
 
 API Reference:
 
-* Element Naming: Child elements are represented by classes in PascalCase (e.g., ScorePartwise, PartName).
-* Attribute Naming: Attributes of elements are passed as keyword arguments in lowercase with underscores if needed (e.g., work_title, page_height). These are automatically converted to kebab-case in the XML output (e.g., work-title, page-height).
-* String Values: Many element text content and attribute values are passed as strings (e.g., Millimeters="7.2", PartName="Piano").
-* Complex Arguments with __(): For elements that have their own child elements or a complex structure not representable by a simple string (like Pitch which has Step and Octave, or Key which has Fifths), the _() helper function is used. This helper takes keyword arguments that correspond to the sub-elements or attributes of the complex argument. For example: Pitch=_(Step="C", Octave="4") Key=_(Fifths="0") SystemMargins=_(LeftMargin=1, RightMargin=2) The _() helper packages these into a MusicElementArg object, which is then processed by the parent element's constructor to create the appropriate nested XML structure.
+* Element Naming: Child elements are represented by classes in PascalCase (e.g., `ScorePartwise`, `PartName`).
+* Attribute Naming: Attributes of elements are passed as keyword arguments in lowercase with underscores if needed (e.g., `work_title`, `page_height`). These are automatically converted to kebab-case in the XML output (e.g., `work-title`, `page-height`).
+* String Values: Many element text content and attribute values are passed as strings (e.g., `Millimeters="7.2", PartName="Piano"`).
+* Complex Arguments with `\_()`: For elements that have their own child elements or a complex structure not representable by a simple string (like Pitch which has Step and Octave, or Key which has Fifths), the `_()` helper function is used. This helper takes keyword arguments that correspond to the sub-elements or attributes of the complex argument. For example: `Pitch=\_(Step="C", Octave="4") Key=_(Fifths="0") SystemMargins=\_(LeftMargin=1, RightMargin=2)` The `\_()` helper packages these into a `MusicElementArg` object, which is then processed by the parent element's constructor to create the appropriate nested XML structure.
 
 
 Basic Usage Example:

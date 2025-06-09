@@ -18,12 +18,12 @@ from musicxml import _
 
 with ScorePartwise(version="4.0") as score:
     Work(WorkTitle="My First Song")
+    with Defaults():
+        Scaling(Millimeters="7.2", Tenths="40")
+        with PageLayout(PageHeight="1200", PageWidth="900"):
+            PageMargins(type="both", LeftMargin="70", RightMargin="70", TopMargin="70", BottomMargin="70")
+        MusicFont(font_family="Arial", font_size="20.5")
     with PartList():
-        with Defaults():
-            Scaling(Millimeters="7.2", Tenths="40")
-            with PageLayout(PageHeight="1200", PageWidth="900"):
-                PageMargins(type="both", LeftMargin="70", RightMargin="70", TopMargin="70", BottomMargin="70")
-            MusicFont(font_family="Arial", font_size="20.5")
         ScorePart(id="P1", PartName="Piano")
     with Part(id="P1"):
         with Measure(number="1"):

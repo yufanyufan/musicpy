@@ -1,5 +1,5 @@
 from __future__ import annotations
-from typing import Any, Type as TYPE
+from typing import Any, Optional, Type
 from musicxml import MusicElementBase
 
 
@@ -1574,21 +1574,21 @@ class Accidental(AccidentalValue):
   def __init__(
       self,
       plain_text: str,
-      bracket: YesNo = None,
-      cautionary: YesNo = None,
-      color: str = None,
-      default_x: float = None,
-      default_y: float = None,
-      editorial: YesNo = None,
-      font_family: str = None,
-      font_size: str = None,
-      font_style: FontStyle = None,
-      font_weight: FontWeight = None,
-      parentheses: YesNo = None,
-      relative_x: float = None,
-      relative_y: float = None,
-      size: SymbolSize = None,
-      smufl: str = None,
+      bracket: str | YesNo = None,
+      cautionary: str | YesNo = None,
+      color: str | Color = None,
+      default_x: float | Tenths = None,
+      default_y: float | Tenths = None,
+      editorial: str | YesNo = None,
+      font_family: str | FontFamily = None,
+      font_size: str | FontSize = None,
+      font_style: str | FontStyle = None,
+      font_weight: str | FontWeight = None,
+      parentheses: str | YesNo = None,
+      relative_x: float | Tenths = None,
+      relative_y: float | Tenths = None,
+      size: str | SymbolSize = None,
+      smufl: str | SmuflAccidentalGlyphName = None,
   ):
     self.init()
 
@@ -1603,21 +1603,21 @@ class AccidentalMark(AccidentalValue):
   def __init__(
       self,
       plain_text: str,
-      bracket: YesNo = None,
-      color: str = None,
-      default_x: float = None,
-      default_y: float = None,
-      font_family: str = None,
-      font_size: str = None,
-      font_style: FontStyle = None,
-      font_weight: FontWeight = None,
+      bracket: str | YesNo = None,
+      color: str | Color = None,
+      default_x: float | Tenths = None,
+      default_y: float | Tenths = None,
+      font_family: str | FontFamily = None,
+      font_size: str | FontSize = None,
+      font_style: str | FontStyle = None,
+      font_weight: str | FontWeight = None,
       id: str = None,
-      parentheses: YesNo = None,
-      placement: AboveBelow = None,
-      relative_x: float = None,
-      relative_y: float = None,
-      size: SymbolSize = None,
-      smufl: str = None,
+      parentheses: str | YesNo = None,
+      placement: str | AboveBelow = None,
+      relative_x: float | Tenths = None,
+      relative_y: float | Tenths = None,
+      size: str | SymbolSize = None,
+      smufl: str | SmuflAccidentalGlyphName = None,
   ):
     self.init()
 
@@ -1631,29 +1631,29 @@ class AccidentalText(AccidentalValue):
   def __init__(
       self,
       plain_text: str,
-      color: str = None,
-      default_x: float = None,
-      default_y: float = None,
-      dir: TextDirection = None,
-      enclosure: EnclosureShape = None,
-      font_family: str = None,
-      font_size: str = None,
-      font_style: FontStyle = None,
-      font_weight: FontWeight = None,
-      halign: LeftCenterRight = None,
-      justify: LeftCenterRight = None,
+      color: str | Color = None,
+      default_x: float | Tenths = None,
+      default_y: float | Tenths = None,
+      dir: str | TextDirection = None,
+      enclosure: str | EnclosureShape = None,
+      font_family: str | FontFamily = None,
+      font_size: str | FontSize = None,
+      font_style: str | FontStyle = None,
+      font_weight: str | FontWeight = None,
+      halign: str | LeftCenterRight = None,
+      justify: str | LeftCenterRight = None,
       lang: Any = None,
-      letter_spacing: NumberOrNormal = None,
-      line_height: NumberOrNormal = None,
-      line_through: int = None,
-      overline: int = None,
-      relative_x: float = None,
-      relative_y: float = None,
-      rotation: float = None,
-      smufl: str = None,
+      letter_spacing: str | NumberOrNormal = None,
+      line_height: str | NumberOrNormal = None,
+      line_through: int | NumberOfLines = None,
+      overline: int | NumberOfLines = None,
+      relative_x: float | Tenths = None,
+      relative_y: float | Tenths = None,
+      rotation: float | RotationDegrees = None,
+      smufl: str | SmuflAccidentalGlyphName = None,
       space: Any = None,
-      underline: int = None,
-      valign: Valign = None,
+      underline: int | NumberOfLines = None,
+      valign: str | Valign = None,
   ):
     self.init()
 
@@ -1674,16 +1674,16 @@ class Arpeggiate(MusicElementBase):
 
   def __init__(
       self,
-      color: str = None,
-      default_x: float = None,
-      default_y: float = None,
-      direction: UpDown = None,
+      color: str | Color = None,
+      default_x: float | Tenths = None,
+      default_y: float | Tenths = None,
+      direction: str | UpDown = None,
       id: str = None,
-      number: int = None,
-      placement: AboveBelow = None,
-      relative_x: float = None,
-      relative_y: float = None,
-      unbroken: YesNo = None,
+      number: int | NumberLevel = None,
+      placement: str | AboveBelow = None,
+      relative_x: float | Tenths = None,
+      relative_y: float | Tenths = None,
+      unbroken: str | YesNo = None,
   ):
     self.init()
 
@@ -1699,14 +1699,19 @@ class Assess(MusicElementBase):
   player element defined within the matching score-part.
   """
 
-  def __init__(self, type: YesNo, player: str = None, time_only: str = None):
+  def __init__(
+      self,
+      type: str | YesNo,
+      player: str = None,
+      time_only: str | TimeOnly = None,
+  ):
     self.init()
 
 
 class BarStyleColor(BarStyle):
   """The bar-style-color type contains barline style and color information."""
 
-  def __init__(self, plain_text: str, color: str = None):
+  def __init__(self, plain_text: str, color: str | Color = None):
     self.init()
 
 
@@ -1717,7 +1722,7 @@ class Barre(MusicElementBase):
   highest MusicXML number) and is "stop" for the highest pitched string.
   """
 
-  def __init__(self, type: StartStop, color: str = None):
+  def __init__(self, type: str | StartStop, color: str | Color = None):
     self.init()
 
 
@@ -1731,15 +1736,15 @@ class BassStep(Step):
   def __init__(
       self,
       plain_text: str,
-      color: str = None,
-      default_x: float = None,
-      default_y: float = None,
-      font_family: str = None,
-      font_size: str = None,
-      font_style: FontStyle = None,
-      font_weight: FontWeight = None,
-      relative_x: float = None,
-      relative_y: float = None,
+      color: str | Color = None,
+      default_x: float | Tenths = None,
+      default_y: float | Tenths = None,
+      font_family: str | FontFamily = None,
+      font_size: str | FontSize = None,
+      font_style: str | FontStyle = None,
+      font_weight: str | FontWeight = None,
+      relative_x: float | Tenths = None,
+      relative_y: float | Tenths = None,
       text: str = None,
   ):
     self.init()
@@ -1768,11 +1773,11 @@ class Beam(BeamValue):
   def __init__(
       self,
       plain_text: str,
-      color: str = None,
-      fan: Fan = None,
+      color: str | Color = None,
+      fan: str | Fan = None,
       id: str = None,
-      number: int = None,
-      repeater: YesNo = None,
+      number: int | BeamLevel = None,
+      repeater: str | YesNo = None,
   ):
     self.init()
 
@@ -1780,7 +1785,7 @@ class Beam(BeamValue):
 class Beater(BeaterValue):
   """The beater type represents pictograms for beaters, mallets, and sticks that do not have different materials represented in the pictogram."""
 
-  def __init__(self, plain_text: str, tip: TipDirection = None):
+  def __init__(self, plain_text: str, tip: str | TipDirection = None):
     self.init()
 
 
@@ -1804,19 +1809,19 @@ class Bracket(MusicElementBase):
 
   def __init__(
       self,
-      line_end: LineEnd,
-      type: StartStopContinue,
-      color: str = None,
-      dash_length: float = None,
-      default_x: float = None,
-      default_y: float = None,
-      end_length: float = None,
+      line_end: str | LineEnd,
+      type: str | StartStopContinue,
+      color: str | Color = None,
+      dash_length: float | Tenths = None,
+      default_x: float | Tenths = None,
+      default_y: float | Tenths = None,
+      end_length: float | Tenths = None,
       id: str = None,
-      line_type: LineType = None,
-      number: int = None,
-      relative_x: float = None,
-      relative_y: float = None,
-      space_length: float = None,
+      line_type: str | LineType = None,
+      number: int | NumberLevel = None,
+      relative_x: float | Tenths = None,
+      relative_y: float | Tenths = None,
+      space_length: float | Tenths = None,
   ):
     self.init()
 
@@ -1827,16 +1832,16 @@ class BreathMark(BreathMarkValue):
   def __init__(
       self,
       plain_text: str,
-      color: str = None,
-      default_x: float = None,
-      default_y: float = None,
-      font_family: str = None,
-      font_size: str = None,
-      font_style: FontStyle = None,
-      font_weight: FontWeight = None,
-      placement: AboveBelow = None,
-      relative_x: float = None,
-      relative_y: float = None,
+      color: str | Color = None,
+      default_x: float | Tenths = None,
+      default_y: float | Tenths = None,
+      font_family: str | FontFamily = None,
+      font_size: str | FontSize = None,
+      font_style: str | FontStyle = None,
+      font_weight: str | FontWeight = None,
+      placement: str | AboveBelow = None,
+      relative_x: float | Tenths = None,
+      relative_y: float | Tenths = None,
   ):
     self.init()
 
@@ -1851,16 +1856,16 @@ class Caesura(CaesuraValue):
   def __init__(
       self,
       plain_text: str,
-      color: str = None,
-      default_x: float = None,
-      default_y: float = None,
-      font_family: str = None,
-      font_size: str = None,
-      font_style: FontStyle = None,
-      font_weight: FontWeight = None,
-      placement: AboveBelow = None,
-      relative_x: float = None,
-      relative_y: float = None,
+      color: str | Color = None,
+      default_x: float | Tenths = None,
+      default_y: float | Tenths = None,
+      font_family: str | FontFamily = None,
+      font_size: str | FontSize = None,
+      font_style: str | FontStyle = None,
+      font_weight: str | FontWeight = None,
+      placement: str | AboveBelow = None,
+      relative_x: float | Tenths = None,
+      relative_y: float | Tenths = None,
   ):
     self.init()
 
@@ -1875,7 +1880,7 @@ class Cancel(Fifths):
   indicates where the cancellation appears relative to the new key signature.
   """
 
-  def __init__(self, plain_text: int, location: CancelLocation = None):
+  def __init__(self, plain_text: int, location: str | CancelLocation = None):
     self.init()
 
 
@@ -1888,19 +1893,19 @@ class Coda(MusicElementBase):
 
   def __init__(
       self,
-      color: str = None,
-      default_x: float = None,
-      default_y: float = None,
-      font_family: str = None,
-      font_size: str = None,
-      font_style: FontStyle = None,
-      font_weight: FontWeight = None,
-      halign: LeftCenterRight = None,
+      color: str | Color = None,
+      default_x: float | Tenths = None,
+      default_y: float | Tenths = None,
+      font_family: str | FontFamily = None,
+      font_size: str | FontSize = None,
+      font_style: str | FontStyle = None,
+      font_weight: str | FontWeight = None,
+      halign: str | LeftCenterRight = None,
       id: str = None,
-      relative_x: float = None,
-      relative_y: float = None,
-      smufl: str = None,
-      valign: Valign = None,
+      relative_x: float | Tenths = None,
+      relative_y: float | Tenths = None,
+      smufl: str | SmuflCodaGlyphName = None,
+      valign: str | Valign = None,
   ):
     self.init()
 
@@ -1913,16 +1918,16 @@ class Dashes(MusicElementBase):
 
   def __init__(
       self,
-      type: StartStopContinue,
-      color: str = None,
-      dash_length: float = None,
-      default_x: float = None,
-      default_y: float = None,
+      type: str | StartStopContinue,
+      color: str | Color = None,
+      dash_length: float | Tenths = None,
+      default_x: float | Tenths = None,
+      default_y: float | Tenths = None,
       id: str = None,
-      number: int = None,
-      relative_x: float = None,
-      relative_y: float = None,
-      space_length: float = None,
+      number: int | NumberLevel = None,
+      relative_x: float | Tenths = None,
+      relative_y: float | Tenths = None,
+      space_length: float | Tenths = None,
   ):
     self.init()
 
@@ -1942,16 +1947,16 @@ class DegreeAlter(Semitones):
   def __init__(
       self,
       plain_text: float,
-      color: str = None,
-      default_x: float = None,
-      default_y: float = None,
-      font_family: str = None,
-      font_size: str = None,
-      font_style: FontStyle = None,
-      font_weight: FontWeight = None,
-      plus_minus: YesNo = None,
-      relative_x: float = None,
-      relative_y: float = None,
+      color: str | Color = None,
+      default_x: float | Tenths = None,
+      default_y: float | Tenths = None,
+      font_family: str | FontFamily = None,
+      font_size: str | FontSize = None,
+      font_style: str | FontStyle = None,
+      font_weight: str | FontWeight = None,
+      plus_minus: str | YesNo = None,
+      relative_x: float | Tenths = None,
+      relative_y: float | Tenths = None,
   ):
     self.init()
 
@@ -1967,15 +1972,15 @@ class DegreeType(DegreeTypeValue):
   def __init__(
       self,
       plain_text: str,
-      color: str = None,
-      default_x: float = None,
-      default_y: float = None,
-      font_family: str = None,
-      font_size: str = None,
-      font_style: FontStyle = None,
-      font_weight: FontWeight = None,
-      relative_x: float = None,
-      relative_y: float = None,
+      color: str | Color = None,
+      default_x: float | Tenths = None,
+      default_y: float | Tenths = None,
+      font_family: str | FontFamily = None,
+      font_size: str | FontSize = None,
+      font_style: str | FontStyle = None,
+      font_weight: str | FontWeight = None,
+      relative_x: float | Tenths = None,
+      relative_y: float | Tenths = None,
       text: str = None,
   ):
     self.init()
@@ -1993,16 +1998,16 @@ class DegreeValue(MusicElementBase):
   def __init__(
       self,
       plain_text: int,
-      color: str = None,
-      default_x: float = None,
-      default_y: float = None,
-      font_family: str = None,
-      font_size: str = None,
-      font_style: FontStyle = None,
-      font_weight: FontWeight = None,
-      relative_x: float = None,
-      relative_y: float = None,
-      symbol: DegreeSymbolValue = None,
+      color: str | Color = None,
+      default_x: float | Tenths = None,
+      default_y: float | Tenths = None,
+      font_family: str | FontFamily = None,
+      font_size: str | FontSize = None,
+      font_style: str | FontStyle = None,
+      font_weight: str | FontWeight = None,
+      relative_x: float | Tenths = None,
+      relative_y: float | Tenths = None,
+      symbol: str | DegreeSymbolValue = None,
       text: str = None,
   ):
     self.init()
@@ -2015,7 +2020,7 @@ class Distance(Tenths):
   values include hyphen (for hyphens in lyrics) and beam.
   """
 
-  def __init__(self, plain_text: float, type: str):
+  def __init__(self, plain_text: float, type: str | DistanceType):
     self.init()
 
 
@@ -2028,7 +2033,7 @@ class Double(MusicElementBase):
   in orchestral literature.
   """
 
-  def __init__(self, above: YesNo = None):
+  def __init__(self, above: str | YesNo = None):
     self.init()
 
 
@@ -2039,7 +2044,9 @@ class Effect(EffectValue):
   alternates.
   """
 
-  def __init__(self, plain_text: str, smufl: str = None):
+  def __init__(
+      self, plain_text: str, smufl: str | SmuflPictogramGlyphName = None
+  ):
     self.init()
 
 
@@ -2058,12 +2065,12 @@ class Elision(MusicElementBase):
   def __init__(
       self,
       plain_text: str,
-      color: str = None,
-      font_family: str = None,
-      font_size: str = None,
-      font_style: FontStyle = None,
-      font_weight: FontWeight = None,
-      smufl: str = None,
+      color: str | Color = None,
+      font_family: str | FontFamily = None,
+      font_size: str | FontSize = None,
+      font_style: str | FontStyle = None,
+      font_weight: str | FontWeight = None,
+      smufl: str | SmuflLyricsGlyphName = None,
   ):
     self.init()
 
@@ -2080,10 +2087,10 @@ class EmptyFont(MusicElementBase):
 
   def __init__(
       self,
-      font_family: str = None,
-      font_size: str = None,
-      font_style: FontStyle = None,
-      font_weight: FontWeight = None,
+      font_family: str | FontFamily = None,
+      font_size: str | FontSize = None,
+      font_style: str | FontStyle = None,
+      font_weight: str | FontWeight = None,
   ):
     self.init()
 
@@ -2093,21 +2100,21 @@ class EmptyLine(MusicElementBase):
 
   def __init__(
       self,
-      color: str = None,
-      dash_length: float = None,
-      default_x: float = None,
-      default_y: float = None,
-      font_family: str = None,
-      font_size: str = None,
-      font_style: FontStyle = None,
-      font_weight: FontWeight = None,
-      line_length: LineLength = None,
-      line_shape: LineShape = None,
-      line_type: LineType = None,
-      placement: AboveBelow = None,
-      relative_x: float = None,
-      relative_y: float = None,
-      space_length: float = None,
+      color: str | Color = None,
+      dash_length: float | Tenths = None,
+      default_x: float | Tenths = None,
+      default_y: float | Tenths = None,
+      font_family: str | FontFamily = None,
+      font_size: str | FontSize = None,
+      font_style: str | FontStyle = None,
+      font_weight: str | FontWeight = None,
+      line_length: str | LineLength = None,
+      line_shape: str | LineShape = None,
+      line_type: str | LineType = None,
+      placement: str | AboveBelow = None,
+      relative_x: float | Tenths = None,
+      relative_y: float | Tenths = None,
+      space_length: float | Tenths = None,
   ):
     self.init()
 
@@ -2117,16 +2124,16 @@ class EmptyPlacement(MusicElementBase):
 
   def __init__(
       self,
-      color: str = None,
-      default_x: float = None,
-      default_y: float = None,
-      font_family: str = None,
-      font_size: str = None,
-      font_style: FontStyle = None,
-      font_weight: FontWeight = None,
-      placement: AboveBelow = None,
-      relative_x: float = None,
-      relative_y: float = None,
+      color: str | Color = None,
+      default_x: float | Tenths = None,
+      default_y: float | Tenths = None,
+      font_family: str | FontFamily = None,
+      font_size: str | FontSize = None,
+      font_style: str | FontStyle = None,
+      font_weight: str | FontWeight = None,
+      placement: str | AboveBelow = None,
+      relative_x: float | Tenths = None,
+      relative_y: float | Tenths = None,
   ):
     self.init()
 
@@ -2136,17 +2143,17 @@ class EmptyPlacementSmufl(MusicElementBase):
 
   def __init__(
       self,
-      color: str = None,
-      default_x: float = None,
-      default_y: float = None,
-      font_family: str = None,
-      font_size: str = None,
-      font_style: FontStyle = None,
-      font_weight: FontWeight = None,
-      placement: AboveBelow = None,
-      relative_x: float = None,
-      relative_y: float = None,
-      smufl: str = None,
+      color: str | Color = None,
+      default_x: float | Tenths = None,
+      default_y: float | Tenths = None,
+      font_family: str | FontFamily = None,
+      font_size: str | FontSize = None,
+      font_style: str | FontStyle = None,
+      font_weight: str | FontWeight = None,
+      placement: str | AboveBelow = None,
+      relative_x: float | Tenths = None,
+      relative_y: float | Tenths = None,
+      smufl: str | SmuflGlyphName = None,
   ):
     self.init()
 
@@ -2156,18 +2163,18 @@ class EmptyPrintObjectStyleAlign(MusicElementBase):
 
   def __init__(
       self,
-      color: str = None,
-      default_x: float = None,
-      default_y: float = None,
-      font_family: str = None,
-      font_size: str = None,
-      font_style: FontStyle = None,
-      font_weight: FontWeight = None,
-      halign: LeftCenterRight = None,
-      print_object: YesNo = None,
-      relative_x: float = None,
-      relative_y: float = None,
-      valign: Valign = None,
+      color: str | Color = None,
+      default_x: float | Tenths = None,
+      default_y: float | Tenths = None,
+      font_family: str | FontFamily = None,
+      font_size: str | FontSize = None,
+      font_style: str | FontStyle = None,
+      font_weight: str | FontWeight = None,
+      halign: str | LeftCenterRight = None,
+      print_object: str | YesNo = None,
+      relative_x: float | Tenths = None,
+      relative_y: float | Tenths = None,
+      valign: str | Valign = None,
   ):
     self.init()
 
@@ -2177,15 +2184,15 @@ class EmptyPrintStyle(MusicElementBase):
 
   def __init__(
       self,
-      color: str = None,
-      default_x: float = None,
-      default_y: float = None,
-      font_family: str = None,
-      font_size: str = None,
-      font_style: FontStyle = None,
-      font_weight: FontWeight = None,
-      relative_x: float = None,
-      relative_y: float = None,
+      color: str | Color = None,
+      default_x: float | Tenths = None,
+      default_y: float | Tenths = None,
+      font_family: str | FontFamily = None,
+      font_size: str | FontSize = None,
+      font_style: str | FontStyle = None,
+      font_weight: str | FontWeight = None,
+      relative_x: float | Tenths = None,
+      relative_y: float | Tenths = None,
   ):
     self.init()
 
@@ -2195,17 +2202,17 @@ class EmptyPrintStyleAlign(MusicElementBase):
 
   def __init__(
       self,
-      color: str = None,
-      default_x: float = None,
-      default_y: float = None,
-      font_family: str = None,
-      font_size: str = None,
-      font_style: FontStyle = None,
-      font_weight: FontWeight = None,
-      halign: LeftCenterRight = None,
-      relative_x: float = None,
-      relative_y: float = None,
-      valign: Valign = None,
+      color: str | Color = None,
+      default_x: float | Tenths = None,
+      default_y: float | Tenths = None,
+      font_family: str | FontFamily = None,
+      font_size: str | FontSize = None,
+      font_style: str | FontStyle = None,
+      font_weight: str | FontWeight = None,
+      halign: str | LeftCenterRight = None,
+      relative_x: float | Tenths = None,
+      relative_y: float | Tenths = None,
+      valign: str | Valign = None,
   ):
     self.init()
 
@@ -2215,18 +2222,18 @@ class EmptyPrintStyleAlignId(MusicElementBase):
 
   def __init__(
       self,
-      color: str = None,
-      default_x: float = None,
-      default_y: float = None,
-      font_family: str = None,
-      font_size: str = None,
-      font_style: FontStyle = None,
-      font_weight: FontWeight = None,
-      halign: LeftCenterRight = None,
+      color: str | Color = None,
+      default_x: float | Tenths = None,
+      default_y: float | Tenths = None,
+      font_family: str | FontFamily = None,
+      font_size: str | FontSize = None,
+      font_style: str | FontStyle = None,
+      font_weight: str | FontWeight = None,
+      halign: str | LeftCenterRight = None,
       id: str = None,
-      relative_x: float = None,
-      relative_y: float = None,
-      valign: Valign = None,
+      relative_x: float | Tenths = None,
+      relative_y: float | Tenths = None,
+      valign: str | Valign = None,
   ):
     self.init()
 
@@ -2236,23 +2243,23 @@ class EmptyTrillSound(MusicElementBase):
 
   def __init__(
       self,
-      accelerate: YesNo = None,
-      beats: float = None,
-      color: str = None,
-      default_x: float = None,
-      default_y: float = None,
-      font_family: str = None,
-      font_size: str = None,
-      font_style: FontStyle = None,
-      font_weight: FontWeight = None,
-      last_beat: float = None,
-      placement: AboveBelow = None,
-      relative_x: float = None,
-      relative_y: float = None,
-      second_beat: float = None,
-      start_note: StartNote = None,
-      trill_step: TrillStep = None,
-      two_note_turn: TwoNoteTurn = None,
+      accelerate: str | YesNo = None,
+      beats: float | TrillBeats = None,
+      color: str | Color = None,
+      default_x: float | Tenths = None,
+      default_y: float | Tenths = None,
+      font_family: str | FontFamily = None,
+      font_size: str | FontSize = None,
+      font_style: str | FontStyle = None,
+      font_weight: str | FontWeight = None,
+      last_beat: float | Percent = None,
+      placement: str | AboveBelow = None,
+      relative_x: float | Tenths = None,
+      relative_y: float | Tenths = None,
+      second_beat: float | Percent = None,
+      start_note: str | StartNote = None,
+      trill_step: str | TrillStep = None,
+      two_note_turn: str | TwoNoteTurn = None,
   ):
     self.init()
 
@@ -2284,22 +2291,22 @@ class Ending(MusicElementBase):
   def __init__(
       self,
       plain_text: str,
-      number: str,
-      type: StartStopDiscontinue,
-      color: str = None,
-      default_x: float = None,
-      default_y: float = None,
-      end_length: float = None,
-      font_family: str = None,
-      font_size: str = None,
-      font_style: FontStyle = None,
-      font_weight: FontWeight = None,
-      print_object: YesNo = None,
-      relative_x: float = None,
-      relative_y: float = None,
-      system: SystemRelation = None,
-      text_x: float = None,
-      text_y: float = None,
+      number: str | EndingNumber,
+      type: str | StartStopDiscontinue,
+      color: str | Color = None,
+      default_x: float | Tenths = None,
+      default_y: float | Tenths = None,
+      end_length: float | Tenths = None,
+      font_family: str | FontFamily = None,
+      font_size: str | FontSize = None,
+      font_style: str | FontStyle = None,
+      font_weight: str | FontWeight = None,
+      print_object: str | YesNo = None,
+      relative_x: float | Tenths = None,
+      relative_y: float | Tenths = None,
+      system: str | SystemRelation = None,
+      text_x: float | Tenths = None,
+      text_y: float | Tenths = None,
   ):
     self.init()
 
@@ -2313,12 +2320,12 @@ class Extend(MusicElementBase):
 
   def __init__(
       self,
-      color: str = None,
-      default_x: float = None,
-      default_y: float = None,
-      relative_x: float = None,
-      relative_y: float = None,
-      type: StartStopContinue = None,
+      color: str | Color = None,
+      default_x: float | Tenths = None,
+      default_y: float | Tenths = None,
+      relative_x: float | Tenths = None,
+      relative_y: float | Tenths = None,
+      type: str | StartStopContinue = None,
   ):
     self.init()
 
@@ -2344,17 +2351,17 @@ class Fermata(FermataShape):
   def __init__(
       self,
       plain_text: str,
-      color: str = None,
-      default_x: float = None,
-      default_y: float = None,
-      font_family: str = None,
-      font_size: str = None,
-      font_style: FontStyle = None,
-      font_weight: FontWeight = None,
+      color: str | Color = None,
+      default_x: float | Tenths = None,
+      default_y: float | Tenths = None,
+      font_family: str | FontFamily = None,
+      font_size: str | FontSize = None,
+      font_style: str | FontStyle = None,
+      font_weight: str | FontWeight = None,
       id: str = None,
-      relative_x: float = None,
-      relative_y: float = None,
-      type: UprightInverted = None,
+      relative_x: float | Tenths = None,
+      relative_y: float | Tenths = None,
+      type: str | UprightInverted = None,
   ):
     self.init()
 
@@ -2372,18 +2379,18 @@ class Fingering(MusicElementBase):
   def __init__(
       self,
       plain_text: str,
-      alternate: YesNo = None,
-      color: str = None,
-      default_x: float = None,
-      default_y: float = None,
-      font_family: str = None,
-      font_size: str = None,
-      font_style: FontStyle = None,
-      font_weight: FontWeight = None,
-      placement: AboveBelow = None,
-      relative_x: float = None,
-      relative_y: float = None,
-      substitution: YesNo = None,
+      alternate: str | YesNo = None,
+      color: str | Color = None,
+      default_x: float | Tenths = None,
+      default_y: float | Tenths = None,
+      font_family: str | FontFamily = None,
+      font_size: str | FontSize = None,
+      font_style: str | FontStyle = None,
+      font_weight: str | FontWeight = None,
+      placement: str | AboveBelow = None,
+      relative_x: float | Tenths = None,
+      relative_y: float | Tenths = None,
+      substitution: str | YesNo = None,
   ):
     self.init()
 
@@ -2397,7 +2404,7 @@ class FirstFret(MusicElementBase):
   """
 
   def __init__(
-      self, plain_text: int, location: LeftRight = None, text: str = None
+      self, plain_text: int, location: str | LeftRight = None, text: str = None
   ):
     self.init()
 
@@ -2408,26 +2415,26 @@ class FormattedSymbol(SmuflGlyphName):
   def __init__(
       self,
       plain_text: str,
-      color: str = None,
-      default_x: float = None,
-      default_y: float = None,
-      dir: TextDirection = None,
-      enclosure: EnclosureShape = None,
-      font_family: str = None,
-      font_size: str = None,
-      font_style: FontStyle = None,
-      font_weight: FontWeight = None,
-      halign: LeftCenterRight = None,
-      justify: LeftCenterRight = None,
-      letter_spacing: NumberOrNormal = None,
-      line_height: NumberOrNormal = None,
-      line_through: int = None,
-      overline: int = None,
-      relative_x: float = None,
-      relative_y: float = None,
-      rotation: float = None,
-      underline: int = None,
-      valign: Valign = None,
+      color: str | Color = None,
+      default_x: float | Tenths = None,
+      default_y: float | Tenths = None,
+      dir: str | TextDirection = None,
+      enclosure: str | EnclosureShape = None,
+      font_family: str | FontFamily = None,
+      font_size: str | FontSize = None,
+      font_style: str | FontStyle = None,
+      font_weight: str | FontWeight = None,
+      halign: str | LeftCenterRight = None,
+      justify: str | LeftCenterRight = None,
+      letter_spacing: str | NumberOrNormal = None,
+      line_height: str | NumberOrNormal = None,
+      line_through: int | NumberOfLines = None,
+      overline: int | NumberOfLines = None,
+      relative_x: float | Tenths = None,
+      relative_y: float | Tenths = None,
+      rotation: float | RotationDegrees = None,
+      underline: int | NumberOfLines = None,
+      valign: str | Valign = None,
   ):
     self.init()
 
@@ -2438,27 +2445,27 @@ class FormattedSymbolId(SmuflGlyphName):
   def __init__(
       self,
       plain_text: str,
-      color: str = None,
-      default_x: float = None,
-      default_y: float = None,
-      dir: TextDirection = None,
-      enclosure: EnclosureShape = None,
-      font_family: str = None,
-      font_size: str = None,
-      font_style: FontStyle = None,
-      font_weight: FontWeight = None,
-      halign: LeftCenterRight = None,
+      color: str | Color = None,
+      default_x: float | Tenths = None,
+      default_y: float | Tenths = None,
+      dir: str | TextDirection = None,
+      enclosure: str | EnclosureShape = None,
+      font_family: str | FontFamily = None,
+      font_size: str | FontSize = None,
+      font_style: str | FontStyle = None,
+      font_weight: str | FontWeight = None,
+      halign: str | LeftCenterRight = None,
       id: str = None,
-      justify: LeftCenterRight = None,
-      letter_spacing: NumberOrNormal = None,
-      line_height: NumberOrNormal = None,
-      line_through: int = None,
-      overline: int = None,
-      relative_x: float = None,
-      relative_y: float = None,
-      rotation: float = None,
-      underline: int = None,
-      valign: Valign = None,
+      justify: str | LeftCenterRight = None,
+      letter_spacing: str | NumberOrNormal = None,
+      line_height: str | NumberOrNormal = None,
+      line_through: int | NumberOfLines = None,
+      overline: int | NumberOfLines = None,
+      relative_x: float | Tenths = None,
+      relative_y: float | Tenths = None,
+      rotation: float | RotationDegrees = None,
+      underline: int | NumberOfLines = None,
+      valign: str | Valign = None,
   ):
     self.init()
 
@@ -2472,28 +2479,28 @@ class FormattedText(MusicElementBase):
   def __init__(
       self,
       plain_text: str,
-      color: str = None,
-      default_x: float = None,
-      default_y: float = None,
-      dir: TextDirection = None,
-      enclosure: EnclosureShape = None,
-      font_family: str = None,
-      font_size: str = None,
-      font_style: FontStyle = None,
-      font_weight: FontWeight = None,
-      halign: LeftCenterRight = None,
-      justify: LeftCenterRight = None,
+      color: str | Color = None,
+      default_x: float | Tenths = None,
+      default_y: float | Tenths = None,
+      dir: str | TextDirection = None,
+      enclosure: str | EnclosureShape = None,
+      font_family: str | FontFamily = None,
+      font_size: str | FontSize = None,
+      font_style: str | FontStyle = None,
+      font_weight: str | FontWeight = None,
+      halign: str | LeftCenterRight = None,
+      justify: str | LeftCenterRight = None,
       lang: Any = None,
-      letter_spacing: NumberOrNormal = None,
-      line_height: NumberOrNormal = None,
-      line_through: int = None,
-      overline: int = None,
-      relative_x: float = None,
-      relative_y: float = None,
-      rotation: float = None,
+      letter_spacing: str | NumberOrNormal = None,
+      line_height: str | NumberOrNormal = None,
+      line_through: int | NumberOfLines = None,
+      overline: int | NumberOfLines = None,
+      relative_x: float | Tenths = None,
+      relative_y: float | Tenths = None,
+      rotation: float | RotationDegrees = None,
       space: Any = None,
-      underline: int = None,
-      valign: Valign = None,
+      underline: int | NumberOfLines = None,
+      valign: str | Valign = None,
   ):
     self.init()
 
@@ -2507,29 +2514,29 @@ class FormattedTextId(MusicElementBase):
   def __init__(
       self,
       plain_text: str,
-      color: str = None,
-      default_x: float = None,
-      default_y: float = None,
-      dir: TextDirection = None,
-      enclosure: EnclosureShape = None,
-      font_family: str = None,
-      font_size: str = None,
-      font_style: FontStyle = None,
-      font_weight: FontWeight = None,
-      halign: LeftCenterRight = None,
+      color: str | Color = None,
+      default_x: float | Tenths = None,
+      default_y: float | Tenths = None,
+      dir: str | TextDirection = None,
+      enclosure: str | EnclosureShape = None,
+      font_family: str | FontFamily = None,
+      font_size: str | FontSize = None,
+      font_style: str | FontStyle = None,
+      font_weight: str | FontWeight = None,
+      halign: str | LeftCenterRight = None,
       id: str = None,
-      justify: LeftCenterRight = None,
+      justify: str | LeftCenterRight = None,
       lang: Any = None,
-      letter_spacing: NumberOrNormal = None,
-      line_height: NumberOrNormal = None,
-      line_through: int = None,
-      overline: int = None,
-      relative_x: float = None,
-      relative_y: float = None,
-      rotation: float = None,
+      letter_spacing: str | NumberOrNormal = None,
+      line_height: str | NumberOrNormal = None,
+      line_through: int | NumberOfLines = None,
+      overline: int | NumberOfLines = None,
+      relative_x: float | Tenths = None,
+      relative_y: float | Tenths = None,
+      rotation: float | RotationDegrees = None,
       space: Any = None,
-      underline: int = None,
-      valign: Valign = None,
+      underline: int | NumberOfLines = None,
+      valign: str | Valign = None,
   ):
     self.init()
 
@@ -2543,11 +2550,11 @@ class Fret(MusicElementBase):
   def __init__(
       self,
       plain_text: int,
-      color: str = None,
-      font_family: str = None,
-      font_size: str = None,
-      font_style: FontStyle = None,
-      font_weight: FontWeight = None,
+      color: str | Color = None,
+      font_family: str | FontFamily = None,
+      font_size: str | FontSize = None,
+      font_style: str | FontStyle = None,
+      font_weight: str | FontWeight = None,
   ):
     self.init()
 
@@ -2560,7 +2567,9 @@ class Glass(GlassValue):
   than glass.
   """
 
-  def __init__(self, plain_text: str, smufl: str = None):
+  def __init__(
+      self, plain_text: str, smufl: str | SmuflPictogramGlyphName = None
+  ):
     self.init()
 
 
@@ -2574,21 +2583,21 @@ class Glissando(MusicElementBase):
   def __init__(
       self,
       plain_text: str,
-      type: StartStop,
-      color: str = None,
-      dash_length: float = None,
-      default_x: float = None,
-      default_y: float = None,
-      font_family: str = None,
-      font_size: str = None,
-      font_style: FontStyle = None,
-      font_weight: FontWeight = None,
+      type: str | StartStop,
+      color: str | Color = None,
+      dash_length: float | Tenths = None,
+      default_x: float | Tenths = None,
+      default_y: float | Tenths = None,
+      font_family: str | FontFamily = None,
+      font_size: str | FontSize = None,
+      font_style: str | FontStyle = None,
+      font_weight: str | FontWeight = None,
       id: str = None,
-      line_type: LineType = None,
-      number: int = None,
-      relative_x: float = None,
-      relative_y: float = None,
-      space_length: float = None,
+      line_type: str | LineType = None,
+      number: int | NumberLevel = None,
+      relative_x: float | Tenths = None,
+      relative_y: float | Tenths = None,
+      space_length: float | Tenths = None,
   ):
     self.init()
 
@@ -2605,7 +2614,7 @@ class Glyph(SmuflGlyphName):
   ottavaBassa, ottavaBassaBa, ottavaBassaVb, or octaveBassa.
   """
 
-  def __init__(self, plain_text: str, type: str):
+  def __init__(self, plain_text: str, type: str | GlyphType):
     self.init()
 
 
@@ -2622,10 +2631,10 @@ class Grace(MusicElementBase):
 
   def __init__(
       self,
-      make_time: float = None,
-      slash: YesNo = None,
-      steal_time_following: float = None,
-      steal_time_previous: float = None,
+      make_time: float | Divisions = None,
+      slash: str | YesNo = None,
+      steal_time_following: float | Percent = None,
+      steal_time_previous: float | Percent = None,
   ):
     self.init()
 
@@ -2633,7 +2642,7 @@ class Grace(MusicElementBase):
 class GroupBarline(GroupBarlineValue):
   """The group-barline type indicates if the group should have common barlines."""
 
-  def __init__(self, plain_text: str, color: str = None):
+  def __init__(self, plain_text: str, color: str | Color = None):
     self.init()
 
 
@@ -2647,16 +2656,16 @@ class GroupName(MusicElementBase):
   def __init__(
       self,
       plain_text: str,
-      color: str = None,
-      default_x: float = None,
-      default_y: float = None,
-      font_family: str = None,
-      font_size: str = None,
-      font_style: FontStyle = None,
-      font_weight: FontWeight = None,
-      justify: LeftCenterRight = None,
-      relative_x: float = None,
-      relative_y: float = None,
+      color: str | Color = None,
+      default_x: float | Tenths = None,
+      default_y: float | Tenths = None,
+      font_family: str | FontFamily = None,
+      font_size: str | FontSize = None,
+      font_style: str | FontStyle = None,
+      font_weight: str | FontWeight = None,
+      justify: str | LeftCenterRight = None,
+      relative_x: float | Tenths = None,
+      relative_y: float | Tenths = None,
   ):
     self.init()
 
@@ -2670,11 +2679,11 @@ class GroupSymbol(GroupSymbolValue):
   def __init__(
       self,
       plain_text: str,
-      color: str = None,
-      default_x: float = None,
-      default_y: float = None,
-      relative_x: float = None,
-      relative_y: float = None,
+      color: str | Color = None,
+      default_x: float | Tenths = None,
+      default_y: float | Tenths = None,
+      relative_x: float | Tenths = None,
+      relative_y: float | Tenths = None,
   ):
     self.init()
 
@@ -2691,18 +2700,18 @@ class HammerOnPullOff(MusicElementBase):
   def __init__(
       self,
       plain_text: str,
-      type: StartStop,
-      color: str = None,
-      default_x: float = None,
-      default_y: float = None,
-      font_family: str = None,
-      font_size: str = None,
-      font_style: FontStyle = None,
-      font_weight: FontWeight = None,
-      number: int = None,
-      placement: AboveBelow = None,
-      relative_x: float = None,
-      relative_y: float = None,
+      type: str | StartStop,
+      color: str | Color = None,
+      default_x: float | Tenths = None,
+      default_y: float | Tenths = None,
+      font_family: str | FontFamily = None,
+      font_size: str | FontSize = None,
+      font_style: str | FontStyle = None,
+      font_weight: str | FontWeight = None,
+      number: int | NumberLevel = None,
+      placement: str | AboveBelow = None,
+      relative_x: float | Tenths = None,
+      relative_y: float | Tenths = None,
   ):
     self.init()
 
@@ -2713,16 +2722,16 @@ class Handbell(HandbellValue):
   def __init__(
       self,
       plain_text: str,
-      color: str = None,
-      default_x: float = None,
-      default_y: float = None,
-      font_family: str = None,
-      font_size: str = None,
-      font_style: FontStyle = None,
-      font_weight: FontWeight = None,
-      placement: AboveBelow = None,
-      relative_x: float = None,
-      relative_y: float = None,
+      color: str | Color = None,
+      default_x: float | Tenths = None,
+      default_y: float | Tenths = None,
+      font_family: str | FontFamily = None,
+      font_size: str | FontSize = None,
+      font_style: str | FontStyle = None,
+      font_weight: str | FontWeight = None,
+      placement: str | AboveBelow = None,
+      relative_x: float | Tenths = None,
+      relative_y: float | Tenths = None,
   ):
     self.init()
 
@@ -2734,7 +2743,9 @@ class HarmonClosed(HarmonClosedValue):
   filled in when the element value is half.
   """
 
-  def __init__(self, plain_text: str, location: HarmonClosedLocation = None):
+  def __init__(
+      self, plain_text: str, location: str | HarmonClosedLocation = None
+  ):
     self.init()
 
 
@@ -2751,17 +2762,17 @@ class HarmonyAlter(Semitones):
   def __init__(
       self,
       plain_text: float,
-      color: str = None,
-      default_x: float = None,
-      default_y: float = None,
-      font_family: str = None,
-      font_size: str = None,
-      font_style: FontStyle = None,
-      font_weight: FontWeight = None,
-      location: LeftRight = None,
-      print_object: YesNo = None,
-      relative_x: float = None,
-      relative_y: float = None,
+      color: str | Color = None,
+      default_x: float | Tenths = None,
+      default_y: float | Tenths = None,
+      font_family: str | FontFamily = None,
+      font_size: str | FontSize = None,
+      font_style: str | FontStyle = None,
+      font_weight: str | FontWeight = None,
+      location: str | LeftRight = None,
+      print_object: str | YesNo = None,
+      relative_x: float | Tenths = None,
+      relative_y: float | Tenths = None,
   ):
     self.init()
 
@@ -2774,17 +2785,17 @@ class HeelToe(EmptyPlacement):
 
   def __init__(
       self,
-      color: str = None,
-      default_x: float = None,
-      default_y: float = None,
-      font_family: str = None,
-      font_size: str = None,
-      font_style: FontStyle = None,
-      font_weight: FontWeight = None,
-      placement: AboveBelow = None,
-      relative_x: float = None,
-      relative_y: float = None,
-      substitution: YesNo = None,
+      color: str | Color = None,
+      default_x: float | Tenths = None,
+      default_y: float | Tenths = None,
+      font_family: str | FontFamily = None,
+      font_size: str | FontSize = None,
+      font_style: str | FontStyle = None,
+      font_weight: str | FontWeight = None,
+      placement: str | AboveBelow = None,
+      relative_x: float | Tenths = None,
+      relative_y: float | Tenths = None,
+      substitution: str | YesNo = None,
   ):
     self.init()
 
@@ -2796,7 +2807,9 @@ class HoleClosed(HoleClosedValue):
   in when the element value is half.
   """
 
-  def __init__(self, plain_text: str, location: HoleClosedLocation = None):
+  def __init__(
+      self, plain_text: str, location: str | HoleClosedLocation = None
+  ):
     self.init()
 
 
@@ -2810,24 +2823,24 @@ class HorizontalTurn(MusicElementBase):
 
   def __init__(
       self,
-      accelerate: YesNo = None,
-      beats: float = None,
-      color: str = None,
-      default_x: float = None,
-      default_y: float = None,
-      font_family: str = None,
-      font_size: str = None,
-      font_style: FontStyle = None,
-      font_weight: FontWeight = None,
-      last_beat: float = None,
-      placement: AboveBelow = None,
-      relative_x: float = None,
-      relative_y: float = None,
-      second_beat: float = None,
-      slash: YesNo = None,
-      start_note: StartNote = None,
-      trill_step: TrillStep = None,
-      two_note_turn: TwoNoteTurn = None,
+      accelerate: str | YesNo = None,
+      beats: float | TrillBeats = None,
+      color: str | Color = None,
+      default_x: float | Tenths = None,
+      default_y: float | Tenths = None,
+      font_family: str | FontFamily = None,
+      font_size: str | FontSize = None,
+      font_style: str | FontStyle = None,
+      font_weight: str | FontWeight = None,
+      last_beat: float | Percent = None,
+      placement: str | AboveBelow = None,
+      relative_x: float | Tenths = None,
+      relative_y: float | Tenths = None,
+      second_beat: float | Percent = None,
+      slash: str | YesNo = None,
+      start_note: str | StartNote = None,
+      trill_step: str | TrillStep = None,
+      two_note_turn: str | TwoNoteTurn = None,
   ):
     self.init()
 
@@ -2839,15 +2852,15 @@ class Image(MusicElementBase):
       self,
       source: str,
       type: str,
-      default_x: float = None,
-      default_y: float = None,
-      halign: LeftCenterRight = None,
-      height: float = None,
+      default_x: float | Tenths = None,
+      default_y: float | Tenths = None,
+      halign: str | LeftCenterRight = None,
+      height: float | Tenths = None,
       id: str = None,
-      relative_x: float = None,
-      relative_y: float = None,
-      valign: ValignImage = None,
-      width: float = None,
+      relative_x: float | Tenths = None,
+      relative_y: float | Tenths = None,
+      valign: str | ValignImage = None,
+      width: float | Tenths = None,
   ):
     self.init()
 
@@ -2889,15 +2902,15 @@ class Inversion(MusicElementBase):
   def __init__(
       self,
       plain_text: int,
-      color: str = None,
-      default_x: float = None,
-      default_y: float = None,
-      font_family: str = None,
-      font_size: str = None,
-      font_style: FontStyle = None,
-      font_weight: FontWeight = None,
-      relative_x: float = None,
-      relative_y: float = None,
+      color: str | Color = None,
+      default_x: float | Tenths = None,
+      default_y: float | Tenths = None,
+      font_family: str | FontFamily = None,
+      font_size: str | FontSize = None,
+      font_style: str | FontStyle = None,
+      font_weight: str | FontWeight = None,
+      relative_x: float | Tenths = None,
+      relative_y: float | Tenths = None,
       text: str = None,
   ):
     self.init()
@@ -2906,7 +2919,9 @@ class Inversion(MusicElementBase):
 class KeyAccidental(AccidentalValue):
   """The key-accidental type indicates the accidental to be displayed in a non-traditional key signature, represented in the same manner as the accidental type without the formatting attributes."""
 
-  def __init__(self, plain_text: str, smufl: str = None):
+  def __init__(
+      self, plain_text: str, smufl: str | SmuflAccidentalGlyphName = None
+  ):
     self.init()
 
 
@@ -2922,7 +2937,7 @@ class KeyOctave(Octave):
   within the parent key element. It is no by default.
   """
 
-  def __init__(self, plain_text: int, number: int, cancel: YesNo = None):
+  def __init__(self, plain_text: int, number: int, cancel: str | YesNo = None):
     self.init()
 
 
@@ -2967,22 +2982,22 @@ class Kind(KindValue):
   def __init__(
       self,
       plain_text: str,
-      bracket_degrees: YesNo = None,
-      color: str = None,
-      default_x: float = None,
-      default_y: float = None,
-      font_family: str = None,
-      font_size: str = None,
-      font_style: FontStyle = None,
-      font_weight: FontWeight = None,
-      halign: LeftCenterRight = None,
-      parentheses_degrees: YesNo = None,
-      relative_x: float = None,
-      relative_y: float = None,
-      stack_degrees: YesNo = None,
+      bracket_degrees: str | YesNo = None,
+      color: str | Color = None,
+      default_x: float | Tenths = None,
+      default_y: float | Tenths = None,
+      font_family: str | FontFamily = None,
+      font_size: str | FontSize = None,
+      font_style: str | FontStyle = None,
+      font_weight: str | FontWeight = None,
+      halign: str | LeftCenterRight = None,
+      parentheses_degrees: str | YesNo = None,
+      relative_x: float | Tenths = None,
+      relative_y: float | Tenths = None,
+      stack_degrees: str | YesNo = None,
       text: str = None,
-      use_symbols: YesNo = None,
-      valign: Valign = None,
+      use_symbols: str | YesNo = None,
+      valign: str | Valign = None,
   ):
     self.init()
 
@@ -3007,11 +3022,11 @@ class Level(MusicElementBase):
   def __init__(
       self,
       plain_text: str,
-      bracket: YesNo = None,
-      parentheses: YesNo = None,
-      reference: YesNo = None,
-      size: SymbolSize = None,
-      type: StartStopSingle = None,
+      bracket: str | YesNo = None,
+      parentheses: str | YesNo = None,
+      reference: str | YesNo = None,
+      size: str | SymbolSize = None,
+      type: str | StartStopSingle = None,
   ):
     self.init()
 
@@ -3030,11 +3045,11 @@ class LineDetail(MusicElementBase):
 
   def __init__(
       self,
-      line: int,
-      color: str = None,
-      line_type: LineType = None,
-      print_object: YesNo = None,
-      width: float = None,
+      line: int | StaffLine,
+      color: str | Color = None,
+      line_type: str | LineType = None,
+      print_object: str | YesNo = None,
+      width: float | Tenths = None,
   ):
     self.init()
 
@@ -3048,7 +3063,7 @@ class LineWidth(Tenths):
   tie tip, tuplet bracket, and wedge. The text content is expressed in tenths.
   """
 
-  def __init__(self, plain_text: float, type: str):
+  def __init__(self, plain_text: float, type: str | LineWidthType):
     self.init()
 
 
@@ -3069,14 +3084,14 @@ class Link(MusicElementBase):
   def __init__(
       self,
       actuate: Any = None,
-      default_x: float = None,
-      default_y: float = None,
+      default_x: float | Tenths = None,
+      default_y: float | Tenths = None,
       element: str = None,
       href: str = None,
       name: str = None,
       position: int = None,
-      relative_x: float = None,
-      relative_y: float = None,
+      relative_x: float | Tenths = None,
+      relative_y: float | Tenths = None,
       role: str = None,
       show: Any = None,
       title: str = None,
@@ -3090,10 +3105,10 @@ class LyricFont(MusicElementBase):
 
   def __init__(
       self,
-      font_family: str = None,
-      font_size: str = None,
-      font_style: FontStyle = None,
-      font_weight: FontWeight = None,
+      font_family: str | FontFamily = None,
+      font_size: str | FontSize = None,
+      font_style: str | FontStyle = None,
+      font_weight: str | FontWeight = None,
       name: str = None,
       number: str = None,
   ):
@@ -3134,21 +3149,21 @@ class MeasureNumbering(MeasureNumberingValue):
   def __init__(
       self,
       plain_text: str,
-      color: str = None,
-      default_x: float = None,
-      default_y: float = None,
-      font_family: str = None,
-      font_size: str = None,
-      font_style: FontStyle = None,
-      font_weight: FontWeight = None,
-      halign: LeftCenterRight = None,
-      multiple_rest_always: YesNo = None,
-      multiple_rest_range: YesNo = None,
-      relative_x: float = None,
-      relative_y: float = None,
-      staff: int = None,
-      system: SystemRelationNumber = None,
-      valign: Valign = None,
+      color: str | Color = None,
+      default_x: float | Tenths = None,
+      default_y: float | Tenths = None,
+      font_family: str | FontFamily = None,
+      font_size: str | FontSize = None,
+      font_style: str | FontStyle = None,
+      font_weight: str | FontWeight = None,
+      halign: str | LeftCenterRight = None,
+      multiple_rest_always: str | YesNo = None,
+      multiple_rest_range: str | YesNo = None,
+      relative_x: float | Tenths = None,
+      relative_y: float | Tenths = None,
+      staff: int | StaffNumber = None,
+      system: str | SystemRelationNumber = None,
+      valign: str | Valign = None,
   ):
     self.init()
 
@@ -3170,7 +3185,9 @@ class MeasureRepeat(PositiveIntegerOrEmpty):
   MusicXML file. This element specifies the notation that indicates the repeat.
   """
 
-  def __init__(self, plain_text: str, type: StartStop, slashes: int = None):
+  def __init__(
+      self, plain_text: str, type: str | StartStop, slashes: int = None
+  ):
     self.init()
 
 
@@ -3181,7 +3198,9 @@ class Membrane(MembraneValue):
   alternates.
   """
 
-  def __init__(self, plain_text: str, smufl: str = None):
+  def __init__(
+      self, plain_text: str, smufl: str | SmuflPictogramGlyphName = None
+  ):
     self.init()
 
 
@@ -3192,14 +3211,16 @@ class Metal(MetalValue):
   alternates.
   """
 
-  def __init__(self, plain_text: str, smufl: str = None):
+  def __init__(
+      self, plain_text: str, smufl: str | SmuflPictogramGlyphName = None
+  ):
     self.init()
 
 
 class MetronomeBeam(BeamValue):
   """The metronome-beam type works like the beam type in defining metric relationships, but does not include all the attributes available in the beam type."""
 
-  def __init__(self, plain_text: str, number: int = None):
+  def __init__(self, plain_text: str, number: int | BeamLevel = None):
     self.init()
 
 
@@ -3210,7 +3231,7 @@ class MetronomeTied(MusicElementBase):
   specified, in this case within separate metronome-note elements.
   """
 
-  def __init__(self, type: StartStop):
+  def __init__(self, type: str | StartStop):
     self.init()
 
 
@@ -3225,7 +3246,9 @@ class MidiDevice(MusicElementBase):
   score-part.
   """
 
-  def __init__(self, plain_text: str, id: str = None, port: int = None):
+  def __init__(
+      self, plain_text: str, id: str = None, port: int | Midi16 = None
+  ):
     self.init()
 
 
@@ -3250,26 +3273,26 @@ class Mordent(EmptyTrillSound):
 
   def __init__(
       self,
-      accelerate: YesNo = None,
-      approach: AboveBelow = None,
-      beats: float = None,
-      color: str = None,
-      default_x: float = None,
-      default_y: float = None,
-      departure: AboveBelow = None,
-      font_family: str = None,
-      font_size: str = None,
-      font_style: FontStyle = None,
-      font_weight: FontWeight = None,
-      last_beat: float = None,
-      long: YesNo = None,
-      placement: AboveBelow = None,
-      relative_x: float = None,
-      relative_y: float = None,
-      second_beat: float = None,
-      start_note: StartNote = None,
-      trill_step: TrillStep = None,
-      two_note_turn: TwoNoteTurn = None,
+      accelerate: str | YesNo = None,
+      approach: str | AboveBelow = None,
+      beats: float | TrillBeats = None,
+      color: str | Color = None,
+      default_x: float | Tenths = None,
+      default_y: float | Tenths = None,
+      departure: str | AboveBelow = None,
+      font_family: str | FontFamily = None,
+      font_size: str | FontSize = None,
+      font_style: str | FontStyle = None,
+      font_weight: str | FontWeight = None,
+      last_beat: float | Percent = None,
+      long: str | YesNo = None,
+      placement: str | AboveBelow = None,
+      relative_x: float | Tenths = None,
+      relative_y: float | Tenths = None,
+      second_beat: float | Percent = None,
+      start_note: str | StartNote = None,
+      trill_step: str | TrillStep = None,
+      two_note_turn: str | TwoNoteTurn = None,
   ):
     self.init()
 
@@ -3282,7 +3305,7 @@ class MultipleRest(MusicElementBase):
   specified.
   """
 
-  def __init__(self, plain_text: int, use_symbols: YesNo = None):
+  def __init__(self, plain_text: int, use_symbols: str | YesNo = None):
     self.init()
 
 
@@ -3295,15 +3318,15 @@ class NonArpeggiate(MusicElementBase):
 
   def __init__(
       self,
-      type: TopBottom,
-      color: str = None,
-      default_x: float = None,
-      default_y: float = None,
+      type: str | TopBottom,
+      color: str | Color = None,
+      default_x: float | Tenths = None,
+      default_y: float | Tenths = None,
       id: str = None,
-      number: int = None,
-      placement: AboveBelow = None,
-      relative_x: float = None,
-      relative_y: float = None,
+      number: int | NumberLevel = None,
+      placement: str | AboveBelow = None,
+      relative_x: float | Tenths = None,
+      relative_y: float | Tenths = None,
   ):
     self.init()
 
@@ -3319,7 +3342,7 @@ class NoteSize(NonNegativeDecimal):
   the music font.
   """
 
-  def __init__(self, plain_text: float, type: NoteSizeType):
+  def __init__(self, plain_text: float, type: str | NoteSizeType):
     self.init()
 
 
@@ -3332,7 +3355,7 @@ class NoteType(NoteTypeValue):
   either a cue or a grace element, but not both.
   """
 
-  def __init__(self, plain_text: str, size: SymbolSize = None):
+  def __init__(self, plain_text: str, size: str | SymbolSize = None):
     self.init()
 
 
@@ -3358,14 +3381,14 @@ class Notehead(NoteheadValue):
   def __init__(
       self,
       plain_text: str,
-      color: str = None,
-      filled: YesNo = None,
-      font_family: str = None,
-      font_size: str = None,
-      font_style: FontStyle = None,
-      font_weight: FontWeight = None,
-      parentheses: YesNo = None,
-      smufl: str = None,
+      color: str | Color = None,
+      filled: str | YesNo = None,
+      font_family: str | FontFamily = None,
+      font_size: str | FontSize = None,
+      font_style: str | FontStyle = None,
+      font_weight: str | FontWeight = None,
+      parentheses: str | YesNo = None,
+      smufl: str | SmuflGlyphName = None,
   ):
     self.init()
 
@@ -3383,15 +3406,15 @@ class NumeralRoot(NumeralValue):
   def __init__(
       self,
       plain_text: int,
-      color: str = None,
-      default_x: float = None,
-      default_y: float = None,
-      font_family: str = None,
-      font_size: str = None,
-      font_style: FontStyle = None,
-      font_weight: FontWeight = None,
-      relative_x: float = None,
-      relative_y: float = None,
+      color: str | Color = None,
+      default_x: float | Tenths = None,
+      default_y: float | Tenths = None,
+      font_family: str | FontFamily = None,
+      font_size: str | FontSize = None,
+      font_style: str | FontStyle = None,
+      font_weight: str | FontWeight = None,
+      relative_x: float | Tenths = None,
+      relative_y: float | Tenths = None,
       text: str = None,
   ):
     self.init()
@@ -3407,21 +3430,21 @@ class OctaveShift(MusicElementBase):
 
   def __init__(
       self,
-      type: UpDownStopContinue,
-      color: str = None,
-      dash_length: float = None,
-      default_x: float = None,
-      default_y: float = None,
-      font_family: str = None,
-      font_size: str = None,
-      font_style: FontStyle = None,
-      font_weight: FontWeight = None,
+      type: str | UpDownStopContinue,
+      color: str | Color = None,
+      dash_length: float | Tenths = None,
+      default_x: float | Tenths = None,
+      default_y: float | Tenths = None,
+      font_family: str | FontFamily = None,
+      font_size: str | FontSize = None,
+      font_style: str | FontStyle = None,
+      font_weight: str | FontWeight = None,
       id: str = None,
-      number: int = None,
-      relative_x: float = None,
-      relative_y: float = None,
+      number: int | NumberLevel = None,
+      relative_x: float | Tenths = None,
+      relative_y: float | Tenths = None,
       size: int = None,
-      space_length: float = None,
+      space_length: float | Tenths = None,
   ):
     self.init()
 
@@ -3441,7 +3464,7 @@ class Offset(Divisions):
   will be ignored when determining the appearance of that element.
   """
 
-  def __init__(self, plain_text: float, sound: YesNo = None):
+  def __init__(self, plain_text: float, sound: str | YesNo = None):
     self.init()
 
 
@@ -3491,20 +3514,20 @@ class OtherDirection(MusicElementBase):
   def __init__(
       self,
       plain_text: str,
-      color: str = None,
-      default_x: float = None,
-      default_y: float = None,
-      font_family: str = None,
-      font_size: str = None,
-      font_style: FontStyle = None,
-      font_weight: FontWeight = None,
-      halign: LeftCenterRight = None,
+      color: str | Color = None,
+      default_x: float | Tenths = None,
+      default_y: float | Tenths = None,
+      font_family: str | FontFamily = None,
+      font_size: str | FontSize = None,
+      font_style: str | FontStyle = None,
+      font_weight: str | FontWeight = None,
+      halign: str | LeftCenterRight = None,
       id: str = None,
-      print_object: YesNo = None,
-      relative_x: float = None,
-      relative_y: float = None,
-      smufl: str = None,
-      valign: Valign = None,
+      print_object: str | YesNo = None,
+      relative_x: float | Tenths = None,
+      relative_y: float | Tenths = None,
+      smufl: str | SmuflGlyphName = None,
+      valign: str | Valign = None,
   ):
     self.init()
 
@@ -3523,7 +3546,7 @@ class OtherListening(MusicElementBase):
       plain_text: str,
       type: str,
       player: str = None,
-      time_only: str = None,
+      time_only: str | TimeOnly = None,
   ):
     self.init()
 
@@ -3543,21 +3566,21 @@ class OtherNotation(MusicElementBase):
   def __init__(
       self,
       plain_text: str,
-      type: StartStopSingle,
-      color: str = None,
-      default_x: float = None,
-      default_y: float = None,
-      font_family: str = None,
-      font_size: str = None,
-      font_style: FontStyle = None,
-      font_weight: FontWeight = None,
+      type: str | StartStopSingle,
+      color: str | Color = None,
+      default_x: float | Tenths = None,
+      default_y: float | Tenths = None,
+      font_family: str | FontFamily = None,
+      font_size: str | FontSize = None,
+      font_style: str | FontStyle = None,
+      font_weight: str | FontWeight = None,
       id: str = None,
-      number: int = None,
-      placement: AboveBelow = None,
-      print_object: YesNo = None,
-      relative_x: float = None,
-      relative_y: float = None,
-      smufl: str = None,
+      number: int | NumberLevel = None,
+      placement: str | AboveBelow = None,
+      print_object: str | YesNo = None,
+      relative_x: float | Tenths = None,
+      relative_y: float | Tenths = None,
+      smufl: str | SmuflGlyphName = None,
   ):
     self.init()
 
@@ -3573,17 +3596,17 @@ class OtherPlacementText(MusicElementBase):
   def __init__(
       self,
       plain_text: str,
-      color: str = None,
-      default_x: float = None,
-      default_y: float = None,
-      font_family: str = None,
-      font_size: str = None,
-      font_style: FontStyle = None,
-      font_weight: FontWeight = None,
-      placement: AboveBelow = None,
-      relative_x: float = None,
-      relative_y: float = None,
-      smufl: str = None,
+      color: str | Color = None,
+      default_x: float | Tenths = None,
+      default_y: float | Tenths = None,
+      font_family: str | FontFamily = None,
+      font_size: str | FontSize = None,
+      font_style: str | FontStyle = None,
+      font_weight: str | FontWeight = None,
+      placement: str | AboveBelow = None,
+      relative_x: float | Tenths = None,
+      relative_y: float | Tenths = None,
+      smufl: str | SmuflGlyphName = None,
   ):
     self.init()
 
@@ -3607,7 +3630,7 @@ class OtherText(MusicElementBase):
   MusicXML element.
   """
 
-  def __init__(self, plain_text: str, smufl: str = None):
+  def __init__(self, plain_text: str, smufl: str | SmuflGlyphName = None):
     self.init()
 
 
@@ -3621,17 +3644,17 @@ class PartName(MusicElementBase):
   def __init__(
       self,
       plain_text: str,
-      color: str = None,
-      default_x: float = None,
-      default_y: float = None,
-      font_family: str = None,
-      font_size: str = None,
-      font_style: FontStyle = None,
-      font_weight: FontWeight = None,
-      justify: LeftCenterRight = None,
-      print_object: YesNo = None,
-      relative_x: float = None,
-      relative_y: float = None,
+      color: str | Color = None,
+      default_x: float | Tenths = None,
+      default_y: float | Tenths = None,
+      font_family: str | FontFamily = None,
+      font_size: str | FontSize = None,
+      font_style: str | FontStyle = None,
+      font_weight: str | FontWeight = None,
+      justify: str | LeftCenterRight = None,
+      print_object: str | YesNo = None,
+      relative_x: float | Tenths = None,
+      relative_y: float | Tenths = None,
   ):
     self.init()
 
@@ -3651,13 +3674,13 @@ class PartSymbol(GroupSymbolValue):
   def __init__(
       self,
       plain_text: str,
-      bottom_staff: int = None,
-      color: str = None,
-      default_x: float = None,
-      default_y: float = None,
-      relative_x: float = None,
-      relative_y: float = None,
-      top_staff: int = None,
+      bottom_staff: int | StaffNumber = None,
+      color: str | Color = None,
+      default_x: float | Tenths = None,
+      default_y: float | Tenths = None,
+      relative_x: float | Tenths = None,
+      relative_y: float | Tenths = None,
+      top_staff: int | StaffNumber = None,
   ):
     self.init()
 
@@ -3677,23 +3700,23 @@ class Pedal(MusicElementBase):
 
   def __init__(
       self,
-      type: PedalType,
-      abbreviated: YesNo = None,
-      color: str = None,
-      default_x: float = None,
-      default_y: float = None,
-      font_family: str = None,
-      font_size: str = None,
-      font_style: FontStyle = None,
-      font_weight: FontWeight = None,
-      halign: LeftCenterRight = None,
+      type: str | PedalType,
+      abbreviated: str | YesNo = None,
+      color: str | Color = None,
+      default_x: float | Tenths = None,
+      default_y: float | Tenths = None,
+      font_family: str | FontFamily = None,
+      font_size: str | FontSize = None,
+      font_style: str | FontStyle = None,
+      font_weight: str | FontWeight = None,
+      halign: str | LeftCenterRight = None,
       id: str = None,
-      line: YesNo = None,
-      number: int = None,
-      relative_x: float = None,
-      relative_y: float = None,
-      sign: YesNo = None,
-      valign: Valign = None,
+      line: str | YesNo = None,
+      number: int | NumberLevel = None,
+      relative_x: float | Tenths = None,
+      relative_y: float | Tenths = None,
+      sign: str | YesNo = None,
+      valign: str | Valign = None,
   ):
     self.init()
 
@@ -3710,10 +3733,10 @@ class PerMinute(MusicElementBase):
   def __init__(
       self,
       plain_text: str,
-      font_family: str = None,
-      font_size: str = None,
-      font_style: FontStyle = None,
-      font_weight: FontWeight = None,
+      font_family: str | FontFamily = None,
+      font_size: str | FontSize = None,
+      font_style: str | FontStyle = None,
+      font_weight: str | FontWeight = None,
   ):
     self.init()
 
@@ -3725,7 +3748,9 @@ class Pitched(PitchedValue):
   particular pictogram within the Tuned mallet percussion pictograms range.
   """
 
-  def __init__(self, plain_text: str, smufl: str = None):
+  def __init__(
+      self, plain_text: str, smufl: str | SmuflPictogramGlyphName = None
+  ):
     self.init()
 
 
@@ -3735,16 +3760,16 @@ class PlacementText(MusicElementBase):
   def __init__(
       self,
       plain_text: str,
-      color: str = None,
-      default_x: float = None,
-      default_y: float = None,
-      font_family: str = None,
-      font_size: str = None,
-      font_style: FontStyle = None,
-      font_weight: FontWeight = None,
-      placement: AboveBelow = None,
-      relative_x: float = None,
-      relative_y: float = None,
+      color: str | Color = None,
+      default_x: float | Tenths = None,
+      default_y: float | Tenths = None,
+      font_family: str | FontFamily = None,
+      font_size: str | FontSize = None,
+      font_style: str | FontStyle = None,
+      font_weight: str | FontWeight = None,
+      placement: str | AboveBelow = None,
+      relative_x: float | Tenths = None,
+      relative_y: float | Tenths = None,
   ):
     self.init()
 
@@ -3761,20 +3786,20 @@ class PrincipalVoice(MusicElementBase):
   def __init__(
       self,
       plain_text: str,
-      symbol: PrincipalVoiceSymbol,
-      type: StartStop,
-      color: str = None,
-      default_x: float = None,
-      default_y: float = None,
-      font_family: str = None,
-      font_size: str = None,
-      font_style: FontStyle = None,
-      font_weight: FontWeight = None,
-      halign: LeftCenterRight = None,
+      symbol: str | PrincipalVoiceSymbol,
+      type: str | StartStop,
+      color: str | Color = None,
+      default_x: float | Tenths = None,
+      default_y: float | Tenths = None,
+      font_family: str | FontFamily = None,
+      font_size: str | FontSize = None,
+      font_style: str | FontStyle = None,
+      font_weight: str | FontWeight = None,
+      halign: str | LeftCenterRight = None,
       id: str = None,
-      relative_x: float = None,
-      relative_y: float = None,
-      valign: Valign = None,
+      relative_x: float | Tenths = None,
+      relative_y: float | Tenths = None,
+      valign: str | Valign = None,
   ):
     self.init()
 
@@ -3788,7 +3813,7 @@ class Release(Empty):
   offset value.
   """
 
-  def __init__(self, offset: float = None):
+  def __init__(self, offset: float | Divisions = None):
     self.init()
 
 
@@ -3805,10 +3830,10 @@ class Repeat(MusicElementBase):
 
   def __init__(
       self,
-      direction: BackwardForward,
-      after_jump: YesNo = None,
+      direction: str | BackwardForward,
+      after_jump: str | YesNo = None,
       times: int = None,
-      winged: Winged = None,
+      winged: str | Winged = None,
   ):
     self.init()
 
@@ -3823,15 +3848,15 @@ class RootStep(Step):
   def __init__(
       self,
       plain_text: str,
-      color: str = None,
-      default_x: float = None,
-      default_y: float = None,
-      font_family: str = None,
-      font_size: str = None,
-      font_style: FontStyle = None,
-      font_weight: FontWeight = None,
-      relative_x: float = None,
-      relative_y: float = None,
+      color: str | Color = None,
+      default_x: float | Tenths = None,
+      default_y: float | Tenths = None,
+      font_family: str | FontFamily = None,
+      font_size: str | FontSize = None,
+      font_style: str | FontStyle = None,
+      font_weight: str | FontWeight = None,
+      relative_x: float | Tenths = None,
+      relative_y: float | Tenths = None,
       text: str = None,
   ):
     self.init()
@@ -3846,19 +3871,19 @@ class Segno(MusicElementBase):
 
   def __init__(
       self,
-      color: str = None,
-      default_x: float = None,
-      default_y: float = None,
-      font_family: str = None,
-      font_size: str = None,
-      font_style: FontStyle = None,
-      font_weight: FontWeight = None,
-      halign: LeftCenterRight = None,
+      color: str | Color = None,
+      default_x: float | Tenths = None,
+      default_y: float | Tenths = None,
+      font_family: str | FontFamily = None,
+      font_size: str | FontSize = None,
+      font_style: str | FontStyle = None,
+      font_weight: str | FontWeight = None,
+      halign: str | LeftCenterRight = None,
       id: str = None,
-      relative_x: float = None,
-      relative_y: float = None,
-      smufl: str = None,
-      valign: Valign = None,
+      relative_x: float | Tenths = None,
+      relative_y: float | Tenths = None,
+      smufl: str | SmuflSegnoGlyphName = None,
+      valign: str | Valign = None,
   ):
     self.init()
 
@@ -3873,25 +3898,25 @@ class Slide(MusicElementBase):
   def __init__(
       self,
       plain_text: str,
-      type: StartStop,
-      accelerate: YesNo = None,
-      beats: float = None,
-      color: str = None,
-      dash_length: float = None,
-      default_x: float = None,
-      default_y: float = None,
-      first_beat: float = None,
-      font_family: str = None,
-      font_size: str = None,
-      font_style: FontStyle = None,
-      font_weight: FontWeight = None,
+      type: str | StartStop,
+      accelerate: str | YesNo = None,
+      beats: float | TrillBeats = None,
+      color: str | Color = None,
+      dash_length: float | Tenths = None,
+      default_x: float | Tenths = None,
+      default_y: float | Tenths = None,
+      first_beat: float | Percent = None,
+      font_family: str | FontFamily = None,
+      font_size: str | FontSize = None,
+      font_style: str | FontStyle = None,
+      font_weight: str | FontWeight = None,
       id: str = None,
-      last_beat: float = None,
-      line_type: LineType = None,
-      number: int = None,
-      relative_x: float = None,
-      relative_y: float = None,
-      space_length: float = None,
+      last_beat: float | Percent = None,
+      line_type: str | LineType = None,
+      number: int | NumberLevel = None,
+      relative_x: float | Tenths = None,
+      relative_y: float | Tenths = None,
+      space_length: float | Tenths = None,
   ):
     self.init()
 
@@ -3907,25 +3932,25 @@ class Slur(MusicElementBase):
 
   def __init__(
       self,
-      type: StartStopContinue,
-      bezier_offset: float = None,
-      bezier_offset2: float = None,
-      bezier_x: float = None,
-      bezier_x2: float = None,
-      bezier_y: float = None,
-      bezier_y2: float = None,
-      color: str = None,
-      dash_length: float = None,
-      default_x: float = None,
-      default_y: float = None,
+      type: str | StartStopContinue,
+      bezier_offset: float | Divisions = None,
+      bezier_offset2: float | Divisions = None,
+      bezier_x: float | Tenths = None,
+      bezier_x2: float | Tenths = None,
+      bezier_y: float | Tenths = None,
+      bezier_y2: float | Tenths = None,
+      color: str | Color = None,
+      dash_length: float | Tenths = None,
+      default_x: float | Tenths = None,
+      default_y: float | Tenths = None,
       id: str = None,
-      line_type: LineType = None,
-      number: int = None,
-      orientation: OverUnder = None,
-      placement: AboveBelow = None,
-      relative_x: float = None,
-      relative_y: float = None,
-      space_length: float = None,
+      line_type: str | LineType = None,
+      number: int | NumberLevel = None,
+      orientation: str | OverUnder = None,
+      placement: str | AboveBelow = None,
+      relative_x: float | Tenths = None,
+      relative_y: float | Tenths = None,
+      space_length: float | Tenths = None,
   ):
     self.init()
 
@@ -3935,19 +3960,19 @@ class StaffDivide(MusicElementBase):
 
   def __init__(
       self,
-      type: StaffDivideSymbol,
-      color: str = None,
-      default_x: float = None,
-      default_y: float = None,
-      font_family: str = None,
-      font_size: str = None,
-      font_style: FontStyle = None,
-      font_weight: FontWeight = None,
-      halign: LeftCenterRight = None,
+      type: str | StaffDivideSymbol,
+      color: str | Color = None,
+      default_x: float | Tenths = None,
+      default_y: float | Tenths = None,
+      font_family: str | FontFamily = None,
+      font_size: str | FontSize = None,
+      font_style: str | FontStyle = None,
+      font_weight: str | FontWeight = None,
+      halign: str | LeftCenterRight = None,
       id: str = None,
-      relative_x: float = None,
-      relative_y: float = None,
-      valign: Valign = None,
+      relative_x: float | Tenths = None,
+      relative_y: float | Tenths = None,
+      valign: str | Valign = None,
   ):
     self.init()
 
@@ -3970,7 +3995,9 @@ class StaffSize(NonNegativeDecimal):
   staff-size content and scaling attribute are both non-negative decimal values.
   """
 
-  def __init__(self, plain_text: float, scaling: float = None):
+  def __init__(
+      self, plain_text: float, scaling: float | NonNegativeDecimal = None
+  ):
     self.init()
 
 
@@ -3987,11 +4014,11 @@ class Stem(StemValue):
   def __init__(
       self,
       plain_text: str,
-      color: str = None,
-      default_x: float = None,
-      default_y: float = None,
-      relative_x: float = None,
-      relative_y: float = None,
+      color: str | Color = None,
+      default_x: float | Tenths = None,
+      default_y: float | Tenths = None,
+      relative_x: float | Tenths = None,
+      relative_y: float | Tenths = None,
   ):
     self.init()
 
@@ -4005,16 +4032,16 @@ class String(StringNumber):
   def __init__(
       self,
       plain_text: int,
-      color: str = None,
-      default_x: float = None,
-      default_y: float = None,
-      font_family: str = None,
-      font_size: str = None,
-      font_style: FontStyle = None,
-      font_weight: FontWeight = None,
-      placement: AboveBelow = None,
-      relative_x: float = None,
-      relative_y: float = None,
+      color: str | Color = None,
+      default_x: float | Tenths = None,
+      default_y: float | Tenths = None,
+      font_family: str | FontFamily = None,
+      font_size: str | FontSize = None,
+      font_style: str | FontStyle = None,
+      font_weight: str | FontWeight = None,
+      placement: str | AboveBelow = None,
+      relative_x: float | Tenths = None,
+      relative_y: float | Tenths = None,
   ):
     self.init()
 
@@ -4024,19 +4051,19 @@ class StringMute(MusicElementBase):
 
   def __init__(
       self,
-      type: OnOff,
-      color: str = None,
-      default_x: float = None,
-      default_y: float = None,
-      font_family: str = None,
-      font_size: str = None,
-      font_style: FontStyle = None,
-      font_weight: FontWeight = None,
-      halign: LeftCenterRight = None,
+      type: str | OnOff,
+      color: str | Color = None,
+      default_x: float | Tenths = None,
+      default_y: float | Tenths = None,
+      font_family: str | FontFamily = None,
+      font_size: str | FontSize = None,
+      font_style: str | FontStyle = None,
+      font_weight: str | FontWeight = None,
+      halign: str | LeftCenterRight = None,
       id: str = None,
-      relative_x: float = None,
-      relative_y: float = None,
-      valign: Valign = None,
+      relative_x: float | Tenths = None,
+      relative_y: float | Tenths = None,
+      valign: str | Valign = None,
   ):
     self.init()
 
@@ -4049,17 +4076,17 @@ class StrongAccent(EmptyPlacement):
 
   def __init__(
       self,
-      color: str = None,
-      default_x: float = None,
-      default_y: float = None,
-      font_family: str = None,
-      font_size: str = None,
-      font_style: FontStyle = None,
-      font_weight: FontWeight = None,
-      placement: AboveBelow = None,
-      relative_x: float = None,
-      relative_y: float = None,
-      type: UpDown = None,
+      color: str | Color = None,
+      default_x: float | Tenths = None,
+      default_y: float | Tenths = None,
+      font_family: str | FontFamily = None,
+      font_size: str | FontSize = None,
+      font_style: str | FontStyle = None,
+      font_weight: str | FontWeight = None,
+      placement: str | AboveBelow = None,
+      relative_x: float | Tenths = None,
+      relative_y: float | Tenths = None,
+      type: str | UpDown = None,
   ):
     self.init()
 
@@ -4070,15 +4097,15 @@ class StyleText(MusicElementBase):
   def __init__(
       self,
       plain_text: str,
-      color: str = None,
-      default_x: float = None,
-      default_y: float = None,
-      font_family: str = None,
-      font_size: str = None,
-      font_style: FontStyle = None,
-      font_weight: FontWeight = None,
-      relative_x: float = None,
-      relative_y: float = None,
+      color: str | Color = None,
+      default_x: float | Tenths = None,
+      default_y: float | Tenths = None,
+      font_family: str | FontFamily = None,
+      font_size: str | FontSize = None,
+      font_style: str | FontStyle = None,
+      font_weight: str | FontWeight = None,
+      relative_x: float | Tenths = None,
+      relative_y: float | Tenths = None,
   ):
     self.init()
 
@@ -4095,7 +4122,11 @@ class Supports(MusicElementBase):
   """
 
   def __init__(
-      self, element: str, type: YesNo, attribute: str = None, value: str = None
+      self,
+      element: str,
+      type: str | YesNo,
+      attribute: str = None,
+      value: str = None,
   ):
     self.init()
 
@@ -4114,10 +4145,10 @@ class Sync(MusicElementBase):
 
   def __init__(
       self,
-      type: SyncType,
-      latency: int = None,
+      type: str | SyncType,
+      latency: int | Milliseconds = None,
       player: str = None,
-      time_only: str = None,
+      time_only: str | TimeOnly = None,
   ):
     self.init()
 
@@ -4135,17 +4166,17 @@ class Tap(MusicElementBase):
   def __init__(
       self,
       plain_text: str,
-      color: str = None,
-      default_x: float = None,
-      default_y: float = None,
-      font_family: str = None,
-      font_size: str = None,
-      font_style: FontStyle = None,
-      font_weight: FontWeight = None,
-      hand: TapHand = None,
-      placement: AboveBelow = None,
-      relative_x: float = None,
-      relative_y: float = None,
+      color: str | Color = None,
+      default_x: float | Tenths = None,
+      default_y: float | Tenths = None,
+      font_family: str | FontFamily = None,
+      font_size: str | FontSize = None,
+      font_style: str | FontStyle = None,
+      font_weight: str | FontWeight = None,
+      hand: str | TapHand = None,
+      placement: str | AboveBelow = None,
+      relative_x: float | Tenths = None,
+      relative_y: float | Tenths = None,
   ):
     self.init()
 
@@ -4163,18 +4194,18 @@ class TextElementData(MusicElementBase):
   def __init__(
       self,
       plain_text: str,
-      color: str = None,
-      dir: TextDirection = None,
-      font_family: str = None,
-      font_size: str = None,
-      font_style: FontStyle = None,
-      font_weight: FontWeight = None,
+      color: str | Color = None,
+      dir: str | TextDirection = None,
+      font_family: str | FontFamily = None,
+      font_size: str | FontSize = None,
+      font_style: str | FontStyle = None,
+      font_weight: str | FontWeight = None,
       lang: Any = None,
-      letter_spacing: NumberOrNormal = None,
-      line_through: int = None,
-      overline: int = None,
-      rotation: float = None,
-      underline: int = None,
+      letter_spacing: str | NumberOrNormal = None,
+      line_through: int | NumberOfLines = None,
+      overline: int | NumberOfLines = None,
+      rotation: float | RotationDegrees = None,
+      underline: int | NumberOfLines = None,
   ):
     self.init()
 
@@ -4187,7 +4218,7 @@ class Tie(MusicElementBase):
   indicates sound; the tied element indicates notation.
   """
 
-  def __init__(self, type: StartStop, time_only: str = None):
+  def __init__(self, type: str | StartStop, time_only: str | TimeOnly = None):
     self.init()
 
 
@@ -4219,25 +4250,25 @@ class Tied(MusicElementBase):
 
   def __init__(
       self,
-      type: TiedType,
-      bezier_offset: float = None,
-      bezier_offset2: float = None,
-      bezier_x: float = None,
-      bezier_x2: float = None,
-      bezier_y: float = None,
-      bezier_y2: float = None,
-      color: str = None,
-      dash_length: float = None,
-      default_x: float = None,
-      default_y: float = None,
+      type: str | TiedType,
+      bezier_offset: float | Divisions = None,
+      bezier_offset2: float | Divisions = None,
+      bezier_x: float | Tenths = None,
+      bezier_x2: float | Tenths = None,
+      bezier_y: float | Tenths = None,
+      bezier_y2: float | Tenths = None,
+      color: str | Color = None,
+      dash_length: float | Tenths = None,
+      default_x: float | Tenths = None,
+      default_y: float | Tenths = None,
       id: str = None,
-      line_type: LineType = None,
-      number: int = None,
-      orientation: OverUnder = None,
-      placement: AboveBelow = None,
-      relative_x: float = None,
-      relative_y: float = None,
-      space_length: float = None,
+      line_type: str | LineType = None,
+      number: int | NumberLevel = None,
+      orientation: str | OverUnder = None,
+      placement: str | AboveBelow = None,
+      relative_x: float | Tenths = None,
+      relative_y: float | Tenths = None,
+      space_length: float | Tenths = None,
   ):
     self.init()
 
@@ -4249,7 +4280,7 @@ class Timpani(MusicElementBase):
   alternates.
   """
 
-  def __init__(self, smufl: str = None):
+  def __init__(self, smufl: str | SmuflPictogramGlyphName = None):
     self.init()
 
 
@@ -4280,18 +4311,18 @@ class Tremolo(TremoloMarks):
   def __init__(
       self,
       plain_text: int,
-      color: str = None,
-      default_x: float = None,
-      default_y: float = None,
-      font_family: str = None,
-      font_size: str = None,
-      font_style: FontStyle = None,
-      font_weight: FontWeight = None,
-      placement: AboveBelow = None,
-      relative_x: float = None,
-      relative_y: float = None,
-      smufl: str = None,
-      type: TremoloType = None,
+      color: str | Color = None,
+      default_x: float | Tenths = None,
+      default_y: float | Tenths = None,
+      font_family: str | FontFamily = None,
+      font_size: str | FontSize = None,
+      font_style: str | FontStyle = None,
+      font_weight: str | FontWeight = None,
+      placement: str | AboveBelow = None,
+      relative_x: float | Tenths = None,
+      relative_y: float | Tenths = None,
+      smufl: str | SmuflGlyphName = None,
+      type: str | TremoloType = None,
   ):
     self.init()
 
@@ -4301,11 +4332,11 @@ class TupletDot(MusicElementBase):
 
   def __init__(
       self,
-      color: str = None,
-      font_family: str = None,
-      font_size: str = None,
-      font_style: FontStyle = None,
-      font_weight: FontWeight = None,
+      color: str | Color = None,
+      font_family: str | FontFamily = None,
+      font_size: str | FontSize = None,
+      font_style: str | FontStyle = None,
+      font_weight: str | FontWeight = None,
   ):
     self.init()
 
@@ -4316,11 +4347,11 @@ class TupletNumber(MusicElementBase):
   def __init__(
       self,
       plain_text: int,
-      color: str = None,
-      font_family: str = None,
-      font_size: str = None,
-      font_style: FontStyle = None,
-      font_weight: FontWeight = None,
+      color: str | Color = None,
+      font_family: str | FontFamily = None,
+      font_size: str | FontSize = None,
+      font_style: str | FontStyle = None,
+      font_weight: str | FontWeight = None,
   ):
     self.init()
 
@@ -4331,11 +4362,11 @@ class TupletType(NoteTypeValue):
   def __init__(
       self,
       plain_text: str,
-      color: str = None,
-      font_family: str = None,
-      font_size: str = None,
-      font_style: FontStyle = None,
-      font_weight: FontWeight = None,
+      color: str | Color = None,
+      font_family: str | FontFamily = None,
+      font_size: str | FontSize = None,
+      font_style: str | FontStyle = None,
+      font_weight: str | FontWeight = None,
   ):
     self.init()
 
@@ -4357,7 +4388,7 @@ class Wait(MusicElementBase):
   through a repeated section, respectively.
   """
 
-  def __init__(self, player: str = None, time_only: str = None):
+  def __init__(self, player: str = None, time_only: str | TimeOnly = None):
     self.init()
 
 
@@ -4371,22 +4402,22 @@ class WavyLine(MusicElementBase):
 
   def __init__(
       self,
-      type: StartStopContinue,
-      accelerate: YesNo = None,
-      beats: float = None,
-      color: str = None,
-      default_x: float = None,
-      default_y: float = None,
-      last_beat: float = None,
-      number: int = None,
-      placement: AboveBelow = None,
-      relative_x: float = None,
-      relative_y: float = None,
-      second_beat: float = None,
-      smufl: str = None,
-      start_note: StartNote = None,
-      trill_step: TrillStep = None,
-      two_note_turn: TwoNoteTurn = None,
+      type: str | StartStopContinue,
+      accelerate: str | YesNo = None,
+      beats: float | TrillBeats = None,
+      color: str | Color = None,
+      default_x: float | Tenths = None,
+      default_y: float | Tenths = None,
+      last_beat: float | Percent = None,
+      number: int | NumberLevel = None,
+      placement: str | AboveBelow = None,
+      relative_x: float | Tenths = None,
+      relative_y: float | Tenths = None,
+      second_beat: float | Percent = None,
+      smufl: str | SmuflWavyLineGlyphName = None,
+      start_note: str | StartNote = None,
+      trill_step: str | TrillStep = None,
+      two_note_turn: str | TwoNoteTurn = None,
   ):
     self.init()
 
@@ -4406,19 +4437,19 @@ class Wedge(MusicElementBase):
 
   def __init__(
       self,
-      type: WedgeType,
-      color: str = None,
-      dash_length: float = None,
-      default_x: float = None,
-      default_y: float = None,
+      type: str | WedgeType,
+      color: str | Color = None,
+      dash_length: float | Tenths = None,
+      default_x: float | Tenths = None,
+      default_y: float | Tenths = None,
       id: str = None,
-      line_type: LineType = None,
-      niente: YesNo = None,
-      number: int = None,
-      relative_x: float = None,
-      relative_y: float = None,
-      space_length: float = None,
-      spread: float = None,
+      line_type: str | LineType = None,
+      niente: str | YesNo = None,
+      number: int | NumberLevel = None,
+      relative_x: float | Tenths = None,
+      relative_y: float | Tenths = None,
+      space_length: float | Tenths = None,
+      spread: float | Tenths = None,
   ):
     self.init()
 
@@ -4430,7 +4461,9 @@ class Wood(WoodValue):
   alternates.
   """
 
-  def __init__(self, plain_text: str, smufl: str = None):
+  def __init__(
+      self, plain_text: str, smufl: str | SmuflPictogramGlyphName = None
+  ):
     self.init()
 
 
@@ -4447,7 +4480,7 @@ class Accord(MusicElementBase):
 
   def __init__(
       self,
-      string: int = None,
+      string: int | StringNumber = None,
       TuningStep: str | TuningStep = None,
       TuningAlter: float | TuningAlter = None,
       TuningOctave: int | TuningOctave = None,
@@ -4470,18 +4503,18 @@ class AccordionRegistration(MusicElementBase):
 
   def __init__(
       self,
-      color: str = None,
-      default_x: float = None,
-      default_y: float = None,
-      font_family: str = None,
-      font_size: str = None,
-      font_style: FontStyle = None,
-      font_weight: FontWeight = None,
-      halign: LeftCenterRight = None,
+      color: str | Color = None,
+      default_x: float | Tenths = None,
+      default_y: float | Tenths = None,
+      font_family: str | FontFamily = None,
+      font_size: str | FontSize = None,
+      font_style: str | FontStyle = None,
+      font_weight: str | FontWeight = None,
+      halign: str | LeftCenterRight = None,
       id: str = None,
-      relative_x: float = None,
-      relative_y: float = None,
-      valign: Valign = None,
+      relative_x: float | Tenths = None,
+      relative_y: float | Tenths = None,
+      valign: str | Valign = None,
       AccordionHigh: AccordionHigh = None,
       AccordionMiddle: int | AccordionMiddle = None,
       AccordionLow: AccordionLow = None,
@@ -4515,17 +4548,17 @@ class Arrow(MusicElementBase):
 
   def __init__(
       self,
-      color: str = None,
-      default_x: float = None,
-      default_y: float = None,
-      font_family: str = None,
-      font_size: str = None,
-      font_style: FontStyle = None,
-      font_weight: FontWeight = None,
-      placement: AboveBelow = None,
-      relative_x: float = None,
-      relative_y: float = None,
-      smufl: str = None,
+      color: str | Color = None,
+      default_x: float | Tenths = None,
+      default_y: float | Tenths = None,
+      font_family: str | FontFamily = None,
+      font_size: str | FontSize = None,
+      font_style: str | FontStyle = None,
+      font_weight: str | FontWeight = None,
+      placement: str | AboveBelow = None,
+      relative_x: float | Tenths = None,
+      relative_y: float | Tenths = None,
+      smufl: str | SmuflGlyphName = None,
       ArrowDirection: str | ArrowDirection = None,
       ArrowStyle: str | ArrowStyle = None,
       Arrowhead: Arrowhead = None,
@@ -4573,25 +4606,34 @@ class Attributes(MusicElementBase):
     def __init__(
         self,
         plain_text: str,
-        color: str = None,
-        default_x: float = None,
-        default_y: float = None,
-        font_family: str = None,
-        font_size: str = None,
-        font_style: FontStyle = None,
-        font_weight: FontWeight = None,
+        color: str | Color = None,
+        default_x: float | Tenths = None,
+        default_y: float | Tenths = None,
+        font_family: str | FontFamily = None,
+        font_size: str | FontSize = None,
+        font_style: str | FontStyle = None,
+        font_weight: str | FontWeight = None,
         lang: Any = None,
-        relative_x: float = None,
-        relative_y: float = None,
+        relative_x: float | Tenths = None,
+        relative_y: float | Tenths = None,
     ):
       self.init()
 
   class Instruments(MusicElementBase):
+    """The instruments element is only used if more than one instrument is represented in the part (e.g., oboe I and II where they play together most of the time).
+
+    If absent, a value of 1 is assumed.
+    """
 
     def __init__(self, plain_text: int):
       self.init()
 
   class Staves(MusicElementBase):
+    """The staves element is used if there is more than one staff represented in the given part (e.g., 2 staves for typical piano parts).
+
+    If absent, a value of 1 is assumed. Staves are ordered from top to bottom in
+    a part in numerical order, with staff 1 above staff 2.
+    """
 
     def __init__(self, plain_text: int):
       self.init()
@@ -4658,9 +4700,9 @@ class Barline(MusicElementBase):
   def __init__(
       self,
       coda: str = None,
-      divisions: float = None,
+      divisions: float | Divisions = None,
       id: str = None,
-      location: RightLeftMiddle = None,
+      location: str | RightLeftMiddle = None,
       segno: str = None,
       BarStyle: BarStyle = None,
       Footnote: Footnote = None,
@@ -4688,7 +4730,7 @@ class Bass(MusicElementBase):
 
   def __init__(
       self,
-      arrangement: HarmonyArrangement = None,
+      arrangement: str | HarmonyArrangement = None,
       BassSeparator: BassSeparator = None,
       BassStep: BassStep = None,
       BassAlter: BassAlter = None,
@@ -4717,15 +4759,21 @@ class BeatRepeat(MusicElementBase):
   SlashType = NoteTypeValue
 
   class ExceptVoice(MusicElementBase):
+    """The except-voice element is used to specify a combination of slash notation and regular notation.
+
+    Any note elements that are in voices specified by the except-voice elements
+    are displayed in normal notation, in addition to the slash notation that is
+    always displayed.
+    """
 
     def __init__(self, plain_text: str):
       self.init()
 
   def __init__(
       self,
-      type: StartStop,
+      type: str | StartStop,
       slashes: int = None,
-      use_dots: YesNo = None,
+      use_dots: str | YesNo = None,
       SlashType: str | SlashType = None,
   ):
     self.init()
@@ -4762,20 +4810,20 @@ class Bend(MusicElementBase):
 
   def __init__(
       self,
-      accelerate: YesNo = None,
-      beats: float = None,
-      color: str = None,
-      default_x: float = None,
-      default_y: float = None,
-      first_beat: float = None,
-      font_family: str = None,
-      font_size: str = None,
-      font_style: FontStyle = None,
-      font_weight: FontWeight = None,
-      last_beat: float = None,
-      relative_x: float = None,
-      relative_y: float = None,
-      shape: BendShape = None,
+      accelerate: str | YesNo = None,
+      beats: float | TrillBeats = None,
+      color: str | Color = None,
+      default_x: float | Tenths = None,
+      default_y: float | Tenths = None,
+      first_beat: float | Percent = None,
+      font_family: str | FontFamily = None,
+      font_size: str | FontSize = None,
+      font_style: str | FontStyle = None,
+      font_weight: str | FontWeight = None,
+      last_beat: float | Percent = None,
+      relative_x: float | Tenths = None,
+      relative_y: float | Tenths = None,
+      shape: str | BendShape = None,
       BendAlter: float | BendAlter = None,
       PreBend: PreBend = None,
       Release: Release = None,
@@ -4810,27 +4858,31 @@ class Clef(MusicElementBase):
   Sign = ClefSign
 
   class ClefOctaveChange(MusicElementBase):
+    """The clef-octave-change element is used for transposing clefs.
+
+    A treble clef for tenors would have a value of -1.
+    """
 
     def __init__(self, plain_text: int):
       self.init()
 
   def __init__(
       self,
-      additional: YesNo = None,
-      after_barline: YesNo = None,
-      color: str = None,
-      default_x: float = None,
-      default_y: float = None,
-      font_family: str = None,
-      font_size: str = None,
-      font_style: FontStyle = None,
-      font_weight: FontWeight = None,
+      additional: str | YesNo = None,
+      after_barline: str | YesNo = None,
+      color: str | Color = None,
+      default_x: float | Tenths = None,
+      default_y: float | Tenths = None,
+      font_family: str | FontFamily = None,
+      font_size: str | FontSize = None,
+      font_style: str | FontStyle = None,
+      font_weight: str | FontWeight = None,
       id: str = None,
-      number: int = None,
-      print_object: YesNo = None,
-      relative_x: float = None,
-      relative_y: float = None,
-      size: SymbolSize = None,
+      number: int | StaffNumber = None,
+      print_object: str | YesNo = None,
+      relative_x: float | Tenths = None,
+      relative_y: float | Tenths = None,
+      size: str | SymbolSize = None,
       Sign: str | Sign = None,
       Line: int | Line = None,
       ClefOctaveChange: int | ClefOctaveChange = None,
@@ -4921,7 +4973,7 @@ class Degree(MusicElementBase):
 
   def __init__(
       self,
-      print_object: YesNo = None,
+      print_object: str | YesNo = None,
       DegreeValue: DegreeValue = None,
       DegreeAlter: DegreeAlter = None,
       DegreeType: DegreeType = None,
@@ -4947,6 +4999,11 @@ class Direction(MusicElementBase):
   Footnote = FormattedText
 
   class Staff(MusicElementBase):
+    """Staff assignment is only needed for music notated on multiple staves.
+
+    Used by both notes and directions. Staff values are numbers, with 1
+    referring to the top-most staff in a part.
+    """
 
     def __init__(self, plain_text: int):
       self.init()
@@ -4958,10 +5015,10 @@ class Direction(MusicElementBase):
 
   def __init__(
       self,
-      directive: YesNo = None,
+      directive: str | YesNo = None,
       id: str = None,
-      placement: AboveBelow = None,
-      system: SystemRelation = None,
+      placement: str | AboveBelow = None,
+      system: str | SystemRelation = None,
       Offset: Offset = None,
       Footnote: Footnote = None,
       Level: Level = None,
@@ -5063,23 +5120,23 @@ class Dynamics(MusicElementBase):
 
   def __init__(
       self,
-      color: str = None,
-      default_x: float = None,
-      default_y: float = None,
-      enclosure: EnclosureShape = None,
-      font_family: str = None,
-      font_size: str = None,
-      font_style: FontStyle = None,
-      font_weight: FontWeight = None,
-      halign: LeftCenterRight = None,
+      color: str | Color = None,
+      default_x: float | Tenths = None,
+      default_y: float | Tenths = None,
+      enclosure: str | EnclosureShape = None,
+      font_family: str | FontFamily = None,
+      font_size: str | FontSize = None,
+      font_style: str | FontStyle = None,
+      font_weight: str | FontWeight = None,
+      halign: str | LeftCenterRight = None,
       id: str = None,
-      line_through: int = None,
-      overline: int = None,
-      placement: AboveBelow = None,
-      relative_x: float = None,
-      relative_y: float = None,
-      underline: int = None,
-      valign: Valign = None,
+      line_through: int | NumberOfLines = None,
+      overline: int | NumberOfLines = None,
+      placement: str | AboveBelow = None,
+      relative_x: float | Tenths = None,
+      relative_y: float | Tenths = None,
+      underline: int | NumberOfLines = None,
+      valign: str | Valign = None,
   ):
     self.init()
 
@@ -5145,24 +5202,24 @@ class FiguredBass(MusicElementBase):
 
   def __init__(
       self,
-      color: str = None,
-      default_x: float = None,
-      default_y: float = None,
-      font_family: str = None,
-      font_size: str = None,
-      font_style: FontStyle = None,
-      font_weight: FontWeight = None,
-      halign: LeftCenterRight = None,
+      color: str | Color = None,
+      default_x: float | Tenths = None,
+      default_y: float | Tenths = None,
+      font_family: str | FontFamily = None,
+      font_size: str | FontSize = None,
+      font_style: str | FontStyle = None,
+      font_weight: str | FontWeight = None,
+      halign: str | LeftCenterRight = None,
       id: str = None,
-      parentheses: YesNo = None,
-      placement: AboveBelow = None,
-      print_dot: YesNo = None,
-      print_lyric: YesNo = None,
-      print_object: YesNo = None,
-      print_spacing: YesNo = None,
-      relative_x: float = None,
-      relative_y: float = None,
-      valign: Valign = None,
+      parentheses: str | YesNo = None,
+      placement: str | AboveBelow = None,
+      print_dot: str | YesNo = None,
+      print_lyric: str | YesNo = None,
+      print_object: str | YesNo = None,
+      print_spacing: str | YesNo = None,
+      relative_x: float | Tenths = None,
+      relative_y: float | Tenths = None,
+      valign: str | Valign = None,
       Duration: float | Duration = None,
       Footnote: Footnote = None,
       Level: Level = None,
@@ -5185,7 +5242,7 @@ class ForPart(MusicElementBase):
   def __init__(
       self,
       id: str = None,
-      number: int = None,
+      number: int | StaffNumber = None,
       PartClef: PartClef = None,
       PartTranspose: PartTranspose = None,
   ):
@@ -5204,6 +5261,11 @@ class Forward(MusicElementBase):
   Footnote = FormattedText
 
   class Staff(MusicElementBase):
+    """Staff assignment is only needed for music notated on multiple staves.
+
+    Used by both notes and directions. Staff values are numbers, with 1
+    referring to the top-most staff in a part.
+    """
 
     def __init__(self, plain_text: int):
       self.init()
@@ -5235,28 +5297,30 @@ class Frame(MusicElementBase):
   """
 
   class FrameFrets(MusicElementBase):
+    """The frame-frets element gives the overall size of the frame in horizontal spaces (frets)."""
 
     def __init__(self, plain_text: int):
       self.init()
 
   class FrameStrings(MusicElementBase):
+    """The frame-strings element gives the overall size of the frame in vertical lines (strings)."""
 
     def __init__(self, plain_text: int):
       self.init()
 
   def __init__(
       self,
-      color: str = None,
-      default_x: float = None,
-      default_y: float = None,
-      halign: LeftCenterRight = None,
-      height: float = None,
+      color: str | Color = None,
+      default_x: float | Tenths = None,
+      default_y: float | Tenths = None,
+      halign: str | LeftCenterRight = None,
+      height: float | Tenths = None,
       id: str = None,
-      relative_x: float = None,
-      relative_y: float = None,
+      relative_x: float | Tenths = None,
+      relative_y: float | Tenths = None,
       unplayed: str = None,
-      valign: ValignImage = None,
-      width: float = None,
+      valign: str | ValignImage = None,
+      width: float | Tenths = None,
       FrameStrings: int | FrameStrings = None,
       FrameFrets: int | FrameFrets = None,
       FirstFret: FirstFret = None,
@@ -5297,7 +5361,7 @@ class Grouping(MusicElementBase):
 
   def __init__(
       self,
-      type: StartStopSingle,
+      type: str | StartStopSingle,
       id: str = None,
       member_of: str = None,
       number: str = None,
@@ -5310,16 +5374,16 @@ class HarmonMute(MusicElementBase):
 
   def __init__(
       self,
-      color: str = None,
-      default_x: float = None,
-      default_y: float = None,
-      font_family: str = None,
-      font_size: str = None,
-      font_style: FontStyle = None,
-      font_weight: FontWeight = None,
-      placement: AboveBelow = None,
-      relative_x: float = None,
-      relative_y: float = None,
+      color: str | Color = None,
+      default_x: float | Tenths = None,
+      default_y: float | Tenths = None,
+      font_family: str | FontFamily = None,
+      font_size: str | FontSize = None,
+      font_style: str | FontStyle = None,
+      font_weight: str | FontWeight = None,
+      placement: str | AboveBelow = None,
+      relative_x: float | Tenths = None,
+      relative_y: float | Tenths = None,
       HarmonClosed: HarmonClosed = None,
   ):
     self.init()
@@ -5344,17 +5408,17 @@ class Harmonic(MusicElementBase):
 
   def __init__(
       self,
-      color: str = None,
-      default_x: float = None,
-      default_y: float = None,
-      font_family: str = None,
-      font_size: str = None,
-      font_style: FontStyle = None,
-      font_weight: FontWeight = None,
-      placement: AboveBelow = None,
-      print_object: YesNo = None,
-      relative_x: float = None,
-      relative_y: float = None,
+      color: str | Color = None,
+      default_x: float | Tenths = None,
+      default_y: float | Tenths = None,
+      font_family: str | FontFamily = None,
+      font_size: str | FontSize = None,
+      font_style: str | FontStyle = None,
+      font_weight: str | FontWeight = None,
+      placement: str | AboveBelow = None,
+      print_object: str | YesNo = None,
+      relative_x: float | Tenths = None,
+      relative_y: float | Tenths = None,
       Natural: Natural = None,
       Artificial: Artificial = None,
       BasePitch: BasePitch = None,
@@ -5386,28 +5450,33 @@ class Harmony(MusicElementBase):
   Function = StyleText
 
   class Staff(MusicElementBase):
+    """Staff assignment is only needed for music notated on multiple staves.
+
+    Used by both notes and directions. Staff values are numbers, with 1
+    referring to the top-most staff in a part.
+    """
 
     def __init__(self, plain_text: int):
       self.init()
 
   def __init__(
       self,
-      arrangement: HarmonyArrangement = None,
-      color: str = None,
-      default_x: float = None,
-      default_y: float = None,
-      font_family: str = None,
-      font_size: str = None,
-      font_style: FontStyle = None,
-      font_weight: FontWeight = None,
+      arrangement: str | HarmonyArrangement = None,
+      color: str | Color = None,
+      default_x: float | Tenths = None,
+      default_y: float | Tenths = None,
+      font_family: str | FontFamily = None,
+      font_size: str | FontSize = None,
+      font_style: str | FontStyle = None,
+      font_weight: str | FontWeight = None,
       id: str = None,
-      placement: AboveBelow = None,
-      print_frame: YesNo = None,
-      print_object: YesNo = None,
-      relative_x: float = None,
-      relative_y: float = None,
-      system: SystemRelation = None,
-      type: HarmonyType = None,
+      placement: str | AboveBelow = None,
+      print_frame: str | YesNo = None,
+      print_object: str | YesNo = None,
+      relative_x: float | Tenths = None,
+      relative_y: float | Tenths = None,
+      system: str | SystemRelation = None,
+      type: str | HarmonyType = None,
       Frame: Frame = None,
       Offset: Offset = None,
       Footnote: Footnote = None,
@@ -5427,18 +5496,18 @@ class HarpPedals(MusicElementBase):
 
   def __init__(
       self,
-      color: str = None,
-      default_x: float = None,
-      default_y: float = None,
-      font_family: str = None,
-      font_size: str = None,
-      font_style: FontStyle = None,
-      font_weight: FontWeight = None,
-      halign: LeftCenterRight = None,
+      color: str | Color = None,
+      default_x: float | Tenths = None,
+      default_y: float | Tenths = None,
+      font_family: str | FontFamily = None,
+      font_size: str | FontSize = None,
+      font_style: str | FontStyle = None,
+      font_weight: str | FontWeight = None,
+      halign: str | LeftCenterRight = None,
       id: str = None,
-      relative_x: float = None,
-      relative_y: float = None,
-      valign: Valign = None,
+      relative_x: float | Tenths = None,
+      relative_y: float | Tenths = None,
+      valign: str | Valign = None,
   ):
     self.init()
 
@@ -5447,27 +5516,29 @@ class Hole(MusicElementBase):
   """The hole type represents the symbols used for woodwind and brass fingerings as well as other notations."""
 
   class HoleShape(MusicElementBase):
+    """The optional hole-shape element indicates the shape of the hole symbol; the default is a circle."""
 
     def __init__(self, plain_text: str):
       self.init()
 
   class HoleType(MusicElementBase):
+    """The content of the optional hole-type element indicates what the hole symbol represents in terms of instrument fingering or other techniques."""
 
     def __init__(self, plain_text: str):
       self.init()
 
   def __init__(
       self,
-      color: str = None,
-      default_x: float = None,
-      default_y: float = None,
-      font_family: str = None,
-      font_size: str = None,
-      font_style: FontStyle = None,
-      font_weight: FontWeight = None,
-      placement: AboveBelow = None,
-      relative_x: float = None,
-      relative_y: float = None,
+      color: str | Color = None,
+      default_x: float | Tenths = None,
+      default_y: float | Tenths = None,
+      font_family: str | FontFamily = None,
+      font_size: str | FontSize = None,
+      font_style: str | FontStyle = None,
+      font_weight: str | FontWeight = None,
+      placement: str | AboveBelow = None,
+      relative_x: float | Tenths = None,
+      relative_y: float | Tenths = None,
       HoleType: str | HoleType = None,
       HoleClosed: HoleClosed = None,
       HoleShape: str | HoleShape = None,
@@ -5488,6 +5559,10 @@ class Identification(MusicElementBase):
   Rights = TypedText
 
   class Source(MusicElementBase):
+    """The source for the music that is encoded.
+
+    This is similar to the Dublin Core source element.
+    """
 
     def __init__(self, plain_text: str):
       self.init()
@@ -5513,6 +5588,12 @@ class InstrumentChange(MusicElementBase):
   Solo = Empty
 
   class InstrumentSound(MusicElementBase):
+    """The instrument-sound element describes the default timbre of the score-instrument.
+
+    This description is independent of a particular virtual or MIDI instrument
+    specification and allows playback to be shared more easily between
+    applications and libraries.
+    """
 
     def __init__(self, plain_text: str):
       self.init()
@@ -5536,19 +5617,21 @@ class Interchangeable(MusicElementBase):
   """
 
   class BeatType(MusicElementBase):
+    """The beat-type element indicates the beat unit, as found in the denominator of a time signature."""
 
     def __init__(self, plain_text: str):
       self.init()
 
   class Beats(MusicElementBase):
+    """The beats element indicates the number of beats, as found in the numerator of a time signature."""
 
     def __init__(self, plain_text: str):
       self.init()
 
   def __init__(
       self,
-      separator: TimeSeparator = None,
-      symbol: TimeSymbol = None,
+      separator: str | TimeSeparator = None,
+      symbol: str | TimeSymbol = None,
       TimeRelation: str | TimeRelation = None,
   ):
     self.init()
@@ -5568,18 +5651,18 @@ class Key(MusicElementBase):
 
   def __init__(
       self,
-      color: str = None,
-      default_x: float = None,
-      default_y: float = None,
-      font_family: str = None,
-      font_size: str = None,
-      font_style: FontStyle = None,
-      font_weight: FontWeight = None,
+      color: str | Color = None,
+      default_x: float | Tenths = None,
+      default_y: float | Tenths = None,
+      font_family: str | FontFamily = None,
+      font_size: str | FontSize = None,
+      font_style: str | FontStyle = None,
+      font_weight: str | FontWeight = None,
       id: str = None,
-      number: int = None,
-      print_object: YesNo = None,
-      relative_x: float = None,
-      relative_y: float = None,
+      number: int | StaffNumber = None,
+      print_object: str | YesNo = None,
+      relative_x: float | Tenths = None,
+      relative_y: float | Tenths = None,
       Cancel: Cancel = None,
       Fifths: int | Fifths = None,
       Mode: str | Mode = None,
@@ -5649,18 +5732,18 @@ class Lyric(MusicElementBase):
 
   def __init__(
       self,
-      color: str = None,
-      default_x: float = None,
-      default_y: float = None,
+      color: str | Color = None,
+      default_x: float | Tenths = None,
+      default_y: float | Tenths = None,
       id: str = None,
-      justify: LeftCenterRight = None,
+      justify: str | LeftCenterRight = None,
       name: str = None,
       number: str = None,
-      placement: AboveBelow = None,
-      print_object: YesNo = None,
-      relative_x: float = None,
-      relative_y: float = None,
-      time_only: str = None,
+      placement: str | AboveBelow = None,
+      print_object: str | YesNo = None,
+      relative_x: float | Tenths = None,
+      relative_y: float | Tenths = None,
+      time_only: str | TimeOnly = None,
       Syllabic: str | Syllabic = None,
       Text: Text = None,
       Extend: Extend = None,
@@ -5702,13 +5785,13 @@ class MeasureStyle(MusicElementBase):
 
   def __init__(
       self,
-      color: str = None,
-      font_family: str = None,
-      font_size: str = None,
-      font_style: FontStyle = None,
-      font_weight: FontWeight = None,
+      color: str | Color = None,
+      font_family: str | FontFamily = None,
+      font_size: str | FontSize = None,
+      font_style: str | FontStyle = None,
+      font_weight: str | FontWeight = None,
       id: str = None,
-      number: int = None,
+      number: int | StaffNumber = None,
       MultipleRest: MultipleRest = None,
       MeasureRepeat: MeasureRepeat = None,
       BeatRepeat: BeatRepeat = None,
@@ -5737,27 +5820,32 @@ class Metronome(MusicElementBase):
   MetronomeArrows = Empty
 
   class MetronomeRelation(MusicElementBase):
+    """The metronome-relation element describes the relationship symbol that goes between the two sets of metronome-note elements.
+
+    The currently allowed value is equals, but this may expand in future
+    versions. If the element is empty, the equals value is used.
+    """
 
     def __init__(self, plain_text: str):
       self.init()
 
   def __init__(
       self,
-      color: str = None,
-      default_x: float = None,
-      default_y: float = None,
-      font_family: str = None,
-      font_size: str = None,
-      font_style: FontStyle = None,
-      font_weight: FontWeight = None,
-      halign: LeftCenterRight = None,
+      color: str | Color = None,
+      default_x: float | Tenths = None,
+      default_y: float | Tenths = None,
+      font_family: str | FontFamily = None,
+      font_size: str | FontSize = None,
+      font_style: str | FontStyle = None,
+      font_weight: str | FontWeight = None,
+      halign: str | LeftCenterRight = None,
       id: str = None,
-      justify: LeftCenterRight = None,
-      parentheses: YesNo = None,
-      print_object: YesNo = None,
-      relative_x: float = None,
-      relative_y: float = None,
-      valign: Valign = None,
+      justify: str | LeftCenterRight = None,
+      parentheses: str | YesNo = None,
+      print_object: str | YesNo = None,
+      relative_x: float | Tenths = None,
+      relative_y: float | Tenths = None,
+      valign: str | Valign = None,
       PerMinute: PerMinute = None,
       BeatUnit: str | BeatUnit = None,
       MetronomeArrows: MetronomeArrows = None,
@@ -5798,6 +5886,7 @@ class MidiInstrument(MusicElementBase):
   Volume = Percent
 
   class MidiName(MusicElementBase):
+    """The midi-name element corresponds to a ProgramName meta-event within a Standard MIDI File."""
 
     def __init__(self, plain_text: str):
       self.init()
@@ -5839,7 +5928,7 @@ class NameDisplay(MusicElementBase):
 
   DisplayText = FormattedText
 
-  def __init__(self, print_object: YesNo = None):
+  def __init__(self, print_object: str | YesNo = None):
     self.init()
 
 
@@ -5857,7 +5946,7 @@ class Notations(MusicElementBase):
   def __init__(
       self,
       id: str = None,
-      print_object: YesNo = None,
+      print_object: str | YesNo = None,
       Footnote: Footnote = None,
       Level: Level = None,
   ):
@@ -5909,6 +5998,11 @@ class Note(MusicElementBase):
   Type = NoteType
 
   class Staff(MusicElementBase):
+    """Staff assignment is only needed for music notated on multiple staves.
+
+    Used by both notes and directions. Staff values are numbers, with 1
+    referring to the top-most staff in a part.
+    """
 
     def __init__(self, plain_text: int):
       self.init()
@@ -5920,27 +6014,27 @@ class Note(MusicElementBase):
 
   def __init__(
       self,
-      attack: float = None,
-      color: str = None,
-      default_x: float = None,
-      default_y: float = None,
-      dynamics: float = None,
-      end_dynamics: float = None,
-      font_family: str = None,
-      font_size: str = None,
-      font_style: FontStyle = None,
-      font_weight: FontWeight = None,
+      attack: float | Divisions = None,
+      color: str | Color = None,
+      default_x: float | Tenths = None,
+      default_y: float | Tenths = None,
+      dynamics: float | NonNegativeDecimal = None,
+      end_dynamics: float | NonNegativeDecimal = None,
+      font_family: str | FontFamily = None,
+      font_size: str | FontSize = None,
+      font_style: str | FontStyle = None,
+      font_weight: str | FontWeight = None,
       id: str = None,
-      pizzicato: YesNo = None,
-      print_dot: YesNo = None,
-      print_leger: YesNo = None,
-      print_lyric: YesNo = None,
-      print_object: YesNo = None,
-      print_spacing: YesNo = None,
-      relative_x: float = None,
-      relative_y: float = None,
-      release: float = None,
-      time_only: str = None,
+      pizzicato: str | YesNo = None,
+      print_dot: str | YesNo = None,
+      print_leger: str | YesNo = None,
+      print_lyric: str | YesNo = None,
+      print_object: str | YesNo = None,
+      print_spacing: str | YesNo = None,
+      relative_x: float | Tenths = None,
+      relative_y: float | Tenths = None,
+      release: float | Divisions = None,
+      time_only: str | TimeOnly = None,
       Grace: Grace = None,
       Cue: Cue = None,
       Chord: Chord = None,
@@ -6009,7 +6103,7 @@ class NumeralKey(MusicElementBase):
 
   def __init__(
       self,
-      print_object: YesNo = None,
+      print_object: str | YesNo = None,
       NumeralFifths: int | NumeralFifths = None,
       NumeralMode: str | NumeralMode = None,
   ):
@@ -6102,7 +6196,7 @@ class PageMargins(MusicElementBase):
 
   def __init__(
       self,
-      type: MarginType = None,
+      type: str | MarginType = None,
       LeftMargin: float | LeftMargin = None,
       RightMargin: float | RightMargin = None,
       TopMargin: float | TopMargin = None,
@@ -6122,6 +6216,10 @@ class PartClef(MusicElementBase):
   Sign = ClefSign
 
   class ClefOctaveChange(MusicElementBase):
+    """The clef-octave-change element is used for transposing clefs.
+
+    A treble clef for tenors would have a value of -1.
+    """
 
     def __init__(self, plain_text: int):
       self.init()
@@ -6156,13 +6254,13 @@ class PartGroup(MusicElementBase):
 
   Footnote = FormattedText
   GroupAbbreviation = GroupName
-  GroupAbbreviationDisplay: TYPE[NameDisplay] = None
-  GroupNameDisplay: TYPE[NameDisplay] = None
+  GroupAbbreviationDisplay: Type[NameDisplay] = None
+  GroupNameDisplay: Type[NameDisplay] = None
   GroupTime = Empty
 
   def __init__(
       self,
-      type: StartStop,
+      type: str | StartStop,
       number: str = None,
       GroupName: GroupName = None,
       GroupNameDisplay: GroupNameDisplay = None,
@@ -6193,6 +6291,12 @@ class PartLink(MusicElementBase):
   type = "xlink"
 
   class GroupLink(MusicElementBase):
+    """Multiple part-link elements can reference different types of linked documents, such as parts and condensed score.
+
+    The optional group-link elements identify the groups used in the linked
+    document. The content of a group-link element should match the content of a
+    group element in the linked document.
+    """
 
     def __init__(self, plain_text: str):
       self.init()
@@ -6234,11 +6338,23 @@ class PartTranspose(MusicElementBase):
   Chromatic = Semitones
 
   class Diatonic(MusicElementBase):
+    """The diatonic element specifies the number of pitch steps needed to go from written to sounding pitch.
+
+    This allows for correct spelling of enharmonic transpositions. This value
+    does not include octave-change values; the values for both elements need to
+    be added to the written pitch to get the correct sounding pitch.
+    """
 
     def __init__(self, plain_text: int):
       self.init()
 
   class OctaveChange(MusicElementBase):
+    """The octave-change element indicates how many octaves to add to get from written pitch to sounding pitch.
+
+    The octave-change element should be included when using transposition
+    intervals of an octave or more, and should not be present for intervals of
+    less than an octave.
+    """
 
     def __init__(self, plain_text: int):
       self.init()
@@ -6280,19 +6396,19 @@ class Percussion(MusicElementBase):
 
   def __init__(
       self,
-      color: str = None,
-      default_x: float = None,
-      default_y: float = None,
-      enclosure: EnclosureShape = None,
-      font_family: str = None,
-      font_size: str = None,
-      font_style: FontStyle = None,
-      font_weight: FontWeight = None,
-      halign: LeftCenterRight = None,
+      color: str | Color = None,
+      default_x: float | Tenths = None,
+      default_y: float | Tenths = None,
+      enclosure: str | EnclosureShape = None,
+      font_family: str | FontFamily = None,
+      font_size: str | FontSize = None,
+      font_style: str | FontStyle = None,
+      font_weight: str | FontWeight = None,
+      halign: str | LeftCenterRight = None,
       id: str = None,
-      relative_x: float = None,
-      relative_y: float = None,
-      valign: Valign = None,
+      relative_x: float | Tenths = None,
+      relative_y: float | Tenths = None,
+      valign: str | Valign = None,
       Glass: Glass = None,
       Metal: Metal = None,
       Wood: Wood = None,
@@ -6332,6 +6448,10 @@ class Play(MusicElementBase):
   """
 
   class Ipa(MusicElementBase):
+    """The ipa element represents International Phonetic Alphabet (IPA) sounds for vocal music.
+
+    String content is limited to IPA 2015 symbols represented in Unicode 13.0.
+    """
 
     def __init__(self, plain_text: str):
       self.init()
@@ -6348,6 +6468,7 @@ class Player(MusicElementBase):
   """
 
   class PlayerName(MusicElementBase):
+    """The player-name element is typically used within a software application, rather than appearing on the printed page of a score."""
 
     def __init__(self, plain_text: str):
       self.init()
@@ -6369,17 +6490,17 @@ class Print(MusicElementBase):
   the layout determined by the defaults element.
   """
 
-  PartAbbreviationDisplay: TYPE[NameDisplay] = None
-  PartNameDisplay: TYPE[NameDisplay] = None
+  PartAbbreviationDisplay: Type[NameDisplay] = None
+  PartNameDisplay: Type[NameDisplay] = None
 
   def __init__(
       self,
       blank_page: int = None,
       id: str = None,
-      new_page: YesNo = None,
-      new_system: YesNo = None,
+      new_page: str | YesNo = None,
+      new_system: str | YesNo = None,
       page_number: str = None,
-      staff_spacing: float = None,
+      staff_spacing: float | Tenths = None,
       PageLayout: PageLayout = None,
       SystemLayout: SystemLayout = None,
       MeasureLayout: MeasureLayout = None,
@@ -6403,7 +6524,7 @@ class Rest(MusicElementBase):
 
   def __init__(
       self,
-      measure: YesNo = None,
+      measure: str | YesNo = None,
       DisplayStep: str | DisplayStep = None,
       DisplayOctave: int | DisplayOctave = None,
   ):
@@ -6474,16 +6595,24 @@ class ScoreInstrument(MusicElementBase):
   Solo = Empty
 
   class InstrumentAbbreviation(MusicElementBase):
+    """The optional instrument-abbreviation element is typically used within a software application, rather than appearing on the printed page of a score."""
 
     def __init__(self, plain_text: str):
       self.init()
 
   class InstrumentName(MusicElementBase):
+    """The instrument-name element is typically used within a software application, rather than appearing on the printed page of a score."""
 
     def __init__(self, plain_text: str):
       self.init()
 
   class InstrumentSound(MusicElementBase):
+    """The instrument-sound element describes the default timbre of the score-instrument.
+
+    This description is independent of a particular virtual or MIDI instrument
+    specification and allows playback to be shared more easily between
+    applications and libraries.
+    """
 
     def __init__(self, plain_text: str):
       self.init()
@@ -6512,10 +6641,15 @@ class ScorePart(MusicElementBase):
   """
 
   PartAbbreviation = PartName
-  PartAbbreviationDisplay: TYPE[NameDisplay] = None
-  PartNameDisplay: TYPE[NameDisplay] = None
+  PartAbbreviationDisplay: Type[NameDisplay] = None
+  PartNameDisplay: Type[NameDisplay] = None
 
   class Group(MusicElementBase):
+    """The group element allows the use of different versions of the part for different purposes.
+
+    Typical values include score, parts, sound, and data. Ordering information
+    can be derived from the ordering within a MusicXML score or opus.
+    """
 
     def __init__(self, plain_text: str):
       self.init()
@@ -6546,15 +6680,21 @@ class Slash(MusicElementBase):
   SlashType = NoteTypeValue
 
   class ExceptVoice(MusicElementBase):
+    """The except-voice element is used to specify a combination of slash notation and regular notation.
+
+    Any note elements that are in voices specified by the except-voice elements
+    are displayed in normal notation, in addition to the slash notation that is
+    always displayed.
+    """
 
     def __init__(self, plain_text: str):
       self.init()
 
   def __init__(
       self,
-      type: StartStop,
-      use_dots: YesNo = None,
-      use_stems: YesNo = None,
+      type: str | StartStop,
+      use_dots: str | YesNo = None,
+      use_stems: str | YesNo = None,
       SlashType: str | SlashType = None,
   ):
     self.init()
@@ -6634,22 +6774,22 @@ class Sound(MusicElementBase):
   def __init__(
       self,
       coda: str = None,
-      dacapo: YesNo = None,
+      dacapo: str | YesNo = None,
       dalsegno: str = None,
-      damper_pedal: str = None,
-      divisions: float = None,
-      dynamics: float = None,
-      elevation: float = None,
+      damper_pedal: str | YesNoNumber = None,
+      divisions: float | Divisions = None,
+      dynamics: float | NonNegativeDecimal = None,
+      elevation: float | RotationDegrees = None,
       fine: str = None,
-      forward_repeat: YesNo = None,
+      forward_repeat: str | YesNo = None,
       id: str = None,
-      pan: float = None,
-      pizzicato: YesNo = None,
+      pan: float | RotationDegrees = None,
+      pizzicato: str | YesNo = None,
       segno: str = None,
-      soft_pedal: str = None,
-      sostenuto_pedal: str = None,
-      tempo: float = None,
-      time_only: str = None,
+      soft_pedal: str | YesNoNumber = None,
+      sostenuto_pedal: str | YesNoNumber = None,
+      tempo: float | NonNegativeDecimal = None,
+      time_only: str | TimeOnly = None,
       tocoda: str = None,
       Swing: Swing = None,
       Offset: Offset = None,
@@ -6669,21 +6809,31 @@ class StaffDetails(MusicElementBase):
   """
 
   class Capo(MusicElementBase):
+    """The capo element indicates at which fret a capo should be placed on a fretted instrument.
+
+    This changes the open tuning of the strings specified by staff-tuning by the
+    specified number of half-steps.
+    """
 
     def __init__(self, plain_text: int):
       self.init()
 
   class StaffLines(MusicElementBase):
+    """The staff-lines element specifies the number of lines and is usually used for a non 5-line staff.
+
+    If the staff-lines element is present, the appearance of each line may be
+    individually specified with a line-detail element.
+    """
 
     def __init__(self, plain_text: int):
       self.init()
 
   def __init__(
       self,
-      number: int = None,
-      print_object: YesNo = None,
-      print_spacing: YesNo = None,
-      show_frets: ShowFrets = None,
+      number: int | StaffNumber = None,
+      print_object: str | YesNo = None,
+      print_spacing: str | YesNo = None,
+      show_frets: str | ShowFrets = None,
       StaffType: str | StaffType = None,
       StaffLines: int | StaffLines = None,
       Capo: int | Capo = None,
@@ -6706,7 +6856,9 @@ class StaffLayout(MusicElementBase):
   StaffDistance = Tenths
 
   def __init__(
-      self, number: int = None, StaffDistance: float | StaffDistance = None
+      self,
+      number: int | StaffNumber = None,
+      StaffDistance: float | StaffDistance = None,
   ):
     self.init()
 
@@ -6720,7 +6872,7 @@ class StaffTuning(MusicElementBase):
 
   def __init__(
       self,
-      line: int,
+      line: int | StaffLine,
       TuningStep: str | TuningStep = None,
       TuningAlter: float | TuningAlter = None,
       TuningOctave: int | TuningOctave = None,
@@ -6736,9 +6888,9 @@ class Stick(MusicElementBase):
 
   def __init__(
       self,
-      dashed_circle: YesNo = None,
-      parentheses: YesNo = None,
-      tip: TipDirection = None,
+      dashed_circle: str | YesNo = None,
+      parentheses: str | YesNo = None,
+      tip: str | TipDirection = None,
       StickType: str | StickType = None,
       StickMaterial: str | StickMaterial = None,
   ):
@@ -6929,38 +7081,46 @@ class Time(MusicElementBase):
   """
 
   class BeatType(MusicElementBase):
+    """The beat-type element indicates the beat unit, as found in the denominator of a time signature."""
 
     def __init__(self, plain_text: str):
       self.init()
 
   class Beats(MusicElementBase):
+    """The beats element indicates the number of beats, as found in the numerator of a time signature."""
 
     def __init__(self, plain_text: str):
       self.init()
 
   class SenzaMisura(MusicElementBase):
+    """A senza-misura element explicitly indicates that no time signature is present.
+
+    The optional element content indicates the symbol to be used, if any, such
+    as an X. The time element's symbol attribute is not used when a senza-misura
+    element is present.
+    """
 
     def __init__(self, plain_text: str):
       self.init()
 
   def __init__(
       self,
-      color: str = None,
-      default_x: float = None,
-      default_y: float = None,
-      font_family: str = None,
-      font_size: str = None,
-      font_style: FontStyle = None,
-      font_weight: FontWeight = None,
-      halign: LeftCenterRight = None,
+      color: str | Color = None,
+      default_x: float | Tenths = None,
+      default_y: float | Tenths = None,
+      font_family: str | FontFamily = None,
+      font_size: str | FontSize = None,
+      font_style: str | FontStyle = None,
+      font_weight: str | FontWeight = None,
+      halign: str | LeftCenterRight = None,
       id: str = None,
-      number: int = None,
-      print_object: YesNo = None,
-      relative_x: float = None,
-      relative_y: float = None,
-      separator: TimeSeparator = None,
-      symbol: TimeSymbol = None,
-      valign: Valign = None,
+      number: int | StaffNumber = None,
+      print_object: str | YesNo = None,
+      relative_x: float | Tenths = None,
+      relative_y: float | Tenths = None,
+      separator: str | TimeSeparator = None,
+      symbol: str | TimeSymbol = None,
+      valign: str | Valign = None,
       Interchangeable: Interchangeable = None,
       SenzaMisura: str | SenzaMisura = None,
   ):
@@ -6981,11 +7141,13 @@ class TimeModification(MusicElementBase):
   NormalType = NoteTypeValue
 
   class ActualNotes(MusicElementBase):
+    """The actual-notes element describes how many notes are played in the time usually occupied by the number in the normal-notes element."""
 
     def __init__(self, plain_text: int):
       self.init()
 
   class NormalNotes(MusicElementBase):
+    """The normal-notes element describes how many notes are usually played in the time occupied by the number in the actual-notes element."""
 
     def __init__(self, plain_text: int):
       self.init()
@@ -7011,11 +7173,23 @@ class Transpose(MusicElementBase):
   Chromatic = Semitones
 
   class Diatonic(MusicElementBase):
+    """The diatonic element specifies the number of pitch steps needed to go from written to sounding pitch.
+
+    This allows for correct spelling of enharmonic transpositions. This value
+    does not include octave-change values; the values for both elements need to
+    be added to the written pitch to get the correct sounding pitch.
+    """
 
     def __init__(self, plain_text: int):
       self.init()
 
   class OctaveChange(MusicElementBase):
+    """The octave-change element indicates how many octaves to add to get from written pitch to sounding pitch.
+
+    The octave-change element should be included when using transposition
+    intervals of an octave or more, and should not be present for intervals of
+    less than an octave.
+    """
 
     def __init__(self, plain_text: int):
       self.init()
@@ -7023,7 +7197,7 @@ class Transpose(MusicElementBase):
   def __init__(
       self,
       id: str = None,
-      number: int = None,
+      number: int | StaffNumber = None,
       Diatonic: int | Diatonic = None,
       Chromatic: float | Chromatic = None,
       OctaveChange: int | OctaveChange = None,
@@ -7054,23 +7228,23 @@ class Tuplet(MusicElementBase):
   both the actual and normal types, or neither. It is none by default.
   """
 
-  TupletActual: TYPE[TupletPortion] = None
-  TupletNormal: TYPE[TupletPortion] = None
+  TupletActual: Type[TupletPortion] = None
+  TupletNormal: Type[TupletPortion] = None
 
   def __init__(
       self,
-      type: StartStop,
-      bracket: YesNo = None,
-      default_x: float = None,
-      default_y: float = None,
+      type: str | StartStop,
+      bracket: str | YesNo = None,
+      default_x: float | Tenths = None,
+      default_y: float | Tenths = None,
       id: str = None,
-      line_shape: LineShape = None,
-      number: int = None,
-      placement: AboveBelow = None,
-      relative_x: float = None,
-      relative_y: float = None,
-      show_number: ShowTuplet = None,
-      show_type: ShowTuplet = None,
+      line_shape: str | LineShape = None,
+      number: int | NumberLevel = None,
+      placement: str | AboveBelow = None,
+      relative_x: float | Tenths = None,
+      relative_y: float | Tenths = None,
+      show_number: str | ShowTuplet = None,
+      show_type: str | ShowTuplet = None,
       TupletActual: TupletActual = None,
       TupletNormal: TupletNormal = None,
   ):
@@ -7115,11 +7289,13 @@ class VirtualInstrument(MusicElementBase):
   """The virtual-instrument element defines a specific virtual instrument used for an instrument sound."""
 
   class VirtualLibrary(MusicElementBase):
+    """The virtual-library element indicates the virtual instrument library name."""
 
     def __init__(self, plain_text: str):
       self.init()
 
   class VirtualName(MusicElementBase):
+    """The virtual-name element indicates the library-specific name for the virtual instrument."""
 
     def __init__(self, plain_text: str):
       self.init()
@@ -7140,11 +7316,13 @@ class Work(MusicElementBase):
   """
 
   class WorkNumber(MusicElementBase):
+    """The work-number element specifies the number of a work, such as its opus number."""
 
     def __init__(self, plain_text: str):
       self.init()
 
   class WorkTitle(MusicElementBase):
+    """The work-title element specifies the title of a work, not including its opus or other work number."""
 
     def __init__(self, plain_text: str):
       self.init()
@@ -7163,9 +7341,9 @@ class MetronomeTuplet(TimeModification):
 
   def __init__(
       self,
-      type: StartStop,
-      bracket: YesNo = None,
-      show_number: ShowTuplet = None,
+      type: str | StartStop,
+      bracket: str | YesNo = None,
+      show_number: str | ShowTuplet = None,
       ActualNotes: int | ActualNotes = None,
       NormalNotes: int | NormalNotes = None,
       NormalType: str | NormalType = None,
@@ -7182,11 +7360,13 @@ class ScorePartwise(MusicElementBase):
   """
 
   class MovementNumber(MusicElementBase):
+    """The movement-number element specifies the number of a movement."""
 
     def __init__(self, plain_text: str):
       self.init()
 
   class MovementTitle(MusicElementBase):
+    """The movement-title element specifies the title of a movement, not including its number."""
 
     def __init__(self, plain_text: str):
       self.init()
@@ -7199,10 +7379,10 @@ class ScorePartwise(MusicElementBase):
           self,
           number: str,
           id: str = None,
-          implicit: YesNo = None,
-          non_controlling: YesNo = None,
-          text: str = None,
-          width: float = None,
+          implicit: str | YesNo = None,
+          non_controlling: str | YesNo = None,
+          text: str | MeasureText = None,
+          width: float | Tenths = None,
       ):
         self.init()
 
@@ -7241,19 +7421,21 @@ class ScoreTimewise(MusicElementBase):
         self,
         number: str,
         id: str = None,
-        implicit: YesNo = None,
-        non_controlling: YesNo = None,
-        text: str = None,
-        width: float = None,
+        implicit: str | YesNo = None,
+        non_controlling: str | YesNo = None,
+        text: str | MeasureText = None,
+        width: float | Tenths = None,
     ):
       self.init()
 
   class MovementNumber(MusicElementBase):
+    """The movement-number element specifies the number of a movement."""
 
     def __init__(self, plain_text: str):
       self.init()
 
   class MovementTitle(MusicElementBase):
+    """The movement-title element specifies the title of a movement, not including its number."""
 
     def __init__(self, plain_text: str):
       self.init()

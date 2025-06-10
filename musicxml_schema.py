@@ -1,10 +1,13 @@
 from __future__ import annotations
-from typing import Any, Optional, Type
-from musicxml import MusicElementBase
+from typing import Type as TYPE
+from musicxml import MusicElementBase, _
 
 
 class AboveBelow(MusicElementBase):
   """The above-below type is used to indicate whether one element appears above or below another element."""
+
+  ABOVE = _
+  BELOW = _
 
   def __init__(self, plain_text: str):
     self.init()
@@ -28,6 +31,48 @@ class AccidentalValue(MusicElementBase):
   MusicXML semantics.
   """
 
+  ARROW_DOWN = _
+  ARROW_UP = _
+  DOUBLE_SHARP = _
+  DOUBLE_SHARP_DOWN = _
+  DOUBLE_SHARP_UP = _
+  DOUBLE_SLASH_FLAT = _
+  FLAT = _
+  FLAT_1 = _
+  FLAT_2 = _
+  FLAT_3 = _
+  FLAT_4 = _
+  FLAT_DOWN = _
+  FLAT_FLAT = _
+  FLAT_FLAT_DOWN = _
+  FLAT_FLAT_UP = _
+  FLAT_UP = _
+  KORON = _
+  NATURAL = _
+  NATURAL_DOWN = _
+  NATURAL_FLAT = _
+  NATURAL_SHARP = _
+  NATURAL_UP = _
+  OTHER = _
+  QUARTER_FLAT = _
+  QUARTER_SHARP = _
+  SHARP = _
+  SHARP_1 = _
+  SHARP_2 = _
+  SHARP_3 = _
+  SHARP_5 = _
+  SHARP_DOWN = _
+  SHARP_SHARP = _
+  SHARP_UP = _
+  SLASH_FLAT = _
+  SLASH_QUARTER_SHARP = _
+  SLASH_SHARP = _
+  SORI = _
+  THREE_QUARTERS_FLAT = _
+  THREE_QUARTERS_SHARP = _
+  TRIPLE_FLAT = _
+  TRIPLE_SHARP = _
+
   def __init__(self, plain_text: str):
     self.init()
 
@@ -45,6 +90,20 @@ class AccordionMiddle(MusicElementBase):
 class ArrowDirection(MusicElementBase):
   """The arrow-direction type represents the direction in which an arrow points, using Unicode arrow terminology."""
 
+  DOWN = _
+  LEFT = _
+  LEFT_RIGHT = 'left right'
+  NORTHEAST = _
+  NORTHEAST_SOUTHWEST = 'northeast southwest'
+  NORTHWEST = _
+  NORTHWEST_SOUTHEAST = 'northwest southeast'
+  OTHER = _
+  RIGHT = _
+  SOUTHEAST = _
+  SOUTHWEST = _
+  UP = _
+  UP_DOWN = 'up down'
+
   def __init__(self, plain_text: str):
     self.init()
 
@@ -58,6 +117,14 @@ class ArrowStyle(MusicElementBase):
   should be combined with an arrow in the other direction.
   """
 
+  COMBINED = _
+  DOUBLE = _
+  FILLED = _
+  HOLLOW = _
+  OTHER = _
+  PAIRED = _
+  SINGLE = _
+
   def __init__(self, plain_text: str):
     self.init()
 
@@ -68,6 +135,9 @@ class BackwardForward(MusicElementBase):
   The start of the repeat has a forward direction while the end of the repeat
   has a backward direction.
   """
+
+  BACKWARD = _
+  FORWARD = _
 
   def __init__(self, plain_text: str):
     self.init()
@@ -80,6 +150,18 @@ class BarStyle(MusicElementBase):
   heavy-light, heavy-heavy, tick (a short stroke through the top line), short (a
   partial barline between the 2nd and 4th lines), and none.
   """
+
+  DASHED = _
+  DOTTED = _
+  HEAVY = _
+  HEAVY_HEAVY = _
+  HEAVY_LIGHT = _
+  LIGHT_HEAVY = _
+  LIGHT_LIGHT = _
+  NONE = _
+  REGULAR = _
+  SHORT = _
+  TICK = _
 
   def __init__(self, plain_text: str):
     self.init()
@@ -100,6 +182,12 @@ class BeamLevel(MusicElementBase):
 class BeamValue(MusicElementBase):
   """The beam-value type represents the type of beam associated with each of 8 beam levels (up to 1024th notes) available for each note."""
 
+  BACKWARD_HOOK = 'backward hook'
+  BEGIN = _
+  CONTINUE = _
+  END = _
+  FORWARD_HOOK = 'forward hook'
+
   def __init__(self, plain_text: str):
     self.init()
 
@@ -110,12 +198,36 @@ class BeaterValue(MusicElementBase):
   The finger and hammer values are in addition to Stone's list.
   """
 
+  BOW = _
+  CHIME_HAMMER = 'chime hammer'
+  COIN = _
+  DRUM_STICK = 'drum stick'
+  FINGER = _
+  FINGERNAIL = _
+  FIST = _
+  GUIRO_SCRAPER = 'guiro scraper'
+  HAMMER = _
+  HAND = _
+  JAZZ_STICK = 'jazz stick'
+  KNITTING_NEEDLE = 'knitting needle'
+  METAL_HAMMER = 'metal hammer'
+  SLIDE_BRUSH_ON_GONG = 'slide brush on gong'
+  SNARE_STICK = 'snare stick'
+  SPOON_MALLET = 'spoon mallet'
+  SUPERBALL = _
+  TRIANGLE_BEATER = 'triangle beater'
+  TRIANGLE_BEATER_PLAIN = 'triangle beater plain'
+  WIRE_BRUSH = 'wire brush'
+
   def __init__(self, plain_text: str):
     self.init()
 
 
 class BendShape(MusicElementBase):
   """The bend-shape type distinguishes between the angled bend symbols commonly used in standard notation and the curved bend symbols commonly used in both tablature and standard notation."""
+
+  ANGLED = _
+  CURVED = _
 
   def __init__(self, plain_text: str):
     self.init()
@@ -124,12 +236,23 @@ class BendShape(MusicElementBase):
 class BreathMarkValue(MusicElementBase):
   """The breath-mark-value type represents the symbol used for a breath mark."""
 
+  COMMA = _
+  SALZEDO = _
+  TICK = _
+  UPBOW = _
+
   def __init__(self, plain_text: str):
     self.init()
 
 
 class CaesuraValue(MusicElementBase):
   """The caesura-value type represents the shape of the caesura sign."""
+
+  CURVED = _
+  NORMAL = _
+  SHORT = _
+  SINGLE = _
+  THICK = _
 
   def __init__(self, plain_text: str):
     self.init()
@@ -142,12 +265,19 @@ class CancelLocation(MusicElementBase):
   before-barline should be treated like a cancel-location of left.
   """
 
+  BEFORE_BARLINE = _
+  LEFT = _
+  RIGHT = _
+
   def __init__(self, plain_text: str):
     self.init()
 
 
 class CircularArrow(MusicElementBase):
   """The circular-arrow type represents the direction in which a circular arrow points, using Unicode arrow terminology."""
+
+  ANTICLOCKWISE = _
+  CLOCKWISE = _
 
   def __init__(self, plain_text: str):
     self.init()
@@ -165,6 +295,14 @@ class ClefSign(MusicElementBase):
   print-object attribute instead. When the none sign is used, notes should be
   displayed as if in treble clef.
   """
+
+  C = _
+  F = _
+  G = _
+  JIANPU = _
+  NONE = _
+  PERCUSSION = _
+  TAB = _
 
   def __init__(self, plain_text: str):
     self.init()
@@ -199,6 +337,14 @@ class CommaSeparatedText(MusicElementBase):
 class CssFontSize(MusicElementBase):
   """The css-font-size type includes the CSS font sizes used as an alternative to a numeric point size."""
 
+  LARGE = _
+  MEDIUM = _
+  SMALL = _
+  XX_LARGE = _
+  XX_SMALL = _
+  X_LARGE = _
+  X_SMALL = _
+
   def __init__(self, plain_text: str):
     self.init()
 
@@ -206,12 +352,22 @@ class CssFontSize(MusicElementBase):
 class DegreeSymbolValue(MusicElementBase):
   """The degree-symbol-value type indicates which symbol should be used in specifying a degree."""
 
+  AUGMENTED = _
+  DIMINISHED = _
+  HALF_DIMINISHED = _
+  MAJOR = _
+  MINOR = _
+
   def __init__(self, plain_text: str):
     self.init()
 
 
 class DegreeTypeValue(MusicElementBase):
   """The degree-type-value type indicates whether the current degree element is an addition, alteration, or subtraction to the kind of the current chord in the harmony element."""
+
+  ADD = _
+  ALTER = _
+  SUBTRACT = _
 
   def __init__(self, plain_text: str):
     self.init()
@@ -246,6 +402,23 @@ class EffectValue(MusicElementBase):
   The cannon, lotus flute, and megaphone values are in addition to Stone's list.
   """
 
+  ANVIL = _
+  AUTO_HORN = 'auto horn'
+  BIRD_WHISTLE = 'bird whistle'
+  CANNON = _
+  DUCK_CALL = 'duck call'
+  GUN_SHOT = 'gun shot'
+  KLAXON_HORN = 'klaxon horn'
+  LIONS_ROAR = 'lions roar'
+  LOTUS_FLUTE = 'lotus flute'
+  MEGAPHONE = _
+  POLICE_WHISTLE = 'police whistle'
+  SIREN = _
+  SLIDE_WHISTLE = 'slide whistle'
+  THUNDER_SHEET = 'thunder sheet'
+  WIND_MACHINE = 'wind machine'
+  WIND_WHISTLE = 'wind whistle'
+
   def __init__(self, plain_text: str):
     self.init()
 
@@ -257,6 +430,22 @@ class EnclosureShape(MusicElementBase):
   is common in jazz notation. An inverted-bracket enclosure is similar to a
   rectangle with the top line missing.
   """
+
+  BRACKET = _
+  CIRCLE = _
+  DECAGON = _
+  DIAMOND = _
+  HEPTAGON = _
+  HEXAGON = _
+  INVERTED_BRACKET = _
+  NONAGON = _
+  NONE = _
+  OCTAGON = _
+  OVAL = _
+  PENTAGON = _
+  RECTANGLE = _
+  SQUARE = _
+  TRIANGLE = _
 
   def __init__(self, plain_text: str):
     self.init()
@@ -277,6 +466,10 @@ class EndingNumber(MusicElementBase):
 class Fan(MusicElementBase):
   """The fan type represents the type of beam fanning present on a note, used to represent accelerandos and ritardandos."""
 
+  ACCEL = _
+  NONE = _
+  RIT = _
+
   def __init__(self, plain_text: str):
     self.init()
 
@@ -286,6 +479,15 @@ class FermataShape(MusicElementBase):
 
   The empty value is equivalent to the normal value.
   """
+
+  ANGLED = _
+  CURLEW = _
+  DOUBLE_ANGLED = _
+  DOUBLE_DOT = _
+  DOUBLE_SQUARE = _
+  HALF_CURVE = _
+  NORMAL = _
+  SQUARE = _
 
   def __init__(self, plain_text: str):
     self.init()
@@ -328,6 +530,9 @@ class FontSize(MusicElementBase):
 class FontStyle(MusicElementBase):
   """The font-style type represents a simplified version of the CSS font-style property."""
 
+  ITALIC = _
+  NORMAL = _
+
   def __init__(self, plain_text: str):
     self.init()
 
@@ -335,12 +540,19 @@ class FontStyle(MusicElementBase):
 class FontWeight(MusicElementBase):
   """The font-weight type represents a simplified version of the CSS font-weight property."""
 
+  BOLD = _
+  NORMAL = _
+
   def __init__(self, plain_text: str):
     self.init()
 
 
 class GlassValue(MusicElementBase):
   """The glass-value type represents pictograms for glass percussion instruments."""
+
+  GLASS_HARMONICA = 'glass harmonica'
+  GLASS_HARP = 'glass harp'
+  WIND_CHIMES = 'wind chimes'
 
   def __init__(self, plain_text: str):
     self.init()
@@ -374,12 +586,22 @@ class GlyphType(MusicElementBase):
 class GroupBarlineValue(MusicElementBase):
   """The group-barline-value type indicates if the group should have common barlines."""
 
+  MENSURSTRICH = _
+  NO = _
+  YES = _
+
   def __init__(self, plain_text: str):
     self.init()
 
 
 class GroupSymbolValue(MusicElementBase):
   """The group-symbol-value type indicates how the symbol for a group or multi-staff part is indicated in the score."""
+
+  BRACE = _
+  BRACKET = _
+  LINE = _
+  NONE = _
+  SQUARE = _
 
   def __init__(self, plain_text: str):
     self.init()
@@ -388,6 +610,19 @@ class GroupSymbolValue(MusicElementBase):
 class HandbellValue(MusicElementBase):
   """The handbell-value type represents the type of handbell technique being notated."""
 
+  BELLTREE = _
+  DAMP = _
+  ECHO = _
+  GYRO = _
+  HAND_MARTELLATO = 'hand martellato'
+  MALLET_LIFT = 'mallet lift'
+  MALLET_TABLE = 'mallet table'
+  MARTELLATO = _
+  MARTELLATO_LIFT = 'martellato lift'
+  MUTED_MARTELLATO = 'muted martellato'
+  PLUCK_LIFT = 'pluck lift'
+  SWING = _
+
   def __init__(self, plain_text: str):
     self.init()
 
@@ -395,12 +630,21 @@ class HandbellValue(MusicElementBase):
 class HarmonClosedLocation(MusicElementBase):
   """The harmon-closed-location type indicates which portion of the symbol is filled in when the corresponding harmon-closed-value is half."""
 
+  BOTTOM = _
+  LEFT = _
+  RIGHT = _
+  TOP = _
+
   def __init__(self, plain_text: str):
     self.init()
 
 
 class HarmonClosedValue(MusicElementBase):
   """The harmon-closed-value type represents whether the harmon mute is closed, open, or half-open."""
+
+  HALF = _
+  NO = _
+  YES = _
 
   def __init__(self, plain_text: str):
     self.init()
@@ -415,6 +659,10 @@ class HarmonyArrangement(MusicElementBase):
   below and to the right of the first.
   """
 
+  DIAGONAL = _
+  HORIZONTAL = _
+  VERTICAL = _
+
   def __init__(self, plain_text: str):
     self.init()
 
@@ -426,6 +674,10 @@ class HarmonyType(MusicElementBase):
   missing but implied; alternate represents alternate analyses.
   """
 
+  ALTERNATE = _
+  EXPLICIT = _
+  IMPLIED = _
+
   def __init__(self, plain_text: str):
     self.init()
 
@@ -433,12 +685,21 @@ class HarmonyType(MusicElementBase):
 class HoleClosedLocation(MusicElementBase):
   """The hole-closed-location type indicates which portion of the hole is filled in when the corresponding hole-closed-value is half."""
 
+  BOTTOM = _
+  LEFT = _
+  RIGHT = _
+  TOP = _
+
   def __init__(self, plain_text: str):
     self.init()
 
 
 class HoleClosedValue(MusicElementBase):
   """The hole-closed-value type represents whether the hole is closed, open, or half-open."""
+
+  HALF = _
+  NO = _
+  YES = _
 
   def __init__(self, plain_text: str):
     self.init()
@@ -501,12 +762,50 @@ class KindValue(MusicElementBase):
   being displayed.
   """
 
+  AUGMENTED = _
+  AUGMENTED_SEVENTH = _
+  DIMINISHED = _
+  DIMINISHED_SEVENTH = _
+  DOMINANT = _
+  DOMINANT_11TH = _
+  DOMINANT_13TH = _
+  DOMINANT_NINTH = _
+  FRENCH = _
+  GERMAN = _
+  HALF_DIMINISHED = _
+  ITALIAN = _
+  MAJOR = _
+  MAJOR_11TH = _
+  MAJOR_13TH = _
+  MAJOR_MINOR = _
+  MAJOR_NINTH = _
+  MAJOR_SEVENTH = _
+  MAJOR_SIXTH = _
+  MINOR = _
+  MINOR_11TH = _
+  MINOR_13TH = _
+  MINOR_NINTH = _
+  MINOR_SEVENTH = _
+  MINOR_SIXTH = _
+  NEAPOLITAN = _
+  NONE = _
+  OTHER = _
+  PEDAL = _
+  POWER = _
+  SUSPENDED_FOURTH = _
+  SUSPENDED_SECOND = _
+  TRISTAN = _
+
   def __init__(self, plain_text: str):
     self.init()
 
 
 class LeftCenterRight(MusicElementBase):
   """The left-center-right type is used to define horizontal alignment and text justification."""
+
+  CENTER = _
+  LEFT = _
+  RIGHT = _
 
   def __init__(self, plain_text: str):
     self.init()
@@ -515,12 +814,21 @@ class LeftCenterRight(MusicElementBase):
 class LeftRight(MusicElementBase):
   """The left-right type is used to indicate whether one element appears to the left or the right of another element."""
 
+  LEFT = _
+  RIGHT = _
+
   def __init__(self, plain_text: str):
     self.init()
 
 
 class LineEnd(MusicElementBase):
   """The line-end type specifies if there is a jog up or down (or both), an arrow, or nothing at the start or end of a bracket."""
+
+  ARROW = _
+  BOTH = _
+  DOWN = _
+  NONE = _
+  UP = _
 
   def __init__(self, plain_text: str):
     self.init()
@@ -529,6 +837,10 @@ class LineEnd(MusicElementBase):
 class LineLength(MusicElementBase):
   """The line-length type distinguishes between different line lengths for doit, falloff, plop, and scoop articulations."""
 
+  LONG = _
+  MEDIUM = _
+  SHORT = _
+
   def __init__(self, plain_text: str):
     self.init()
 
@@ -536,12 +848,20 @@ class LineLength(MusicElementBase):
 class LineShape(MusicElementBase):
   """The line-shape type distinguishes between straight and curved lines."""
 
+  CURVED = _
+  STRAIGHT = _
+
   def __init__(self, plain_text: str):
     self.init()
 
 
 class LineType(MusicElementBase):
   """The line-type type distinguishes between solid, dashed, dotted, and wavy lines."""
+
+  DASHED = _
+  DOTTED = _
+  SOLID = _
+  WAVY = _
 
   def __init__(self, plain_text: str):
     self.init()
@@ -564,12 +884,20 @@ class LineWidthType(MusicElementBase):
 class MarginType(MusicElementBase):
   """The margin-type type specifies whether margins apply to even page, odd pages, or both."""
 
+  BOTH = _
+  EVEN = _
+  ODD = _
+
   def __init__(self, plain_text: str):
     self.init()
 
 
 class MeasureNumberingValue(MusicElementBase):
   """The measure-numbering-value type describes how measure numbers are displayed on this part: no numbers, numbers every measure, or numbers every system."""
+
+  MEASURE = _
+  NONE = _
+  SYSTEM = _
 
   def __init__(self, plain_text: str):
     self.init()
@@ -590,6 +918,24 @@ class MeasureText(MusicElementBase):
 class MembraneValue(MusicElementBase):
   """The membrane-value type represents pictograms for membrane percussion instruments."""
 
+  BASS_DRUM = 'bass drum'
+  BASS_DRUM_ON_SIDE = 'bass drum on side'
+  BONGOS = _
+  CHINESE_TOMTOM = 'Chinese tomtom'
+  CONGA_DRUM = 'conga drum'
+  CUICA = _
+  GOBLET_DRUM = 'goblet drum'
+  INDO_AMERICAN_TOMTOM = 'Indo-American tomtom'
+  JAPANESE_TOMTOM = 'Japanese tomtom'
+  MILITARY_DRUM = 'military drum'
+  SNARE_DRUM = 'snare drum'
+  SNARE_DRUM_SNARES_OFF = 'snare drum snares off'
+  TABLA = _
+  TAMBOURINE = _
+  TENOR_DRUM = 'tenor drum'
+  TIMBALES = _
+  TOMTOM = _
+
   def __init__(self, plain_text: str):
     self.init()
 
@@ -600,6 +946,39 @@ class MetalValue(MusicElementBase):
   The hi-hat value refers to a pictogram like Stone's high-hat cymbals but
   without the long vertical line at the bottom.
   """
+
+  AGOGO = _
+  ALMGLOCKEN = _
+  BELL = _
+  BELL_PLATE = 'bell plate'
+  BELL_TREE = 'bell tree'
+  BRAKE_DRUM = 'brake drum'
+  CENCERRO = _
+  CHAIN_RATTLE = 'chain rattle'
+  CHINESE_CYMBAL = 'Chinese cymbal'
+  COWBELL = _
+  CRASH_CYMBALS = 'crash cymbals'
+  CROTALE = _
+  CYMBAL_TONGS = 'cymbal tongs'
+  DOMED_GONG = 'domed gong'
+  FINGER_CYMBALS = 'finger cymbals'
+  FLEXATONE = _
+  GONG = _
+  HANDBELL = _
+  HIGH_HAT_CYMBALS = 'high-hat cymbals'
+  HI_HAT = _
+  JAW_HARP = 'jaw harp'
+  JINGLE_BELLS = 'jingle bells'
+  MUSICAL_SAW = 'musical saw'
+  SHELL_BELLS = 'shell bells'
+  SISTRUM = _
+  SIZZLE_CYMBAL = 'sizzle cymbal'
+  SLEIGH_BELLS = 'sleigh bells'
+  SUSPENDED_CYMBAL = 'suspended cymbal'
+  TAM_TAM = 'tam tam'
+  TAM_TAM_WITH_BEATER = 'tam tam with beater'
+  TRIANGLE = _
+  VIETNAMESE_HAT = 'Vietnamese hat'
 
   def __init__(self, plain_text: str):
     self.init()
@@ -662,6 +1041,22 @@ class Mute(MusicElementBase):
   values represent specific mutes.
   """
 
+  BUCKET = _
+  CUP = _
+  ECHO = _
+  HARMON_NO_STEM = _
+  HARMON_STEM = _
+  HAT = _
+  OFF = _
+  ON = _
+  PALM = _
+  PLUNGER = _
+  PRACTICE = _
+  SOLOTONE = _
+  STOP_HAND = _
+  STOP_MUTE = _
+  STRAIGHT = _
+
   def __init__(self, plain_text: str):
     self.init()
 
@@ -682,12 +1077,32 @@ class NoteSizeType(MusicElementBase):
   cue element. The large type is used for notes of large size.
   """
 
+  CUE = _
+  GRACE = _
+  GRACE_CUE = _
+  LARGE = _
+
   def __init__(self, plain_text: str):
     self.init()
 
 
 class NoteTypeValue(MusicElementBase):
   """The note-type-value type is used for the MusicXML type element and represents the graphic note type, from 1024th (shortest) to maxima (longest)."""
+
+  BREVE = _
+  EIGHTH = _
+  HALF = _
+  LONG = _
+  MAXIMA = _
+  QUARTER = _
+  WHOLE = _
+  _1024TH = _
+  _128TH = _
+  _16TH = _
+  _256TH = _
+  _32ND = _
+  _512TH = _
+  _64TH = _
 
   def __init__(self, plain_text: str):
     self.init()
@@ -715,6 +1130,35 @@ class NoteheadValue(MusicElementBase):
   ranges (U+E150–U+E1AF and U+EEE0–U+EEFF) should not use the smufl attribute or
   the "other" value, but instead use the notehead-text element.
   """
+
+  ARROW_DOWN = 'arrow down'
+  ARROW_UP = 'arrow up'
+  BACK_SLASHED = 'back slashed'
+  CIRCLED = _
+  CIRCLE_DOT = 'circle dot'
+  CIRCLE_X = _
+  CLUSTER = _
+  CROSS = _
+  DIAMOND = _
+  DO = _
+  FA = _
+  FA_UP = 'fa up'
+  INVERTED_TRIANGLE = 'inverted triangle'
+  LA = _
+  LEFT_TRIANGLE = 'left triangle'
+  MI = _
+  NONE = _
+  NORMAL = _
+  OTHER = _
+  RE = _
+  RECTANGLE = _
+  SLASH = _
+  SLASHED = _
+  SO = _
+  SQUARE = _
+  TI = _
+  TRIANGLE = _
+  X = _
 
   def __init__(self, plain_text: str):
     self.init()
@@ -789,6 +1233,12 @@ class NumeralMode(MusicElementBase):
   used.
   """
 
+  HARMONIC_MINOR = 'harmonic minor'
+  MAJOR = _
+  MELODIC_MINOR = 'melodic minor'
+  MINOR = _
+  NATURAL_MINOR = 'natural minor'
+
   def __init__(self, plain_text: str):
     self.init()
 
@@ -810,12 +1260,18 @@ class Octave(MusicElementBase):
 class OnOff(MusicElementBase):
   """The on-off type is used for notation elements such as string mutes."""
 
+  OFF = _
+  ON = _
+
   def __init__(self, plain_text: str):
     self.init()
 
 
 class OverUnder(MusicElementBase):
   """The over-under type is used to indicate whether the tips of curved lines such as slurs and ties are overhand (tips down) or underhand (tips up)."""
+
+  OVER = _
+  UNDER = _
 
   def __init__(self, plain_text: str):
     self.init()
@@ -841,6 +1297,14 @@ class PedalType(MusicElementBase):
   line that is preceded by a text or symbol representation of the pedal.
   """
 
+  CHANGE = _
+  CONTINUE = _
+  DISCONTINUE = _
+  RESUME = _
+  SOSTENUTO = _
+  START = _
+  STOP = _
+
   def __init__(self, plain_text: str):
     self.init()
 
@@ -858,6 +1322,18 @@ class PitchedValue(MusicElementBase):
   The chimes and tubular chimes values distinguish the single-line and
   double-line versions of the pictogram.
   """
+
+  CELESTA = _
+  CHIMES = _
+  GLOCKENSPIEL = _
+  LITHOPHONE = _
+  MALLET = _
+  MARIMBA = _
+  STEEL_DRUMS = 'steel drums'
+  TUBAPHONE = _
+  TUBULAR_CHIMES = 'tubular chimes'
+  VIBRAPHONE = _
+  XYLOPHONE = _
 
   def __init__(self, plain_text: str):
     self.init()
@@ -892,12 +1368,21 @@ class PrincipalVoiceSymbol(MusicElementBase):
   corresponding appearance in the score.
   """
 
+  HAUPTSTIMME = _
+  NEBENSTIMME = _
+  NONE = _
+  PLAIN = _
+
   def __init__(self, plain_text: str):
     self.init()
 
 
 class RightLeftMiddle(MusicElementBase):
   """The right-left-middle type is used to specify barline location."""
+
+  LEFT = _
+  MIDDLE = _
+  RIGHT = _
 
   def __init__(self, plain_text: str):
     self.init()
@@ -915,6 +1400,13 @@ class RotationDegrees(MusicElementBase):
 
 class SemiPitched(MusicElementBase):
   """The semi-pitched type represents categories of indefinite pitch for percussion instruments."""
+
+  HIGH = _
+  LOW = _
+  MEDIUM = _
+  MEDIUM_HIGH = _
+  MEDIUM_LOW = _
+  VERY_LOW = _
 
   def __init__(self, plain_text: str):
     self.init()
@@ -937,12 +1429,19 @@ class ShowFrets(MusicElementBase):
   The default choice is numbers.
   """
 
+  LETTERS = _
+  NUMBERS = _
+
   def __init__(self, plain_text: str):
     self.init()
 
 
 class ShowTuplet(MusicElementBase):
   """The show-tuplet type indicates whether to show a part of a tuplet relating to the tuplet-actual element, both the tuplet-actual and tuplet-normal elements, or neither."""
+
+  ACTUAL = _
+  BOTH = _
+  NONE = _
 
   def __init__(self, plain_text: str):
     self.init()
@@ -1029,6 +1528,10 @@ class StaffDivideSymbol(MusicElementBase):
   U+E00C, and U+E00D respectively.
   """
 
+  DOWN = _
+  UP = _
+  UP_DOWN = _
+
   def __init__(self, plain_text: str):
     self.init()
 
@@ -1081,12 +1584,22 @@ class StaffType(MusicElementBase):
   feasible. A regular staff is the standard default staff-type.
   """
 
+  ALTERNATE = _
+  CUE = _
+  EDITORIAL = _
+  OSSIA = _
+  REGULAR = _
+
   def __init__(self, plain_text: str):
     self.init()
 
 
 class StartNote(MusicElementBase):
   """The start-note type describes the starting note of trills and mordents for playback, relative to the current note."""
+
+  BELOW = _
+  MAIN = _
+  UPPER = _
 
   def __init__(self, plain_text: str):
     self.init()
@@ -1106,12 +1619,20 @@ class StartStop(MusicElementBase):
   order within the MusicXML document should match the musical score order.
   """
 
+  START = _
+  STOP = _
+
   def __init__(self, plain_text: str):
     self.init()
 
 
 class StartStopChangeContinue(MusicElementBase):
   """The start-stop-change-continue type is used to distinguish types of pedal directions."""
+
+  CHANGE = _
+  CONTINUE = _
+  START = _
+  STOP = _
 
   def __init__(self, plain_text: str):
     self.init()
@@ -1134,6 +1655,10 @@ class StartStopContinue(MusicElementBase):
   outgoing slur element with a type of start.
   """
 
+  CONTINUE = _
+  START = _
+  STOP = _
+
   def __init__(self, plain_text: str):
     self.init()
 
@@ -1149,6 +1674,10 @@ class StartStopDiscontinue(MusicElementBase):
   endings that do not conclude a piece.
   """
 
+  DISCONTINUE = _
+  START = _
+  STOP = _
+
   def __init__(self, plain_text: str):
     self.init()
 
@@ -1160,12 +1689,21 @@ class StartStopSingle(MusicElementBase):
   order within the MusicXML document should match the musical score order.
   """
 
+  SINGLE = _
+  START = _
+  STOP = _
+
   def __init__(self, plain_text: str):
     self.init()
 
 
 class StemValue(MusicElementBase):
   """The stem-value type represents the notated stem direction."""
+
+  DOUBLE = _
+  DOWN = _
+  NONE = _
+  UP = _
 
   def __init__(self, plain_text: str):
     self.init()
@@ -1174,12 +1712,25 @@ class StemValue(MusicElementBase):
 class Step(MusicElementBase):
   """The step type represents a step of the diatonic scale, represented using the English letters A through G."""
 
+  A = _
+  B = _
+  C = _
+  D = _
+  E = _
+  F = _
+  G = _
+
   def __init__(self, plain_text: str):
     self.init()
 
 
 class StickLocation(MusicElementBase):
   """The stick-location type represents pictograms for the location of sticks, beaters, or mallets on cymbals, gongs, drums, and other instruments."""
+
+  CENTER = _
+  CYMBAL_BELL = 'cymbal bell'
+  CYMBAL_EDGE = 'cymbal edge'
+  RIM = _
 
   def __init__(self, plain_text: str):
     self.init()
@@ -1188,12 +1739,29 @@ class StickLocation(MusicElementBase):
 class StickMaterial(MusicElementBase):
   """The stick-material type represents the material being displayed in a stick pictogram."""
 
+  HARD = _
+  MEDIUM = _
+  SHADED = _
+  SOFT = _
+  X = _
+
   def __init__(self, plain_text: str):
     self.init()
 
 
 class StickType(MusicElementBase):
   """The stick-type type represents the shape of pictograms where the material in the stick, mallet, or beater is represented in the pictogram."""
+
+  BASS_DRUM = 'bass drum'
+  DOUBLE_BASS_DRUM = 'double bass drum'
+  GLOCKENSPIEL = _
+  GUM = _
+  HAMMER = _
+  SUPERBALL = _
+  TIMPANI = _
+  WOUND = _
+  XYLOPHONE = _
+  YARN = _
 
   def __init__(self, plain_text: str):
     self.init()
@@ -1213,6 +1781,9 @@ class StringNumber(MusicElementBase):
 class SwingTypeValue(MusicElementBase):
   """The swing-type-value type specifies the note type, either eighth or 16th, to which the ratio defined in the swing element is applied."""
 
+  EIGHTH = _
+  _16TH = _
+
   def __init__(self, plain_text: str):
     self.init()
 
@@ -1225,12 +1796,22 @@ class Syllabic(MusicElementBase):
   respectively.
   """
 
+  BEGIN = _
+  END = _
+  MIDDLE = _
+  SINGLE = _
+
   def __init__(self, plain_text: str):
     self.init()
 
 
 class SymbolSize(MusicElementBase):
   """The symbol-size type is used to distinguish between full, cue sized, grace cue sized, and oversized symbols."""
+
+  CUE = _
+  FULL = _
+  GRACE_CUE = _
+  LARGE = _
 
   def __init__(self, plain_text: str):
     self.init()
@@ -1249,6 +1830,13 @@ class SyncType(MusicElementBase):
   synchronization by not being forgiving of missing performed events.
   """
 
+  ALWAYS_EVENT = _
+  EVENT = _
+  MOSTLY_EVENT = _
+  MOSTLY_TEMPO = _
+  NONE = _
+  TEMPO = _
+
   def __init__(self, plain_text: str):
     self.init()
 
@@ -1263,6 +1851,10 @@ class SystemRelation(MusicElementBase):
   only appear once in this part, not twice. A value of none indicates that the
   element is associated only with the current part, not with the system.
   """
+
+  ALSO_TOP = _
+  NONE = _
+  ONLY_TOP = _
 
   def __init__(self, plain_text: str):
     self.init()
@@ -1280,6 +1872,12 @@ class SystemRelationNumber(MusicElementBase):
   number is associated only with the current part, not with the system.
   """
 
+  ALSO_BOTTOM = _
+  ALSO_TOP = _
+  NONE = _
+  ONLY_BOTTOM = _
+  ONLY_TOP = _
+
   def __init__(self, plain_text: str):
     self.init()
 
@@ -1290,6 +1888,9 @@ class TapHand(MusicElementBase):
   The left and right values refer to the SMuFL guitarLeftHandTapping and
   guitarRightHandTapping glyphs respectively.
   """
+
+  LEFT = _
+  RIGHT = _
 
   def __init__(self, plain_text: str):
     self.init()
@@ -1325,6 +1926,11 @@ class TextDirection(MusicElementBase):
   applications that more fully support bidirectional text.
   """
 
+  LRO = _
+  LTR = _
+  RLO = _
+  RTL = _
+
   def __init__(self, plain_text: str):
     self.init()
 
@@ -1348,6 +1954,11 @@ class TiedType(MusicElementBase):
   element with a type of start precede the tied element with a type of stop.
   """
 
+  CONTINUE = _
+  LET_RING = _
+  START = _
+  STOP = _
+
   def __init__(self, plain_text: str):
     self.init()
 
@@ -1367,6 +1978,13 @@ class TimeOnly(MusicElementBase):
 class TimeRelation(MusicElementBase):
   """The time-relation type indicates the symbol used to represent the interchangeable aspect of dual time signatures."""
 
+  BRACKET = _
+  EQUALS = _
+  HYPHEN = _
+  PARENTHESES = _
+  SLASH = _
+  SPACE = _
+
   def __init__(self, plain_text: str):
     self.init()
 
@@ -1381,6 +1999,12 @@ class TimeSeparator(MusicElementBase):
   the beats and beat-type arranged vertically. The adjacent value represents no
   separator with the beats and beat-type arranged horizontally.
   """
+
+  ADJACENT = _
+  DIAGONAL = _
+  HORIZONTAL = _
+  NONE = _
+  VERTICAL = _
 
   def __init__(self, plain_text: str):
     self.init()
@@ -1399,6 +2023,13 @@ class TimeSymbol(MusicElementBase):
   beats value.
   """
 
+  COMMON = _
+  CUT = _
+  DOTTED_NOTE = _
+  NORMAL = _
+  NOTE = _
+  SINGLE_NUMBER = _
+
   def __init__(self, plain_text: str):
     self.init()
 
@@ -1406,12 +2037,24 @@ class TimeSymbol(MusicElementBase):
 class TipDirection(MusicElementBase):
   """The tip-direction type represents the direction in which the tip of a stick or beater points, using Unicode arrow terminology."""
 
+  DOWN = _
+  LEFT = _
+  NORTHEAST = _
+  NORTHWEST = _
+  RIGHT = _
+  SOUTHEAST = _
+  SOUTHWEST = _
+  UP = _
+
   def __init__(self, plain_text: str):
     self.init()
 
 
 class TopBottom(MusicElementBase):
   """The top-bottom type is used to indicate the top or bottom part of a vertical shape like non-arpeggiate."""
+
+  BOTTOM = _
+  TOP = _
 
   def __init__(self, plain_text: str):
     self.init()
@@ -1426,6 +2069,11 @@ class TremoloMarks(MusicElementBase):
 
 class TremoloType(MusicElementBase):
   """The tremolo-type is used to distinguish double-note, single-note, and unmeasured tremolos."""
+
+  SINGLE = _
+  START = _
+  STOP = _
+  UNMEASURED = _
 
   def __init__(self, plain_text: str):
     self.init()
@@ -1444,12 +2092,20 @@ class TrillBeats(MusicElementBase):
 class TrillStep(MusicElementBase):
   """The trill-step type describes the alternating note of trills and mordents for playback, relative to the current note."""
 
+  HALF = _
+  UNISON = _
+  WHOLE = _
+
   def __init__(self, plain_text: str):
     self.init()
 
 
 class TwoNoteTurn(MusicElementBase):
   """The two-note-turn type describes the ending notes of trills and mordents for playback, relative to the current note."""
+
+  HALF = _
+  NONE = _
+  WHOLE = _
 
   def __init__(self, plain_text: str):
     self.init()
@@ -1458,12 +2114,20 @@ class TwoNoteTurn(MusicElementBase):
 class UpDown(MusicElementBase):
   """The up-down type is used for the direction of arrows and other pointed symbols like vertical accents, indicating which way the tip is pointing."""
 
+  DOWN = _
+  UP = _
+
   def __init__(self, plain_text: str):
     self.init()
 
 
 class UpDownStopContinue(MusicElementBase):
   """The up-down-stop-continue type is used for octave-shift elements, indicating the direction of the shift from their true pitched values because of printing difficulty."""
+
+  CONTINUE = _
+  DOWN = _
+  STOP = _
+  UP = _
 
   def __init__(self, plain_text: str):
     self.init()
@@ -1474,6 +2138,9 @@ class UprightInverted(MusicElementBase):
 
   The value is upright if not specified.
   """
+
+  INVERTED = _
+  UPRIGHT = _
 
   def __init__(self, plain_text: str):
     self.init()
@@ -1486,6 +2153,11 @@ class Valign(MusicElementBase):
   the lowest line of text. Defaults are implementation-dependent.
   """
 
+  BASELINE = _
+  BOTTOM = _
+  MIDDLE = _
+  TOP = _
+
   def __init__(self, plain_text: str):
     self.init()
 
@@ -1495,6 +2167,10 @@ class ValignImage(MusicElementBase):
 
   Defaults are implementation-dependent.
   """
+
+  BOTTOM = _
+  MIDDLE = _
+  TOP = _
 
   def __init__(self, plain_text: str):
     self.init()
@@ -1506,6 +2182,11 @@ class WedgeType(MusicElementBase):
   The continue type is used for formatting wedges over a system break, or for
   other situations where a single wedge is divided into multiple segments.
   """
+
+  CONTINUE = _
+  CRESCENDO = _
+  DIMINUENDO = _
+  STOP = _
 
   def __init__(self, plain_text: str):
     self.init()
@@ -1519,6 +2200,12 @@ class Winged(MusicElementBase):
   value indicates no wings and is the default.
   """
 
+  CURVED = _
+  DOUBLE_CURVED = _
+  DOUBLE_STRAIGHT = _
+  NONE = _
+  STRAIGHT = _
+
   def __init__(self, plain_text: str):
     self.init()
 
@@ -1530,6 +2217,28 @@ class WoodValue(MusicElementBase):
   the pictogram.
   """
 
+  BAMBOO_SCRAPER = 'bamboo scraper'
+  BOARD_CLAPPER = 'board clapper'
+  CABASA = _
+  CASTANETS = _
+  CASTANETS_WITH_HANDLE = 'castanets with handle'
+  CLAVES = _
+  FOOTBALL_RATTLE = 'football rattle'
+  GUIRO = _
+  LOG_DRUM = 'log drum'
+  MARACA = _
+  MARACAS = _
+  QUIJADA = _
+  RAINSTICK = _
+  RATCHET = _
+  RECO_RECO = _
+  SANDPAPER_BLOCKS = 'sandpaper blocks'
+  SLIT_DRUM = 'slit drum'
+  TEMPLE_BLOCK = 'temple block'
+  VIBRASLAP = _
+  WHIP = _
+  WOOD_BLOCK = 'wood block'
+
   def __init__(self, plain_text: str):
     self.init()
 
@@ -1540,6 +2249,9 @@ class YesNo(MusicElementBase):
   We cannot use W3C XML Schema booleans due to their restrictions on expression
   of boolean values.
   """
+
+  NO = _
+  YES = _
 
   def __init__(self, plain_text: str):
     self.init()
@@ -1625,8 +2337,8 @@ class AccidentalMark(AccidentalValue):
 class AccidentalText(AccidentalValue):
   """The accidental-text type represents an element with an accidental value and text-formatting attributes."""
 
-  lang = "xml"
-  space = "xml"
+  lang = 'xml'
+  space = 'xml'
 
   def __init__(
       self,
@@ -1642,7 +2354,7 @@ class AccidentalText(AccidentalValue):
       font_weight: str | FontWeight = None,
       halign: str | LeftCenterRight = None,
       justify: str | LeftCenterRight = None,
-      lang: Any = None,
+      lang: str = None,
       letter_spacing: str | NumberOrNormal = None,
       line_height: str | NumberOrNormal = None,
       line_through: int | NumberOfLines = None,
@@ -1651,7 +2363,7 @@ class AccidentalText(AccidentalValue):
       relative_y: float | Tenths = None,
       rotation: float | RotationDegrees = None,
       smufl: str | SmuflAccidentalGlyphName = None,
-      space: Any = None,
+      space: str = None,
       underline: int | NumberOfLines = None,
       valign: str | Valign = None,
   ):
@@ -2473,8 +3185,8 @@ class FormattedSymbolId(SmuflGlyphName):
 class FormattedText(MusicElementBase):
   """The formatted-text type represents a text element with text-formatting attributes."""
 
-  lang = "xml"
-  space = "xml"
+  lang = 'xml'
+  space = 'xml'
 
   def __init__(
       self,
@@ -2490,7 +3202,7 @@ class FormattedText(MusicElementBase):
       font_weight: str | FontWeight = None,
       halign: str | LeftCenterRight = None,
       justify: str | LeftCenterRight = None,
-      lang: Any = None,
+      lang: str = None,
       letter_spacing: str | NumberOrNormal = None,
       line_height: str | NumberOrNormal = None,
       line_through: int | NumberOfLines = None,
@@ -2498,7 +3210,7 @@ class FormattedText(MusicElementBase):
       relative_x: float | Tenths = None,
       relative_y: float | Tenths = None,
       rotation: float | RotationDegrees = None,
-      space: Any = None,
+      space: str = None,
       underline: int | NumberOfLines = None,
       valign: str | Valign = None,
   ):
@@ -2508,8 +3220,8 @@ class FormattedText(MusicElementBase):
 class FormattedTextId(MusicElementBase):
   """The formatted-text-id type represents a text element with text-formatting and id attributes."""
 
-  lang = "xml"
-  space = "xml"
+  lang = 'xml'
+  space = 'xml'
 
   def __init__(
       self,
@@ -2526,7 +3238,7 @@ class FormattedTextId(MusicElementBase):
       halign: str | LeftCenterRight = None,
       id: str = None,
       justify: str | LeftCenterRight = None,
-      lang: Any = None,
+      lang: str = None,
       letter_spacing: str | NumberOrNormal = None,
       line_height: str | NumberOrNormal = None,
       line_through: int | NumberOfLines = None,
@@ -2534,7 +3246,7 @@ class FormattedTextId(MusicElementBase):
       relative_x: float | Tenths = None,
       relative_y: float | Tenths = None,
       rotation: float | RotationDegrees = None,
-      space: Any = None,
+      space: str = None,
       underline: int | NumberOfLines = None,
       valign: str | Valign = None,
   ):
@@ -3074,16 +3786,16 @@ class Link(MusicElementBase):
   MusicXML file, the link is relative to the root folder of the zip file.
   """
 
-  actuate = "xlink"
-  href = "xlink"
-  role = "xlink"
-  show = "xlink"
-  title = "xlink"
-  type = "xlink"
+  actuate = 'xlink'
+  href = 'xlink'
+  role = 'xlink'
+  show = 'xlink'
+  title = 'xlink'
+  type = 'xlink'
 
   def __init__(
       self,
-      actuate: Any = None,
+      actuate: str = None,
       default_x: float | Tenths = None,
       default_y: float | Tenths = None,
       element: str = None,
@@ -3093,9 +3805,9 @@ class Link(MusicElementBase):
       relative_x: float | Tenths = None,
       relative_y: float | Tenths = None,
       role: str = None,
-      show: Any = None,
+      show: str = None,
       title: str = None,
-      type: Any = None,
+      type: str = None,
   ):
     self.init()
 
@@ -3118,9 +3830,9 @@ class LyricFont(MusicElementBase):
 class LyricLanguage(MusicElementBase):
   """The lyric-language type specifies the default language for a particular name and number of lyric."""
 
-  lang = "xml"
+  lang = 'xml'
 
-  def __init__(self, lang: Any = None, name: str = None, number: str = None):
+  def __init__(self, lang: str = None, name: str = None, number: str = None):
     self.init()
 
 
@@ -3471,21 +4183,21 @@ class Offset(Divisions):
 class Opus(MusicElementBase):
   """The opus type represents a link to a MusicXML opus document that composes multiple MusicXML scores into a collection."""
 
-  actuate = "xlink"
-  href = "xlink"
-  role = "xlink"
-  show = "xlink"
-  title = "xlink"
-  type = "xlink"
+  actuate = 'xlink'
+  href = 'xlink'
+  role = 'xlink'
+  show = 'xlink'
+  title = 'xlink'
+  type = 'xlink'
 
   def __init__(
       self,
-      actuate: Any = None,
+      actuate: str = None,
       href: str = None,
       role: str = None,
-      show: Any = None,
+      show: str = None,
       title: str = None,
-      type: Any = None,
+      type: str = None,
   ):
     self.init()
 
@@ -4189,7 +4901,7 @@ class TextElementData(MusicElementBase):
   country subcodes from ISO 3166.
   """
 
-  lang = "xml"
+  lang = 'xml'
 
   def __init__(
       self,
@@ -4200,7 +4912,7 @@ class TextElementData(MusicElementBase):
       font_size: str | FontSize = None,
       font_style: str | FontStyle = None,
       font_weight: str | FontWeight = None,
-      lang: Any = None,
+      lang: str = None,
       letter_spacing: str | NumberOrNormal = None,
       line_through: int | NumberOfLines = None,
       overline: int | NumberOfLines = None,
@@ -4601,7 +5313,7 @@ class Attributes(MusicElementBase):
   Footnote = FormattedText
 
   class Directive(MusicElementBase):
-    lang = "xml"
+    lang = 'xml'
 
     def __init__(
         self,
@@ -4613,7 +5325,7 @@ class Attributes(MusicElementBase):
         font_size: str | FontSize = None,
         font_style: str | FontStyle = None,
         font_weight: str | FontWeight = None,
-        lang: Any = None,
+        lang: str = None,
         relative_x: float | Tenths = None,
         relative_y: float | Tenths = None,
     ):
@@ -6254,8 +6966,8 @@ class PartGroup(MusicElementBase):
 
   Footnote = FormattedText
   GroupAbbreviation = GroupName
-  GroupAbbreviationDisplay: Type[NameDisplay] = None
-  GroupNameDisplay: Type[NameDisplay] = None
+  GroupAbbreviationDisplay: TYPE[NameDisplay] = None
+  GroupNameDisplay: TYPE[NameDisplay] = None
   GroupTime = Empty
 
   def __init__(
@@ -6283,12 +6995,12 @@ class PartLink(MusicElementBase):
   values are paths that are relative to the root folder of the zip file.
   """
 
-  actuate = "xlink"
-  href = "xlink"
-  role = "xlink"
-  show = "xlink"
-  title = "xlink"
-  type = "xlink"
+  actuate = 'xlink'
+  href = 'xlink'
+  role = 'xlink'
+  show = 'xlink'
+  title = 'xlink'
+  type = 'xlink'
 
   class GroupLink(MusicElementBase):
     """Multiple part-link elements can reference different types of linked documents, such as parts and condensed score.
@@ -6303,12 +7015,12 @@ class PartLink(MusicElementBase):
 
   def __init__(
       self,
-      actuate: Any = None,
+      actuate: str = None,
       href: str = None,
       role: str = None,
-      show: Any = None,
+      show: str = None,
       title: str = None,
-      type: Any = None,
+      type: str = None,
   ):
     self.init()
 
@@ -6490,8 +7202,8 @@ class Print(MusicElementBase):
   the layout determined by the defaults element.
   """
 
-  PartAbbreviationDisplay: Type[NameDisplay] = None
-  PartNameDisplay: Type[NameDisplay] = None
+  PartAbbreviationDisplay: TYPE[NameDisplay] = None
+  PartNameDisplay: TYPE[NameDisplay] = None
 
   def __init__(
       self,
@@ -6641,8 +7353,8 @@ class ScorePart(MusicElementBase):
   """
 
   PartAbbreviation = PartName
-  PartAbbreviationDisplay: Type[NameDisplay] = None
-  PartNameDisplay: Type[NameDisplay] = None
+  PartAbbreviationDisplay: TYPE[NameDisplay] = None
+  PartNameDisplay: TYPE[NameDisplay] = None
 
   class Group(MusicElementBase):
     """The group element allows the use of different versions of the part for different purposes.
@@ -7228,8 +7940,8 @@ class Tuplet(MusicElementBase):
   both the actual and normal types, or neither. It is none by default.
   """
 
-  TupletActual: Type[TupletPortion] = None
-  TupletNormal: Type[TupletPortion] = None
+  TupletActual: TYPE[TupletPortion] = None
+  TupletNormal: TYPE[TupletPortion] = None
 
   def __init__(
       self,

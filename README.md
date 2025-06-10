@@ -1,6 +1,6 @@
-# Music Composer
+# Music Py
 
-Music Composer is a programming launguage for music. It provides a Pythonic way to generate [MusicXML](https://www.w3.org/2021/06/musicxml40/tutorial/introduction/) files with declarative syntax. 
+Music Py is a programming launguage for music. It provides a Pythonic way to generate [MusicXML](https://www.w3.org/2021/06/musicxml40/tutorial/introduction/) files with declarative syntax. 
 
 API Reference:
 

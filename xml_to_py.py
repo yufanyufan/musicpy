@@ -1,7 +1,10 @@
-import xml.etree.ElementTree as ET
-import logging
-import musicxml_schema
 import inspect
+import types
+import typing
+import logging
+import xml.etree.ElementTree as ET
+import musicxml_schema
+
 
 def to_snake_case(name: str) -> str:
   """Converts a hyphen-separated, camelCase, or PascalCase string to snake_case.
@@ -47,20 +50,39 @@ def translate_xml_to_python(xml_string: str) -> str:
   Raises:
       ET.ParseError: If the XML string is malformed.
   """
-  try:
-    # Sanitize input by removing leading/trailing whitespace
-    clean_xml = xml_string.strip()
-    if not clean_xml:
-      return ""
-
-    root = ET.fromstring(clean_xml)
-    return _generate_code(root, 0)
-  except ET.ParseError as e:
-    print(f"Error parsing XML: {e}")
-    raise
+  return _generate_code(ET.fromstring(xml_string), 0)
 
 
-def _generate_code(element: ET.Element, indent_level: int, parent_schema_class: type = None) -> str:
+def _convert_to_python_value(value: str, param_type: str) -> str:
+  """Converts an attribute value from string to the specified type.
+
+  Args:
+      value: The string value of the attribute.
+      param_type: The expected type of the attribute.
+
+  Returns:
+      The converted value as a string, or the original value if conversion
+      fails.
+  """
+  param_type = param_type.split("|")[0].strip()
+  if param_type == "int":
+    return str(int(value))
+  elif param_type == "float":
+    return str(float(value))
+  elif param_type == "bool":
+    if value.lower() == "true":
+      return "True"
+    elif value.lower() == "false":
+      return "False"
+    else:
+      raise ValueError(f"Invalid boolean value: {value}")
+  else:
+    return repr(value)
+
+
+def _generate_code(
+    element: ET.Element, indent_level: int, parent_schema_class: type = None
+) -> str:
   """Recursively traverses the ElementTree and generates the Python code string.
 
   Args:
@@ -78,32 +100,42 @@ def _generate_code(element: ET.Element, indent_level: int, parent_schema_class: 
 
   has_plain_text_arg = False
   schema_class = None
-  try:
-    # Dynamically get the class from the musicxml_schema module
-    if parent_schema_class:
-      schema_class = getattr(parent_schema_class, class_name, None)
-    if not schema_class:
-      schema_class = getattr(musicxml_schema, class_name)
-    # Inspect the __init__ method for plain_text argument
-    init_signature = inspect.signature(schema_class.__init__)
-    if "plain_text" in init_signature.parameters:
-      has_plain_text_arg = True
-  except AttributeError:
-    logging.warning(f"Class {class_name} not found in schema. Skipping.")
-    return ""
-  except TypeError:
-    logging.warning(f"Failed to inspect class {class_name} in schema. Skipping.")
-    return ""
+  # Dynamically get the class from the musicxml_schema module
+  if parent_schema_class:
+    schema_class = getattr(parent_schema_class, class_name, None)
+  if not schema_class:
+    schema_class = getattr(musicxml_schema, class_name)
+  # Inspect the __init__ method for plain_text argument
+  init_signature = inspect.signature(schema_class.__init__)
+  if "plain_text" in init_signature.parameters:
+    has_plain_text_arg = True
 
   args = []
+
   if has_plain_text_arg:
-    text_content = element.text.strip().replace('"', '\\"') if element.text else ""
-    args.append(f'"{text_content}"')
+    plain_text_param = init_signature.parameters.get("plain_text")
+    if (
+        plain_text_param
+        and plain_text_param.annotation != inspect.Parameter.empty
+    ):
+      converted_text = _convert_to_python_value(
+          element.text, plain_text_param.annotation
+      )
+      args.append(converted_text)
+    else:
+      raise ValueError(f"no plain text param found in {class_name}")
 
   # Handle attributes as keyword arguments.
-  attr_args = [
-      f'{to_snake_case(key)}="{value}"' for key, value in element.attrib.items()
-  ]
+  attr_args = []
+  init_signature = inspect.signature(schema_class.__init__)
+  for key, value in element.attrib.items():
+    param_name = to_snake_case(key)
+    param = init_signature.parameters.get(param_name)
+    if param and param.annotation != inspect.Parameter.empty:
+      converted_value = _convert_to_python_value(value, param.annotation)
+      attr_args.append(f"{param_name}={converted_value}")
+    else:
+      attr_args.append(f'{param_name}="{value}"')
   args.extend(attr_args)
 
   # Combine all arguments into a single string.
@@ -131,5 +163,8 @@ if __name__ == "__main__":
   with open("score.xml", "r") as f:
     xml_string = f.read()
   print("""from musicxml_schema import *
-from musicxml import _\n\n""")
-  print(translate_xml_to_python(xml_string))
+from musicxml import _
+
+""")
+  result = translate_xml_to_python(xml_string)
+  print(result)

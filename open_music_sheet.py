@@ -8,6 +8,13 @@ import logging
 
 st.set_page_config(page_title="Open Music Sheet", page_icon="🎼", layout="wide")
 
+logging.basicConfig(
+    level=logging.INFO,  # Set the desired default logging level
+    format=(
+        "%(levelname)s - [%(filename)s:%(lineno)d] - %(funcName)s() -"
+        " %(message)s"
+    ),
+)
 
 @st.cache_data
 def list_sheet(dir=""):

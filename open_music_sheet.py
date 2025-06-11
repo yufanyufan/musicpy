@@ -24,8 +24,6 @@ def rate_limit():
   )
   st.code(response.json())
 
-rate_limit()
-
 @st.cache_data
 def list_sheet(dir=""):
   url = (
@@ -33,7 +31,7 @@ def list_sheet(dir=""):
   )
   headers={"Authorization": st.secrets["github_key"]}
   response = requests.get(
-      url, headers
+      url, headers=headers
   )
   logging.info(response)
   response.raise_for_status()  # Raise an exception for bad status codes

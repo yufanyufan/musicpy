@@ -4,6 +4,7 @@ import textwrap
 import requests
 import streamlit as st
 import verovio
+import logging
 
 st.set_page_config(page_title="Open Music Sheet", page_icon="🎼", layout="wide")
 
@@ -17,7 +18,7 @@ def list_sheet(dir=""):
   response = requests.get(
       url, headers
   )
-  print(response)
+  logging.info(response)
   response.raise_for_status()  # Raise an exception for bad status codes
   data = response.json()
   return [

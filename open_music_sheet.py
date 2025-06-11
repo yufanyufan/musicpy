@@ -27,7 +27,7 @@ def rate_limit():
 @st.cache_data
 def list_sheet(dir=""):
   url = (
-      "https://api.github.com/repos/yufanyufan/open_muaic_sheet/contents" + dir
+      "https://api.github.com/repos/yufanyufan/open_music_sheet/contents" + dir
   )
   headers={"Authorization": st.secrets["github_key"]}
   response = requests.get(

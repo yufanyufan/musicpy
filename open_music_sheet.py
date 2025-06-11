@@ -7,12 +7,12 @@ import os
 import textwrap
 
 st.set_page_config(page_title="Open Music Sheet", page_icon="🎼", layout="wide")
-raise Exception()
+
 
 @st.cache_data
 def list_sheet(dir = ""):
   url = "https://api.github.com/repos/yufanyufan/open_music_sheet/contents" + dir
-  response = requests.get(url)
+  response = requests.get(url, headers={"Authorization": st.secrests["github_key"]})
   response.raise_for_status()  # Raise an exception for bad status codes
   data = response.json()
   return [item['name'] + "/"if item['type'] == 'dir' else item['name'] for item in data

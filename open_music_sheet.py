@@ -15,7 +15,7 @@ def list_sheet(dir=""):
   )
   headers={"Authorization": st.secrets["github_key"]}
   response = requests.get(
-      url
+      url, headers
   )
   response.raise_for_status()  # Raise an exception for bad status codes
   data = response.json()

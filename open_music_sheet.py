@@ -64,7 +64,7 @@ def render_path_chooser(path: str) -> str:
           return render_path_chooser(path + choosen)
         else:
           return path + choosen
-      return ""
+      return path
     else:
       st.warning("Failed to load composer list.")
 
@@ -105,10 +105,22 @@ def render_music_sheet(path: str) -> str:
   for i in range(page_count):
     st.session_state.svg.append(toolkit.renderToSVG(i + 1))
 
-
 path = render_path_chooser("/")
+if path.endswith("/"):
+  with next(cols):
+    st.markdown(
+        "[Add new on Github]"
+        f"(https://github.com/yufanyufan/open_music_sheet/new/main/{path})"
+    )
 
-if path:
+if path and path.endswith(".py"):
+  with next(cols):
+    st.markdown(
+        "[Modify it on Github]"
+        f"(https://github.com/yufanyufan/open_music_sheet/edit/main/{path})"
+    )
+
+if path and path.endswith(".py"):
   if "path" not in st.session_state:
     st.session_state.path = None
   if "svg" not in st.session_state:

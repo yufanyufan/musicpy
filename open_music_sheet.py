@@ -13,8 +13,9 @@ def list_sheet(dir=""):
   url = (
       "https://api.github.com/repos/yufanyufan/open_music_sheet/contents" + dir
   )
+  headers={"Authorization": st.secrets["github_key"]}
   response = requests.get(
-      url, headers={"Authorization": st.secrets["github_key"]}
+      url
   )
   response.raise_for_status()  # Raise an exception for bad status codes
   data = response.json()

@@ -1,6 +1,9 @@
 # MusicPy
 
 MusicPy is a programming launguage for music. It provides a Pythonic way to generate [MusicXML](https://www.w3.org/2021/06/musicxml40/tutorial/introduction/) files with declarative syntax. 
+It is designed to be highly readable, easy modifiable, diffable. It is used by [Open Music Sheet](https://github.com/yufanyufan/open_music_sheet) project for collabrative editing.
+
+Besides that, it is also just Python! That means it can include function, library or anything.
 
 API Reference:
 

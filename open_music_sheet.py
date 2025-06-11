@@ -18,7 +18,7 @@ logging.basicConfig(
 
 def rate_limit():
   url = "https://api.github.com/rate_limit"
-  headers={"Authorization": st.secrets["github_key"]}
+  headers={"Authorization": "cdscc"}
   response = requests.get(
       url, headers
   )

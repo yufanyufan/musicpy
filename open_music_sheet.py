@@ -16,6 +16,16 @@ logging.basicConfig(
     ),
 )
 
+def rate_limit():
+  url = "https://api.github.com/rate_limit"
+  headers={"Authorization": st.secrets["github_key"]}
+  response = requests.get(
+      url, headers
+  )
+  st.code(response.json())
+
+rate_limit()
+
 @st.cache_data
 def list_sheet(dir=""):
   url = (

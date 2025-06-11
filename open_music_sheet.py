@@ -25,7 +25,7 @@ def list_sheet(dir=""):
   response = requests.get(
       url, headers
   )
-  logging.info("Reponse %s", response)
+  logging.error("Reponse %s", response)
   #response.raise_for_status()  # Raise an exception for bad status codes
   data = response.json()
   return [

@@ -26,6 +26,7 @@ def list_sheet(dir=""):
       url, headers
   )
   logging.error("Reponse %s", response)
+  st.code(response)
   #response.raise_for_status()  # Raise an exception for bad status codes
   data = response.json()
   return [

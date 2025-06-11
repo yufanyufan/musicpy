@@ -7,7 +7,7 @@ import os
 import textwrap
 
 st.set_page_config(page_title="Open Music Sheet", page_icon="🎼", layout="wide")
-
+raise Exception()
 
 @st.cache_data
 def list_sheet(dir = ""):

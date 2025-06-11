@@ -25,8 +25,8 @@ def list_sheet(dir=""):
   response = requests.get(
       url, headers
   )
-  logging.info(response)
-  response.raise_for_status()  # Raise an exception for bad status codes
+  logging.info("Reponse %s", response)
+  #response.raise_for_status()  # Raise an exception for bad status codes
   data = response.json()
   return [
       item["name"] + "/" if item["type"] == "dir" else item["name"]

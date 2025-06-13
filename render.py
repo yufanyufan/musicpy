@@ -5,7 +5,7 @@ import musicpy_ast
 import streamlit as st
 import verovio
 
-st.set_page_config(page_title="MusicPy", page_icon="💡", layout="wide")
+st.set_page_config(page_title="MusicPy", page_icon="🎼", layout="wide")
 
 
 def main():

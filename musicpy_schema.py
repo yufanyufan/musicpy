@@ -1,6 +1,6 @@
 from __future__ import annotations
 from typing import Type as TYPE
-from musicxml import MusicElementBase, _
+from musicpy import MusicElementBase, _
 
 
 class AboveBelow(MusicElementBase):
@@ -8173,3 +8173,11 @@ ScorePart.PartAbbreviationDisplay = NameDisplay
 ScorePart.PartNameDisplay = NameDisplay
 Tuplet.TupletActual = TupletPortion
 Tuplet.TupletNormal = TupletPortion
+
+__all__ = [
+    name
+    for name in globals()
+    if not name.startswith('_')
+    and not name in ('TYPE', 'annotations', 'MusicElementBase')
+]
+__all__.append('_')

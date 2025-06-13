@@ -1,6 +1,5 @@
 """MusicXML Generation Library
 
-
 Overview:
 This library provides a Pythonic way to generate MusicXML files. It defines a
 set of classes that correspond to MusicXML elements. These classes utilize
@@ -97,18 +96,25 @@ logging.basicConfig(
 # Global context for building the XML tree
 _current_context = None
 
-class MusicXML:
+
+class MusicPy:
+
   def __init__(self):
     global _current_context
     _current_context = self
+
   def add_child(self, child):
     self.child = child
+
   def get_xml(self):
     return str(self.child)
+
   def __enter__(self):
     return self
+
   def __exit__(self, exc_type, exc_val, exc_tb):
     pass
+
 
 # Global variables for schema, parser, and schema details.
 _MUSICXML_GLOBAL_SCHEMA_PARSER = None
@@ -117,6 +123,7 @@ _MUSICXML_SCHEMA_FILE_NAME = "musicxml.xsd"
 
 def get_xml():
   return _current_context.get_xml()
+
 
 @dataclasses.dataclass(frozen=True)
 class MusicElementArg:
@@ -165,13 +172,15 @@ def to_kebab_case(name: str, namespace: str = "") -> str:
   if not name:
     return ""
   result = [name[0].lower()]
-  if namespace:
-    result.append(f"{namespace}:")
+
   for char in name[1:]:
     if char.isupper():
       result.append("-")
     result.append(char.lower())
-  return "".join(result)
+  result = "".join(result)
+  if namespace:
+    return  f"{namespace}:{result}"
+  return result
 
 
 def to_pascal_case(snake_str: str) -> str:
@@ -265,7 +274,7 @@ class MusicElementBase(metaclass=AutoAlias):
         self.element.set(to_kebab_case(k, namespace), str(v_args))
         continue
       # Try to get the class from the musicxml_schema module first
-      music_schema_module = sys.modules.get("musicxml_schema")
+      music_schema_module = sys.modules.get("musicpy_schema")
       child_class_type = getattr(self.__class__, k, None)
       if child_class_type is None:
         for base_class in inspect.getmro(self.__class__):
@@ -356,7 +365,7 @@ class MusicElementBase(metaclass=AutoAlias):
     if self.__class__.schema is None:
       try:
         self.__class__.schema = create_schema(
-            to_element_case(self.__class__.__name__)
+            to_kebab_case(self.__class__.__name__)
         )
       except Exception as e:
         logging.warning(

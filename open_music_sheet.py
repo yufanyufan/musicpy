@@ -80,26 +80,20 @@ def get_music_sheet(path: str) -> str:
   return response.text
 
 
-PREAMPLE = """
-from musicxml_schema import *
-from musicxml import _, MusicXML
-with MusicXML() as __score:
-"""
-
-
 def render_music_sheet(path: str) -> str:
   st.session_state.path = path
   music_sheet = get_music_sheet(path)
-  print("music_sheet", music_sheet[0:1000])
-
-  result = {}
-  exec(PREAMPLE + textwrap.indent(music_sheet, "  "), {}, result)
+  try:
+    xml = musicpy_ast.safe_exec_musicpy(musicpy)
+  except Exception as e:
+    st.error(e)
+    return
   toolkit = verovio.toolkit()
   toolkit.setResourcePath(
       os.path.join(os.path.dirname(verovio.__file__), "data")
   )
   toolkit.setInputFrom("musicxml")
-  toolkit.loadData(str(result["__score"].get_xml()))
+  toolkit.loadData(xml)
   page_count = toolkit.getPageCount()
   st.session_state.svg = []
   for i in range(page_count):

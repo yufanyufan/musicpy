@@ -81,6 +81,7 @@ def get_music_sheet(path: str) -> str:
 
 
 def render_music_sheet(path: str) -> str:
+  st.session_state.svg = []
   st.session_state.path = path
   music_sheet = get_music_sheet(path)
   try:
@@ -95,7 +96,6 @@ def render_music_sheet(path: str) -> str:
   toolkit.setInputFrom("musicxml")
   toolkit.loadData(xml)
   page_count = toolkit.getPageCount()
-  st.session_state.svg = []
   for i in range(page_count):
     st.session_state.svg.append(toolkit.renderToSVG(i + 1))
 

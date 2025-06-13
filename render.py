@@ -27,6 +27,8 @@ def main():
     try:
       st.session_state.xml = musicpy_ast.safe_exec_musicpy(musicpy)
     except Exception as e:
+      st.session_state.xml = None
+      st.session_state.svg = None
       st.error(e)
       return
     toolkit = verovio.toolkit()

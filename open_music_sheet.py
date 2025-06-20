@@ -5,6 +5,7 @@ import requests
 import streamlit as st
 import verovio
 import logging
+import musicpy_ast
 
 st.set_page_config(page_title="Open Music Sheet", page_icon="🎼", layout="wide")
 

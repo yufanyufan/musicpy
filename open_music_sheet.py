@@ -6,7 +6,7 @@ import streamlit as st
 import verovio
 import logging
 import musicpy_ast
-import musicpy
+
 
 st.set_page_config(page_title="Open Music Sheet", page_icon="🎼", layout="wide")
 
@@ -87,7 +87,7 @@ def render_music_sheet(path: str) -> str:
   st.session_state.path = path
   music_sheet = get_music_sheet(path)
   try:
-    xml = musicpy_ast.safe_exec_musicpy(musicpy)
+    xml = musicpy_ast.safe_exec_musicpy(music_sheet)
   except Exception as e:
     st.error(e)
     return
